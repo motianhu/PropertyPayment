@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">@string/payment_payment</string>
+
+    <!-- 公共 -->
+    <string name="payment_common_back">返回</string>
+    <string name="payment_common_select_type_arrow">></string>
+    <string name="payment_payment">缴费</string>
+
+    <!-- 首页 -->
+    <string name="payment_home_water">水费</string>
+    <string name="payment_home_power">电费</string>
+    <string name="payment_home_gas">燃气费</string>
+    <string name="payment_home_phone">手机费</string>
+    <string name="payment_home_park">停车费</string>
+    <string name="payment_home_property">物业费</string>
+    
+</resources>

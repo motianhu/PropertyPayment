@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.smona.app.propertypayment"
+    android:versionCode="1"
+    android:versionName="1.0.1.a" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="21" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+
+        <!-- 首页 -->
+        <activity
+            android:name=".PayHomeActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 水费 -->
+        <activity
+            android:name=".water.WaterActivity"
+            android:label="@string/payment_home_water"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <!-- 电费 -->
+        <activity
+            android:name=".power.PowerActivity"
+            android:label="@string/payment_home_power"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <!-- 燃气费 -->
+        <activity
+            android:name=".gas.GasActivity"
+            android:label="@string/payment_home_gas"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <!-- 手机费 -->
+        <activity
+            android:name=".phone.PhoneActivity"
+            android:label="@string/payment_home_phone"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <!-- 物业费 -->
+        <activity
+            android:name=".property.PropertyActivity"
+            android:label="@string/payment_home_property"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <!-- 停车费 -->
+        <activity
+            android:name=".park.ParkActivity"
+            android:label="@string/payment_home_park"
+            android:screenOrientation="portrait" >
+        </activity>
+    </application>
+
+</manifest>
