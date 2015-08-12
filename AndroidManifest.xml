@@ -66,6 +66,12 @@
             android:label="@string/payment_home_park"
             android:screenOrientation="portrait" >
         </activity>
+        
+        <activity
+            android:name=".common.ui.PaymentSimpleFeeDetailActivity"
+            android:label="@string/payment_home_park"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

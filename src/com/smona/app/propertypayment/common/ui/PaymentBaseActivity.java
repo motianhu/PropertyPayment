@@ -1,9 +1,8 @@
-package com.smona.app.propertypayment.common;
+package com.smona.app.propertypayment.common.ui;
 
 import com.smona.app.propertypayment.R;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,7 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public abstract class PaymentBaseActivity extends Activity {
+public abstract class PaymentBaseActivity extends PaymentDialogActivity {
 
     private static final int MSG_LOAD_DATA = 1;
     private static final int MSG_NOTIFY_REFRESH_UI = 2;

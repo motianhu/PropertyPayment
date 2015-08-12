@@ -20,21 +20,21 @@
             android:layout_width="@dimen/payment_home_item_width"
             android:layout_height="@dimen/payment_home_item_height"
             android:layout_marginLeft="@dimen/payment_home_item_margin_left"
-            layout="@layout/payment_payment_home_item" />
+            layout="@layout/payment_home_item" />
 
         <include
             android:id="@+id/power"
             android:layout_width="@dimen/payment_home_item_width"
             android:layout_height="@dimen/payment_home_item_height"
             android:layout_marginLeft="@dimen/payment_home_item_margin_left"
-            layout="@layout/payment_payment_home_item" />
+            layout="@layout/payment_home_item" />
 
         <include
             android:id="@+id/gas"
             android:layout_width="@dimen/payment_home_item_width"
             android:layout_height="@dimen/payment_home_item_height"
             android:layout_marginLeft="@dimen/payment_home_item_margin_left"
-            layout="@layout/payment_payment_home_item" />
+            layout="@layout/payment_home_item" />
     </LinearLayout>
 
     <LinearLayout
@@ -50,21 +50,21 @@
             android:layout_width="@dimen/payment_home_item_width"
             android:layout_height="@dimen/payment_home_item_height"
             android:layout_marginLeft="@dimen/payment_home_item_margin_left"
-            layout="@layout/payment_payment_home_item" />
+            layout="@layout/payment_home_item" />
 
         <include
             android:id="@+id/property"
             android:layout_width="@dimen/payment_home_item_width"
             android:layout_height="@dimen/payment_home_item_height"
             android:layout_marginLeft="@dimen/payment_home_item_margin_left"
-            layout="@layout/payment_payment_home_item" />
+            layout="@layout/payment_home_item" />
 
         <include
             android:id="@+id/park"
             android:layout_width="@dimen/payment_home_item_width"
             android:layout_height="@dimen/payment_home_item_height"
             android:layout_marginLeft="@dimen/payment_home_item_margin_left"
-            layout="@layout/payment_payment_home_item" />
+            layout="@layout/payment_home_item" />
     </LinearLayout>
 
 </LinearLayout>

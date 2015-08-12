@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.smona.app.propertypayment.R;
-import com.smona.app.propertypayment.common.PaymentBaseActivity;
+import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
 
 public class PropertyActivity extends PaymentBaseActivity {
     @Override

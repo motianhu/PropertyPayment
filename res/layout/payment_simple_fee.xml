@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/payment_color_common_home_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/payment_common_header" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="20dp" >
+
+        <include
+            android:id="@+id/select_company"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/payment_common_select_type_height"
+            android:layout_marginTop="10dp"
+            layout="@layout/payment_common_select_type" />
+
+        <include
+            android:id="@+id/input_huhao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            layout="@layout/payment_common_text_value_editor" />
+
+        <include
+            android:id="@+id/select_groupby"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/payment_common_select_type_height"
+            android:layout_marginTop="10dp"
+            layout="@layout/payment_common_select_type" />
+
+        <include
+            android:id="@+id/next_step"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            layout="@layout/payment_common_next_step" />
+    </LinearLayout>
+
+</LinearLayout>

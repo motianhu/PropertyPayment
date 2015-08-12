@@ -1,6 +1,6 @@
 package com.smona.app.propertypayment;
 
-import com.smona.app.propertypayment.common.PaymentBaseActivity;
+import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
 import com.smona.app.propertypayment.gas.GasActivity;
 import com.smona.app.propertypayment.park.ParkActivity;
 import com.smona.app.propertypayment.phone.PhoneActivity;
