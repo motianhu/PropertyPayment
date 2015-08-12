@@ -4,7 +4,8 @@ import android.view.View;
 
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.ui.PaymentSimpleFeeActivity;
-import com.smona.app.propertypayment.common.ui.PaymentSimpleFeeDetailActivity;
+import com.smona.app.propertypayment.common.ui.PaymentSimpleFeeDetailListActivity;
+import com.smona.app.propertypayment.common.ui.PaymentSimpleFeePayActivity;
 
 public class GasActivity extends PaymentSimpleFeeActivity {
 
@@ -12,7 +13,7 @@ public class GasActivity extends PaymentSimpleFeeActivity {
     protected void initHeader() {
         initText(R.id.title, R.string.payment_home_gas);
         initView(R.id.back);
-        initText(R.id.detail, R.string.payment_gas_query);
+        initText(R.id.detail, R.string.payment_common_query);
         initView(R.id.detail);
     }
 
@@ -34,7 +35,8 @@ public class GasActivity extends PaymentSimpleFeeActivity {
                 R.string.payment_gas_select_groupby);
         initText(parent, R.id.select_type_value, R.string.payment_gas_groupby);
         initView(R.id.select_groupby);
-        
+
+        initText(R.id.next_step, R.string.payment_common_next_step);
         initView(R.id.next_step);
     }
 
@@ -47,13 +49,14 @@ public class GasActivity extends PaymentSimpleFeeActivity {
         }
         switch (id) {
         case R.id.detail:
-            gotoSubActivity(PaymentSimpleFeeDetailActivity.class);
+            gotoSubActivity(PaymentSimpleFeeDetailListActivity.class);
             break;
         case R.id.select_company:
             break;
         case R.id.select_groupby:
             break;
         case R.id.next_step:
+            gotoSubActivity(PaymentSimpleFeePayActivity.class);
             break;
         }
     }

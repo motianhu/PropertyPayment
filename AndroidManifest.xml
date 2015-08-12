@@ -67,11 +67,16 @@
             android:screenOrientation="portrait" >
         </activity>
         
+        <!-- 公用 -->
         <activity
-            android:name=".common.ui.PaymentSimpleFeeDetailActivity"
+            android:name=".common.ui.PaymentSimpleFeeDetailListActivity"
             android:label="@string/payment_home_park"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".common.ui.PaymentSimpleFeePayActivity"
+            android:label="@string/payment_home_park"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

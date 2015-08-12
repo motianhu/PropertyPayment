@@ -7,7 +7,16 @@
     <string name="payment_common_back">返回</string>
     <string name="payment_common_select_type_arrow">></string>
     <string name="payment_payment">缴费</string>
-    <string name="payment_commont_next_step">下一步</string>
+    <string name="payment_common_next_step">下一步</string>
+    <string name="payment_common_detail_list">缴费明细</string>
+    <string name="payment_common_query">缴费查询</string>
+    <string name="payment_common_huming">户&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;名</string>
+    <string name="payment_common_huhao">户&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;号</string>
+    <string name="payment_common_company">缴费单位</string>
+    <string name="payment_common_yue">余&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;额</string>
+    <string name="payment_common_pay_jine">缴费金额</string>
+    <string name="payment_common_input_pay_jine">请输入缴费金额</string>
+    <string name="payment_common_liji_pay">立即缴费</string>
 
     <!-- 首页 -->
     <string name="payment_home_water">水费</string>
@@ -18,8 +27,6 @@
     <string name="payment_home_property">物业费</string>
 
     <!-- 水费 -->
-    <string name="payment_water_query">缴费查询</string>
-    <string name="payment_water_detail_list">缴费明细</string>
     <string name="payment_water_company">缴费单位</string>
     <string name="payment_water_select_company">请选择缴费单位</string>
     <string name="payment_water_huhao">户号</string>
@@ -28,8 +35,6 @@
     <string name="payment_water_select_groupby">请选择分组</string>
 
     <!-- 电费 -->
-    <string name="payment_power_query">缴费查询</string>
-    <string name="payment_power_detail_list">缴费明细</string>
     <string name="payment_power_company">缴费单位</string>
     <string name="payment_power_select_company">请选择缴费单位</string>
     <string name="payment_power_huhao">户号</string>
@@ -38,8 +43,6 @@
     <string name="payment_power_select_groupby">请选择分组</string>
 
     <!-- 燃气费 -->
-    <string name="payment_gas_query">缴费查询</string>
-    <string name="payment_gas_detail_list">缴费明细</string>
     <string name="payment_gas_company">缴费单位</string>
     <string name="payment_gas_select_company">请选择缴费单位</string>
     <string name="payment_gas_huhao">户号</string>

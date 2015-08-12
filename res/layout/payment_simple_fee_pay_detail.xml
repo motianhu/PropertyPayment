@@ -14,25 +14,39 @@
         android:paddingBottom="20dp" >
 
         <include
-            android:id="@+id/select_company"
+            android:id="@+id/user_name"
             android:layout_width="match_parent"
             android:layout_height="@dimen/payment_common_select_type_height"
             android:layout_marginTop="10dp"
-            layout="@layout/payment_common_select_type" />
+            layout="@layout/payment_common_text_value" />
 
         <include
-            android:id="@+id/input_huhao"
+            android:id="@+id/user_huhao"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/payment_common_select_type_height"
+            android:layout_marginTop="10dp"
+            layout="@layout/payment_common_text_value" />
+
+        <include
+            android:id="@+id/pay_to_company"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/payment_common_select_type_height"
+            android:layout_marginTop="10dp"
+            layout="@layout/payment_common_text_value" />
+
+        <include
+            android:id="@+id/yue"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/payment_common_select_type_height"
+            android:layout_marginTop="10dp"
+            layout="@layout/payment_common_text_value" />
+
+        <include
+            android:id="@+id/input_fee"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/payment_common_select_type_height"
             android:layout_marginTop="10dp"
             layout="@layout/payment_common_text_value_editor" />
-
-        <include
-            android:id="@+id/select_groupby"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/payment_common_select_type_height"
-            android:layout_marginTop="10dp"
-            layout="@layout/payment_common_select_type" />
 
         <include
             android:layout_width="match_parent"

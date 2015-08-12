@@ -8,14 +8,14 @@ import android.view.View;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 
-public class PaymentSimpleFeeDetailActivity extends PaymentFetchListActivity {
+public class PaymentSimpleFeeDetailListActivity extends PaymentFetchListActivity {
 
     private ArrayList<PaymentItemInfo> mDatas = new ArrayList<PaymentItemInfo>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.payment_simple_fee_detail);
+        setContentView(R.layout.payment_simple_fee_detail_list);
         acquireItemInfo();
         initViews();
     }
@@ -26,7 +26,7 @@ public class PaymentSimpleFeeDetailActivity extends PaymentFetchListActivity {
 
     @Override
     protected void initHeader() {
-        initText(R.id.title, R.string.payment_water_detail_list);
+        initText(R.id.title, R.string.payment_common_detail_list);
         initView(R.id.back);
     }
 
