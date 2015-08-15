@@ -1,8 +1,12 @@
 package com.smona.app.propertypayment.common.ui;
 
+import java.util.ArrayList;
+
 import com.smona.app.propertypayment.R;
+import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -211,4 +215,24 @@ public abstract class PaymentBaseActivity extends PaymentDialogActivity {
         });
     }
 
+    protected void showSingleChoiceType(ArrayList<PaymentItemInfo> datas,
+            final IChoiceCallback callback) {
+        PaymentTypeAdapter dapter = new PaymentTypeAdapter(this, datas);
+
+        PaymentSelectedDialog.Builder builder = new PaymentSelectedDialog.Builder(
+                this);
+        builder.setSingleChoiceItems(dapter, 0,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        callback.onChoice(which);
+                        dialog.dismiss();
+                    }
+                });
+        builder.show();
+    }
+    
+
+    public interface IChoiceCallback {
+        void onChoice(int which);
+    }
 }

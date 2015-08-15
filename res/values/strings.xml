@@ -50,4 +50,30 @@
     <string name="payment_gas_groupby">分组</string>
     <string name="payment_gas_select_groupby">请选择分组</string>
 
+    <!-- 物业费 -->
+    <string name="payment_property_fangchan_info">房产信息</string>
+    <string name="payment_property_select_fangchan_info">请选择房产</string>
+    <string name="payment_property_company">物业公司</string>
+    <string name="payment_property_yingjiao_jine">应缴金额</string>
+    <string name="payment_property_dazhe_info">预存物业费</string>
+    <string name="payment_property_dazhe_info_hint">有优惠</string>
+    <string name="payment_property_yucun_info">预存金额</string>
+    <string name="payment_property_heji_info">合计金额</string>
+    
+    
+    <!-- 停车费 -->
+    <string name="payment_park_cheliang_info">车辆信息</string>
+    <string name="payment_park_select_cheliang_info">请选择车辆</string>
+    <string name="payment_park_company">物业公司</string>
+    <string name="payment_park_yingjiao_jine">应缴金额</string>
+    <string name="payment_park_dazhe_info">预存停车费</string>
+    <string name="payment_park_dazhe_info_hint">有优惠</string>
+    <string name="payment_park_yucun_info">预存金额</string>
+    <string name="payment_park_heji_info">合计金额</string>
+    
+    
+        <!-- 停车费 -->
+    <string name="payment_phone_liji_pay">立即充值</string>
+    <string name="payment_phone_select_jine">选择充值金额</string>
+    
 </resources>

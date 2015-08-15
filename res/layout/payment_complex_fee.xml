@@ -14,14 +14,21 @@
         android:paddingBottom="20dp" >
 
         <include
-            android:id="@+id/input_phone"
+            android:id="@+id/select_info"
             android:layout_width="match_parent"
             android:layout_height="@dimen/payment_common_select_type_height"
             android:layout_marginTop="10dp"
             layout="@layout/payment_common_select_type" />
 
         <include
-            android:id="@+id/phone_guishu"
+            android:id="@+id/property_company"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/payment_common_select_type_height"
+            android:layout_marginTop="10dp"
+            layout="@layout/payment_common_text_value" />
+
+        <include
+            android:id="@+id/yingjiao_jine"
             android:layout_width="match_parent"
             android:layout_height="@dimen/payment_common_select_type_height"
             android:layout_marginTop="10dp"
@@ -33,6 +40,20 @@
             android:layout_height="@dimen/payment_common_select_type_height"
             android:layout_marginTop="10dp"
             layout="@layout/payment_common_select_type" />
+
+        <include
+            android:id="@+id/yucun_jine"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/payment_common_select_type_height"
+            android:layout_marginTop="10dp"
+            layout="@layout/payment_common_text_value" />
+
+        <include
+            android:id="@+id/heji_jine"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/payment_common_select_type_height"
+            android:layout_marginTop="10dp"
+            layout="@layout/payment_common_text_value" />
 
         <include
             android:layout_width="match_parent"

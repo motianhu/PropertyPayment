@@ -4,8 +4,6 @@ import android.view.View;
 
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.ui.PaymentSimpleFeeActivity;
-import com.smona.app.propertypayment.common.ui.PaymentSimpleFeeDetailListActivity;
-import com.smona.app.propertypayment.common.ui.PaymentSimpleFeePayActivity;
 
 public class PowerActivity extends PaymentSimpleFeeActivity {
 
@@ -39,26 +37,4 @@ public class PowerActivity extends PaymentSimpleFeeActivity {
         initText(R.id.next_step, R.string.payment_common_next_step);
         initView(R.id.next_step);
     }
-
-    @Override
-    protected void clickView(View v) {
-        int id = v.getId();
-        if (R.id.back == id) {
-            finish();
-            return;
-        }
-        switch (id) {
-        case R.id.detail:
-            gotoSubActivity(PaymentSimpleFeeDetailListActivity.class);
-            break;
-        case R.id.select_company:
-            break;
-        case R.id.select_groupby:
-            break;
-        case R.id.next_step:
-            gotoSubActivity(PaymentSimpleFeePayActivity.class);
-            break;
-        }
-    }
-
 }

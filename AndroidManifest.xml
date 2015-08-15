@@ -29,8 +29,7 @@
         <activity
             android:name=".water.WaterActivity"
             android:label="@string/payment_home_water"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait" />
 
         <!-- 电费 -->
         <activity
@@ -43,15 +42,17 @@
         <activity
             android:name=".gas.GasActivity"
             android:label="@string/payment_home_gas"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait" />
 
         <!-- 手机费 -->
         <activity
             android:name=".phone.PhoneActivity"
             android:label="@string/payment_home_phone"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".phone.PhoneHistoryListActivity"
+            android:label="@string/payment_home_phone"
+            android:screenOrientation="portrait" />
 
         <!-- 物业费 -->
         <activity
@@ -64,15 +65,13 @@
         <activity
             android:name=".park.ParkActivity"
             android:label="@string/payment_home_park"
-            android:screenOrientation="portrait" >
-        </activity>
-        
+            android:screenOrientation="portrait" />
+
         <!-- 公用 -->
         <activity
             android:name=".common.ui.PaymentSimpleFeeDetailListActivity"
             android:label="@string/payment_home_park"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".common.ui.PaymentSimpleFeePayActivity"
             android:label="@string/payment_home_park"

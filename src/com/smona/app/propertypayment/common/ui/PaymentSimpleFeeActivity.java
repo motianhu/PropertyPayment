@@ -1,16 +1,96 @@
 package com.smona.app.propertypayment.common.ui;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
+import android.view.View;
 
 import com.smona.app.propertypayment.R;
+import com.smona.app.propertypayment.common.data.PaymentItemInfo;
+import com.smona.app.propertypayment.common.data.PaymentTypeItem;
+import com.smona.app.propertypayment.common.util.LogUtil;
 
 public abstract class PaymentSimpleFeeActivity extends PaymentBaseActivity {
+    private static final String TAG = "PaymentSimpleFeeActivity";
+
+    private ArrayList<PaymentItemInfo> mPayCompanys = new ArrayList<PaymentItemInfo>();
+    private ArrayList<PaymentItemInfo> mGroups = new ArrayList<PaymentItemInfo>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.payment_simple_fee);
         initViews();
+        initGroupDatas();
+    }
+
+    private void initGroupDatas() {
+        String[] groupCodes = this.getResources().getStringArray(
+                R.array.group_code);
+        String[] groupNames = this.getResources().getStringArray(
+                R.array.group_name);
+        int size = groupCodes.length;
+        for (int i = 0; i < size; i++) {
+            PaymentTypeItem type = new PaymentTypeItem();
+            type.type_id = groupCodes[i];
+            type.type_name = groupNames[i];
+            mGroups.add(type);
+        }
+    }
+
+    protected void clickSelectCompany() {
+        final ArrayList<PaymentItemInfo> datas = mPayCompanys;
+
+        showSingleChoiceType(datas, new IChoiceCallback() {
+            @Override
+            public void onChoice(int which) {
+                PaymentItemInfo info = datas.get(which);
+                LogUtil.d(TAG, "clickSelectCompany: info: " + info);
+                View parent = mRoot.findViewById(R.id.select_company);
+                initText(parent, R.id.select_type,
+                        ((PaymentTypeItem) info).type_name);
+                setTag(R.id.select_type, info);
+            }
+        });
+    }
+
+    protected void clickSelectGroup() {
+        final ArrayList<PaymentItemInfo> datas = mGroups;
+
+        showSingleChoiceType(datas, new IChoiceCallback() {
+            @Override
+            public void onChoice(int which) {
+                PaymentItemInfo info = datas.get(which);
+                LogUtil.d(TAG, "clickSelectGroup: info: " + info);
+                View parent = mRoot.findViewById(R.id.select_groupby);
+                initText(parent, R.id.select_type,
+                        ((PaymentTypeItem) info).type_name);
+                setTag(R.id.select_type, info);
+            }
+        });
+    }
+    
+    @Override
+    protected void clickView(View v) {
+        int id = v.getId();
+        if (R.id.back == id) {
+            finish();
+            return;
+        }
+        switch (id) {
+        case R.id.detail:
+            gotoSubActivity(PaymentSimpleFeeDetailListActivity.class);
+            break;
+        case R.id.select_company:
+            clickSelectCompany();
+            break;
+        case R.id.select_groupby:
+            clickSelectGroup();
+            break;
+        case R.id.next_step:
+            gotoSubActivity(PaymentSimpleFeePayActivity.class);
+            break;
+        }
     }
 
 }
