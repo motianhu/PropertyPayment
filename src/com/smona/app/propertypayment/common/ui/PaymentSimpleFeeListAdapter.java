@@ -7,9 +7,9 @@ import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import android.content.Context;
 import android.view.View;
 
-public class PaymentSimpleFeeDetailAdapter extends PaymentBaseDataAdapter {
+public class PaymentSimpleFeeListAdapter extends PaymentBaseDataAdapter {
 
-    public PaymentSimpleFeeDetailAdapter(Context context,
+    public PaymentSimpleFeeListAdapter(Context context,
             ArrayList<PaymentItemInfo> content) {
         super(context, content);
     }

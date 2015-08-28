@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
+import com.smona.app.propertypayment.common.util.PaymentConstants;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -191,6 +192,13 @@ public abstract class PaymentBaseActivity extends PaymentDialogActivity {
     protected void gotoSubActivity(Class<?> clazz) {
         Intent intent = new Intent();
         intent.setClass(this, clazz);
+        startActivity(intent);
+    }
+    
+    protected void gotoSubActivity(PaymentItemInfo item, Class<?> clazz) {
+        Intent intent = new Intent();
+        intent.setClass(this, clazz);
+        intent.putExtra(PaymentConstants.DATA_ITEM_INFO, item);
         startActivity(intent);
     }
 

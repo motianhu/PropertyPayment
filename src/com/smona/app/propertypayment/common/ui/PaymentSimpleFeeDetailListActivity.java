@@ -51,7 +51,7 @@ public class PaymentSimpleFeeDetailListActivity extends PaymentFetchListActivity
 
     @Override
     public PaymentBaseDataAdapter createAdapter(ArrayList<PaymentItemInfo> data) {
-        return new PaymentSimpleFeeDetailAdapter(this, data);
+        return new PaymentSimpleFeeListAdapter(this, data);
     }
 
 }

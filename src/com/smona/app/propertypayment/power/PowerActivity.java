@@ -3,6 +3,7 @@ package com.smona.app.propertypayment.power;
 import android.view.View;
 
 import com.smona.app.propertypayment.R;
+import com.smona.app.propertypayment.common.data.PaymentTypeItem;
 import com.smona.app.propertypayment.common.ui.PaymentSimpleFeeActivity;
 
 public class PowerActivity extends PaymentSimpleFeeActivity {
@@ -36,5 +37,15 @@ public class PowerActivity extends PaymentSimpleFeeActivity {
 
         initText(R.id.next_step, R.string.payment_common_next_step);
         initView(R.id.next_step);
+    }
+
+    @Override
+    protected void initCompanys() {
+        for (int i = 0; i < 5; i++) {
+            PaymentTypeItem type = new PaymentTypeItem();
+            type.type_id = i + "";
+            type.type_name = "Company " + i;
+            mPayCompanys.add(type);
+        }
     }
 }
