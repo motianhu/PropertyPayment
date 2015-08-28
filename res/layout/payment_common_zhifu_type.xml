@@ -1,32 +1,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
-
-    <ImageView
-        android:id="@+id/home_item_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    android:background="@color/payment_commont_color_select_type_bg" >
 
     <TextView
-        android:id="@+id/home_item_text"
+        android:id="@+id/select_type_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@+id/home_item_image"
-        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
         android:textColor="@color/payment_color_common_title" />
 
     <TextView
-        android:id="@+id/home_item_text_wo_will"
+        android:id="@+id/select_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="50dp"
-        android:gravity="center"
+        android:layout_marginRight="@dimen/payment_common_select_type_margin_right"
+        android:text="@string/payment_common_select_type_arrow"
         android:textColor="@color/payment_color_common_title" />
 
 </RelativeLayout>

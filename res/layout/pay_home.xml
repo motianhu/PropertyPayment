@@ -7,64 +7,59 @@
 
     <include layout="@layout/payment_common_header" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/payment_home_margin_left"
-        android:layout_marginRight="@dimen/payment_home_margin_right"
-        android:layout_marginTop="@dimen/payment_home_margin_top"
-        android:orientation="horizontal" >
+        android:layout_marginTop="@dimen/payment_home_margin_top" >
 
-        <include
-            android:id="@+id/water"
-            android:layout_width="@dimen/payment_home_item_width"
-            android:layout_height="@dimen/payment_home_item_height"
-            android:layout_marginLeft="@dimen/payment_home_item_margin_left"
-            layout="@layout/payment_home_item" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-        <include
-            android:id="@+id/power"
-            android:layout_width="@dimen/payment_home_item_width"
-            android:layout_height="@dimen/payment_home_item_height"
-            android:layout_marginLeft="@dimen/payment_home_item_margin_left"
-            layout="@layout/payment_home_item" />
+            <include
+                android:id="@+id/water"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/payment_home_item_height"
+                android:layout_marginLeft="@dimen/payment_home_item_margin_left"
+                layout="@layout/payment_home_item" />
 
-        <include
-            android:id="@+id/gas"
-            android:layout_width="@dimen/payment_home_item_width"
-            android:layout_height="@dimen/payment_home_item_height"
-            android:layout_marginLeft="@dimen/payment_home_item_margin_left"
-            layout="@layout/payment_home_item" />
-    </LinearLayout>
+            <include
+                android:id="@+id/power"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/payment_home_item_height"
+                android:layout_marginLeft="@dimen/payment_home_item_margin_left"
+                layout="@layout/payment_home_item" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/payment_home_margin_left"
-        android:layout_marginRight="@dimen/payment_home_margin_right"
-        android:layout_marginTop="@dimen/payment_home_margin_top"
-        android:orientation="horizontal" >
+            <include
+                android:id="@+id/gas"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/payment_home_item_height"
+                android:layout_marginLeft="@dimen/payment_home_item_margin_left"
+                layout="@layout/payment_home_item" />
 
-        <include
-            android:id="@+id/phone"
-            android:layout_width="@dimen/payment_home_item_width"
-            android:layout_height="@dimen/payment_home_item_height"
-            android:layout_marginLeft="@dimen/payment_home_item_margin_left"
-            layout="@layout/payment_home_item" />
+            <include
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/payment_home_item_height"
+                android:layout_marginLeft="@dimen/payment_home_item_margin_left"
+                layout="@layout/payment_home_item" />
 
-        <include
-            android:id="@+id/property"
-            android:layout_width="@dimen/payment_home_item_width"
-            android:layout_height="@dimen/payment_home_item_height"
-            android:layout_marginLeft="@dimen/payment_home_item_margin_left"
-            layout="@layout/payment_home_item" />
+            <include
+                android:id="@+id/property"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/payment_home_item_height"
+                android:layout_marginLeft="@dimen/payment_home_item_margin_left"
+                layout="@layout/payment_home_item" />
 
-        <include
-            android:id="@+id/park"
-            android:layout_width="@dimen/payment_home_item_width"
-            android:layout_height="@dimen/payment_home_item_height"
-            android:layout_marginLeft="@dimen/payment_home_item_margin_left"
-            layout="@layout/payment_home_item" />
-    </LinearLayout>
+            <include
+                android:id="@+id/park"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/payment_home_item_height"
+                android:layout_marginLeft="@dimen/payment_home_item_margin_left"
+                layout="@layout/payment_home_item" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

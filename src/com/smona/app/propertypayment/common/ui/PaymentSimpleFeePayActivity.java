@@ -59,6 +59,7 @@ public class PaymentSimpleFeePayActivity extends PaymentBaseActivity {
             finish();
             break;
         case R.id.next_step:
+            gotoSubActivity(PaymentConfirmActivity.class);
             break;
         }
     }

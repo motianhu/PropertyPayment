@@ -13,5 +13,10 @@
         <item>父母</item>
         <item>房东</item>
     </string-array>
+    <string-array name="zhifu_channel">
+        <item>支付宝支付</item>
+        <item>微信支付</item>
+        <item>银联支付</item>
+    </string-array>
 
 </resources>

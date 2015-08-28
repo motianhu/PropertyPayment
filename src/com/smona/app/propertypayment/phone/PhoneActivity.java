@@ -1,7 +1,11 @@
 package com.smona.app.propertypayment.phone;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Contacts.People;
 import android.provider.ContactsContract;
 import android.view.View;
 
@@ -9,8 +13,13 @@ import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
 import com.smona.app.propertypayment.common.ui.PaymentSimpleFeeDetailListActivity;
 import com.smona.app.propertypayment.common.ui.PaymentSimpleFeePayActivity;
+import com.smona.app.propertypayment.common.util.LogUtil;
 
 public class PhoneActivity extends PaymentBaseActivity {
+
+    private static final String TAG = "PhoneActivity";
+    private static final int ACTION_START_CONTACTS = 1;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +61,8 @@ public class PhoneActivity extends PaymentBaseActivity {
             break;
         case R.id.dazhe_info:
             startActivityForResult(new Intent(Intent.ACTION_PICK,
-                    ContactsContract.Contacts.CONTENT_URI), 0);
+                    ContactsContract.Contacts.CONTENT_URI),
+                    ACTION_START_CONTACTS);
             break;
         case R.id.detail:
             gotoSubActivity(PaymentSimpleFeeDetailListActivity.class);
@@ -63,6 +73,61 @@ public class PhoneActivity extends PaymentBaseActivity {
         case R.id.next_step:
             gotoSubActivity(PaymentSimpleFeePayActivity.class);
             break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (RESULT_OK == resultCode) {
+            if (ACTION_START_CONTACTS == requestCode) {
+                getPhoneAndName(data);
+            }
+        }
+    }
+
+    private void getPhoneAndName(Intent data) {
+        ContentResolver reContentResolverol = getContentResolver();
+        Uri contactData = data.getData();
+        Cursor cursor = managedQuery(contactData, null, null, null, null);
+        cursor.moveToFirst();
+        String username = cursor.getString(cursor
+                .getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+        String contactId = cursor.getString(cursor
+                .getColumnIndex(ContactsContract.Contacts._ID));
+        Cursor phone = reContentResolverol.query(
+                ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
+                ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = "
+                        + contactId, null, null);
+        String usernumber = null;
+        while (phone.moveToNext()) {
+            usernumber = phone
+                    .getString(phone
+                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+        }
+        cursor.close();
+        LogUtil.d(TAG, "username: " + username + ", usernumber: " + usernumber);
+        querySim();
+    }
+
+    private void querySim() {
+        Uri uri = Uri.parse("content://icc/adn");
+        Cursor cursor = getContentResolver().query(uri, null, null,
+        null, null);
+        LogUtil.d(TAG, ">>>>>>" + cursor.getCount());
+        while (cursor.moveToNext()) {
+            String id = cursor
+                    .getString(cursor
+                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID));
+            String name = cursor
+                    .getString(cursor
+                            .getColumnIndex(ContactsContract.CommonDataKinds.Relation.NAME));
+            String phoneNumber = cursor.getString(cursor
+            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            LogUtil.d("1023", ">>>>>>" + "_id, " + id);
+            LogUtil.d("1023", ">>>>>>" + "name, " + name);
+            LogUtil.d("1023", ">>>>>>" + "phone number, " + phoneNumber);
+
         }
     }
 

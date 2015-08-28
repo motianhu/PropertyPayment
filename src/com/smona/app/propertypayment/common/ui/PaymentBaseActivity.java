@@ -183,6 +183,10 @@ public abstract class PaymentBaseActivity extends PaymentDialogActivity {
         View view = mRoot.findViewById(resId);
         view.setOnClickListener(mClickListener);
     }
+    
+    protected void initView(View view) {
+        view.setOnClickListener(mClickListener);
+    }
 
     protected void gotoSubActivity(Class<?> clazz) {
         Intent intent = new Intent();
