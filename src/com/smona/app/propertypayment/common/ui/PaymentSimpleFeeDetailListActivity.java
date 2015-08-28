@@ -7,8 +7,10 @@ import android.view.View;
 
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
+import com.smona.app.propertypayment.common.data.PaymentListItem;
 
-public class PaymentSimpleFeeDetailListActivity extends PaymentFetchListActivity {
+public class PaymentSimpleFeeDetailListActivity extends
+        PaymentFetchListActivity {
 
     private ArrayList<PaymentItemInfo> mDatas = new ArrayList<PaymentItemInfo>();
 
@@ -32,6 +34,18 @@ public class PaymentSimpleFeeDetailListActivity extends PaymentFetchListActivity
 
     @Override
     protected void initBody() {
+        for (int i = 0; i < 10; i++) {
+            PaymentListItem item = new PaymentListItem();
+            item.companyname = "company " + i;
+            item.companycode = i + "";
+            item.groupcode = i + "";
+            item.groupcode = "group " + i;
+            item.housecode = i + "";
+            item.money = i + "";
+            item.paytime = "time " + i;
+            
+            mDatas.add(item);
+        }
         setFetchListener(mDatas);
     }
 

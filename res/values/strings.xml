@@ -20,6 +20,8 @@
     <string name="payment_common_pay_jine">缴费金额</string>
     <string name="payment_common_input_pay_jine">请输入缴费金额</string>
     <string name="payment_common_liji_pay">立即缴费</string>
+    <string name="payment_common_pay_time">缴费时间</string>
+    <string name="payment_common_groupby">分&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;组</string>
 
     <!-- 首页 -->
     <string name="payment_home_water">水费</string>

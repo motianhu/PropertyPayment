@@ -11,4 +11,6 @@
     <!-- 公用 -->
     <dimen name="payment_common_select_type_height">48dp</dimen>
     <dimen name="payment_common_select_type_margin_right">10dp</dimen>
+    <dimen name="payment_common_list_detail_width">300dp</dimen>
+    <dimen name="payment_common_list_detail_height">30dp</dimen>
 </resources>

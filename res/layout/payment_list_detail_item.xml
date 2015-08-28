@@ -1,0 +1,69 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/payment_common_list_detail_height"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+
+        <include
+            android:id="@+id/company_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            layout="@layout/payment_common_list_item_text_value" />
+
+        <include
+            android:id="@+id/pay_money"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            layout="@layout/payment_common_list_item_text_value" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/payment_common_list_detail_height"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+
+        <include
+            android:id="@+id/pay_time"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            layout="@layout/payment_common_list_item_text_value" />
+
+        <include
+            android:id="@+id/groupby"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            layout="@layout/payment_common_list_item_text_value" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/payment_common_list_detail_height"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+
+        <include
+            android:id="@+id/housecode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            layout="@layout/payment_common_list_item_text_value" />
+        
+        <include
+            android:id="@+id/tianchong"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            layout="@layout/payment_common_list_item_text_value" />
+    </LinearLayout>
+
+</LinearLayout>
