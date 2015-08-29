@@ -32,7 +32,7 @@
     <string name="payment_home_phone">手机费</string>
     <string name="payment_home_park">停车费</string>
     <string name="payment_home_property">物业费</string>
-    <string name="payment_home_wo_will">我要缴费</string>
+    <string name="payment_home_wo_will">></string>
 
     <!-- 水费 -->
     <string name="payment_water_company">缴费单位</string>

@@ -5,8 +5,9 @@
 
     <ImageView
         android:id="@+id/home_item_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/payment_home_item_image_size"
+        android:layout_height="@dimen/payment_home_item_image_size"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/payment_home_item_margin_left" />
 
     <TextView
@@ -26,8 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="50dp"
+        android:layout_marginRight="10dp"
         android:gravity="center"
-        android:textColor="@color/payment_color_common_title" />
+        android:textColor="@color/payment_color_common_home_bg_content" />
 
 </RelativeLayout>
