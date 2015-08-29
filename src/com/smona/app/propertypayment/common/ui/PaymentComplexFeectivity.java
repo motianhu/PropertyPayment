@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.smona.app.propertypayment.R;
+import com.smona.app.propertypayment.common.data.PaymentFeeDanInfo;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.data.PaymentTypeItem;
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
@@ -16,6 +17,8 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
 
     private ArrayList<PaymentItemInfo> mSelectInfos = new ArrayList<PaymentItemInfo>();
     private ArrayList<PaymentItemInfo> mZhekous = new ArrayList<PaymentItemInfo>();
+    
+    private PaymentFeeDanInfo mFeeDan;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,8 +77,18 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
             clickSelectZhekous();
             break;
         case R.id.next_step:
-            gotoSubActivity(PaymentSimpleFeePayActivity.class);
+            clickNextStep();
             break;
         }
+    }
+
+    private void clickNextStep() {
+        
+        mFeeDan = new PaymentFeeDanInfo();
+        mFeeDan.companycode = "1";
+        mFeeDan.companyname = "company 1";
+        mFeeDan.money = 100;
+        
+        gotoSubActivity(mFeeDan, PaymentConfirmActivity.class);
     }
 }

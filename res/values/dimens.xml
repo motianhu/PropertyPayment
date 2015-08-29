@@ -1,16 +1,17 @@
 <resources>
 
     <!-- 首页 -->
-    <dimen name="payment_home_item_height">90dp</dimen>
+    <dimen name="payment_home_item_height">70dp</dimen>
     <dimen name="payment_home_item_width">90dp</dimen>
     <dimen name="payment_home_margin_left">5dp</dimen>
     <dimen name="payment_home_margin_right">5dp</dimen>
     <dimen name="payment_home_item_margin_left">20dp</dimen>
-    <dimen name="payment_home_margin_top">10dp</dimen>
+    <dimen name="payment_home_margin_top">5dp</dimen>
 
     <!-- 公用 -->
     <dimen name="payment_common_select_type_height">48dp</dimen>
     <dimen name="payment_common_select_type_margin_right">10dp</dimen>
     <dimen name="payment_common_list_detail_width">300dp</dimen>
     <dimen name="payment_common_list_detail_height">30dp</dimen>
+    <dimen name="payment_confirm_item_height">60dp</dimen>
 </resources>
