@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/payment_common_select_type_height"
             android:layout_marginTop="10dp"
-            layout="@layout/payment_common_select_type" />
+            layout="@layout/payment_common_select_app" />
 
         <include
             android:id="@+id/phone_guishu"

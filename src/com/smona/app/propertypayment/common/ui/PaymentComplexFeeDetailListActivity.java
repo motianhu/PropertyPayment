@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.smona.app.propertypayment.R;
+import com.smona.app.propertypayment.common.data.PaymentComplexListItem;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
-import com.smona.app.propertypayment.common.data.PaymentSimpleListItem;
 
-public class PaymentSimpleFeeDetailListActivity extends
+public class PaymentComplexFeeDetailListActivity extends
         PaymentFetchListActivity {
 
     private ArrayList<PaymentItemInfo> mDatas = new ArrayList<PaymentItemInfo>();
@@ -35,12 +35,10 @@ public class PaymentSimpleFeeDetailListActivity extends
     @Override
     protected void initBody() {
         for (int i = 0; i < 10; i++) {
-            PaymentSimpleListItem item = new PaymentSimpleListItem();
+            PaymentComplexListItem item = new PaymentComplexListItem();
             item.companyname = "company " + i;
             item.companycode = i + "";
-            item.groupcode = i + "";
-            item.groupcode = "group " + i;
-            item.housecode = i + "";
+            item.objinfo = i + "";
             item.money = i + "";
             item.paytime = "time " + i;
             
@@ -65,7 +63,7 @@ public class PaymentSimpleFeeDetailListActivity extends
 
     @Override
     public PaymentBaseDataAdapter createAdapter(ArrayList<PaymentItemInfo> data) {
-        return new PaymentSimpleFeeListAdapter(this, data);
+        return new PaymentComplexFeeListAdapter(this, data);
     }
 
 }

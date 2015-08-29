@@ -10,21 +10,19 @@ public class PhoneHistoryListActivity extends PaymentBaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pay_phone);
+        setContentView(R.layout.payment_phone_history);
         initViews();
     }
 
     @Override
     protected void initHeader() {
-        initText(R.id.title, R.string.payment_home_phone);
+        initText(R.id.title, R.string.payment_phone_pay);
         initView(R.id.back);
-        initText(R.id.detail, R.string.payment_common_query);
-        initView(R.id.detail);
     }
 
     @Override
     protected void initBody() {
-
+        
     }
 
     @Override

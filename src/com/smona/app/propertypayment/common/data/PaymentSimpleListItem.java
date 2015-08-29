@@ -3,7 +3,7 @@ package com.smona.app.propertypayment.common.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class PaymentListItem extends PaymentItemInfo {
+public class PaymentSimpleListItem extends PaymentItemInfo {
     public String companycode;
     public String companyname;
     public String groupcode;
@@ -12,11 +12,11 @@ public class PaymentListItem extends PaymentItemInfo {
     public String money;
     public String housecode;
 
-    public PaymentListItem() {
+    public PaymentSimpleListItem() {
 
     }
 
-    public PaymentListItem(Parcel in) {
+    public PaymentSimpleListItem(Parcel in) {
         companycode = in.readString();
         companyname = in.readString();
         groupcode = in.readString();
@@ -42,15 +42,15 @@ public class PaymentListItem extends PaymentItemInfo {
         dest.writeString(housecode);
     }
 
-    public static final Parcelable.Creator<PaymentListItem> CREATOR = new Creator<PaymentListItem>() {
+    public static final Parcelable.Creator<PaymentSimpleListItem> CREATOR = new Creator<PaymentSimpleListItem>() {
         @Override
-        public PaymentListItem[] newArray(int size) {
-            return new PaymentListItem[size];
+        public PaymentSimpleListItem[] newArray(int size) {
+            return new PaymentSimpleListItem[size];
         }
 
         @Override
-        public PaymentListItem createFromParcel(Parcel in) {
-            return new PaymentListItem(in);
+        public PaymentSimpleListItem createFromParcel(Parcel in) {
+            return new PaymentSimpleListItem(in);
         }
     };
 

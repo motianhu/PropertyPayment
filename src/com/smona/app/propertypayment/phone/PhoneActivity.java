@@ -1,5 +1,7 @@
 package com.smona.app.propertypayment.phone;
 
+import java.util.ArrayList;
+
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
@@ -9,9 +11,12 @@ import android.provider.ContactsContract;
 import android.view.View;
 
 import com.smona.app.propertypayment.R;
+import com.smona.app.propertypayment.common.data.PaymentFeeDanInfo;
+import com.smona.app.propertypayment.common.data.PaymentItemInfo;
+import com.smona.app.propertypayment.common.data.PaymentPhonePriceInfo;
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
-import com.smona.app.propertypayment.common.ui.PaymentSimpleFeeDetailListActivity;
-import com.smona.app.propertypayment.common.ui.PaymentSimpleFeePayActivity;
+import com.smona.app.propertypayment.common.ui.PaymentComplexFeeDetailListActivity;
+import com.smona.app.propertypayment.common.ui.PaymentConfirmActivity;
 import com.smona.app.propertypayment.common.util.LogUtil;
 
 public class PhoneActivity extends PaymentBaseActivity {
@@ -19,11 +24,27 @@ public class PhoneActivity extends PaymentBaseActivity {
     private static final String TAG = "PhoneActivity";
     private static final int ACTION_START_CONTACTS = 1;
 
+    private ArrayList<PaymentItemInfo> mYouhuis = new ArrayList<PaymentItemInfo>();
+    private PaymentFeeDanInfo mFeeDan;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pay_phone);
+        aquireDatas();
         initViews();
+    }
+
+    private void aquireDatas() {
+        for (int i = 0; i < 10; i++) {
+            PaymentPhonePriceInfo item = new PaymentPhonePriceInfo();
+            item.code = i + "";
+            item.price = 10.0f * (i + 1);
+            item.discount = 0.9f;
+            item.type_name = item.price + "元" + "(优惠价: " + item.price
+                    * item.discount + "元)";
+            mYouhuis.add(item);
+        }
     }
 
     @Override
@@ -38,6 +59,7 @@ public class PhoneActivity extends PaymentBaseActivity {
     protected void initBody() {
         View parent = mRoot.findViewById(R.id.input_phone);
         initView(R.id.input_phone);
+        initView(R.id.goto_app);
 
         parent = mRoot.findViewById(R.id.phone_guishu);
         initText(parent, R.id.name, "河南电信");
@@ -59,20 +81,54 @@ public class PhoneActivity extends PaymentBaseActivity {
             finish();
             break;
         case R.id.dazhe_info:
-            startActivityForResult(new Intent(Intent.ACTION_PICK,
-                    ContactsContract.Contacts.CONTENT_URI),
-                    ACTION_START_CONTACTS);
+            clickPaymoney();
             break;
         case R.id.detail:
-            gotoSubActivity(PaymentSimpleFeeDetailListActivity.class);
+            gotoSubActivity(PaymentComplexFeeDetailListActivity.class);
             break;
         case R.id.input_phone:
             gotoSubActivity(PhoneHistoryListActivity.class);
             break;
         case R.id.next_step:
-            gotoSubActivity(PaymentSimpleFeePayActivity.class);
+            clickNextStep();
+            break;
+        case R.id.goto_app:
+            gotoContants();
             break;
         }
+    }
+
+    private void clickNextStep() {
+
+        mFeeDan = new PaymentFeeDanInfo();
+        mFeeDan.companycode = "1";
+        mFeeDan.companyname = "company 1";
+        mFeeDan.money = 100;
+
+        gotoSubActivity(mFeeDan, PaymentConfirmActivity.class);
+    }
+
+    private void clickPaymoney() {
+        final ArrayList<PaymentItemInfo> datas = mYouhuis;
+        showSingleChoiceType(datas, new IChoiceCallback() {
+            @Override
+            public void onChoice(int which) {
+                PaymentItemInfo info = datas.get(which);
+                LogUtil.d(TAG, "clickPaymoney: info: " + info);
+                View parent = mRoot.findViewById(R.id.dazhe_info);
+                float price = ((PaymentPhonePriceInfo) info).price;
+                float discount = ((PaymentPhonePriceInfo) info).discount;
+                initText(parent, R.id.select_type_value, price + "元");
+                initText(parent, R.id.select_type, "优惠价: " + price * discount
+                        + "元");
+            }
+        });
+
+    }
+
+    private void gotoContants() {
+        startActivityForResult(new Intent(Intent.ACTION_PICK,
+                ContactsContract.Contacts.CONTENT_URI), ACTION_START_CONTACTS);
     }
 
     @Override
@@ -111,8 +167,7 @@ public class PhoneActivity extends PaymentBaseActivity {
 
     private void querySim() {
         Uri uri = Uri.parse("content://icc/adn");
-        Cursor cursor = getContentResolver().query(uri, null, null,
-        null, null);
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
         LogUtil.d(TAG, ">>>>>>" + cursor.getCount());
         while (cursor.moveToNext()) {
             String id = cursor
@@ -121,12 +176,12 @@ public class PhoneActivity extends PaymentBaseActivity {
             String name = cursor
                     .getString(cursor
                             .getColumnIndex(ContactsContract.CommonDataKinds.Relation.NAME));
-            String phoneNumber = cursor.getString(cursor
-            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            String phoneNumber = cursor
+                    .getString(cursor
+                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
             LogUtil.d("1023", ">>>>>>" + "_id, " + id);
             LogUtil.d("1023", ">>>>>>" + "name, " + name);
             LogUtil.d("1023", ">>>>>>" + "phone number, " + phoneNumber);
-
         }
     }
 

@@ -5,22 +5,11 @@
 
     <TextView
         android:id="@+id/select_type_value"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:gravity="center_vertical"
         android:textColor="@color/payment_color_common_title" />
-
-    <TextView
-        android:id="@+id/select_row"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/payment_common_select_type_margin_right"
-        android:text="@string/payment_common_select_type_arrow"
-        android:textColor="@color/payment_color_common_title" />
-
 </RelativeLayout>

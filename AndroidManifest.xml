@@ -83,6 +83,10 @@
             android:name=".common.ui.PaymentConfirmActivity"
             android:label="@string/payment_common_zhifu"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".common.ui.PaymentComplexFeeDetailListActivity"
+            android:label="@string/payment_home_park"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

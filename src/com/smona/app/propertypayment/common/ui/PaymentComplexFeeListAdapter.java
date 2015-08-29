@@ -1,18 +1,20 @@
 package com.smona.app.propertypayment.common.ui;
 
 import java.util.ArrayList;
+
 import com.smona.app.propertypayment.R;
+import com.smona.app.propertypayment.common.data.PaymentComplexListItem;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
-import com.smona.app.propertypayment.common.data.PaymentSimpleListItem;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-public class PaymentSimpleFeeListAdapter extends PaymentBaseDataAdapter {
+public class PaymentComplexFeeListAdapter extends PaymentBaseDataAdapter {
 
-    public PaymentSimpleFeeListAdapter(Context context,
+    public PaymentComplexFeeListAdapter(Context context,
             ArrayList<PaymentItemInfo> content) {
         super(context, content);
     }
@@ -21,7 +23,7 @@ public class PaymentSimpleFeeListAdapter extends PaymentBaseDataAdapter {
     @Override
     public View createContentView(Context context) {
         return LayoutInflater.from(context).inflate(
-                R.layout.payment_list_detail_item, null);
+                R.layout.payment_complex_list_detail_item, null);
     }
 
     @Override
@@ -35,15 +37,12 @@ public class PaymentSimpleFeeListAdapter extends PaymentBaseDataAdapter {
         parent = convertView.findViewById(R.id.pay_time);
         initText(parent, R.id.name, R.string.payment_common_pay_time);
 
-        parent = convertView.findViewById(R.id.groupby);
-        initText(parent, R.id.name, R.string.payment_common_groupby);
+        parent = convertView.findViewById(R.id.objinfo);
+        initText(parent, R.id.name, R.string.payment_common_cheliang_info);
 
-        parent = convertView.findViewById(R.id.housecode);
-        initText(parent, R.id.name, R.string.payment_common_huhao);
-
-        PaymentSimpleListItem item;
-        if (info instanceof PaymentSimpleListItem) {
-            item = (PaymentSimpleListItem) info;
+        PaymentComplexListItem item;
+        if (info instanceof PaymentComplexListItem) {
+            item = (PaymentComplexListItem) info;
         } else {
             return;
         }
@@ -57,11 +56,8 @@ public class PaymentSimpleFeeListAdapter extends PaymentBaseDataAdapter {
         parent = convertView.findViewById(R.id.pay_time);
         initText(parent, R.id.value, item.paytime);
 
-        parent = convertView.findViewById(R.id.groupby);
-        initText(parent, R.id.value, item.groupname);
-
-        parent = convertView.findViewById(R.id.housecode);
-        initText(parent, R.id.value, item.housecode);
+        parent = convertView.findViewById(R.id.objinfo);
+        initText(parent, R.id.value, item.objinfo);
     }
 
     private void initText(View parent, int childId, int textId) {

@@ -68,7 +68,7 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
         }
         switch (id) {
         case R.id.detail:
-            gotoSubActivity(PaymentSimpleFeeDetailListActivity.class);
+            gotoSubActivity(PaymentComplexFeeDetailListActivity.class);
             break;
         case R.id.select_info:
             clickSelectInfos();
