@@ -9,7 +9,11 @@ public class PaymentConstants {
     
     public static final String DATA_ITEM_INFO = "iteminfo";
     
-    public static final String DATA_MODIFY_ITEM = "modify_item";
-    public static final String DATA_CANCEL_ITEM = "cancel_item";
-    public static final int ACTION_MODIFY_LIST = 5;
+    public static final String DATA_SOURCE = "data_source";
+    public static final int DATA_SOURCE_PARK = 1;
+    public static final int DATA_SOURCE_PROPERTY = 2;
+    public static final int DATA_SOURCE_PHONE = 3;
+    public static final int DATA_SOURCE_WATER = 4;
+    public static final int DATA_SOURCE_GAS = 5;
+    public static final int DATA_SOURCE_POWER = 6;
 }

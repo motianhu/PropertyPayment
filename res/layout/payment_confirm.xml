@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/payment_home_item_height"
             android:layout_marginTop="1dp"
-            layout="@layout/payment_common_text_value" />
+            layout="@layout/payment_common_text_value_bold" />
     </LinearLayout>
 
     <ScrollView

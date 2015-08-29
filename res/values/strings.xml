@@ -22,8 +22,10 @@
     <string name="payment_common_liji_pay">立即缴费</string>
     <string name="payment_common_pay_time">缴费时间</string>
     <string name="payment_common_groupby">分&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;组</string>
-    <string name="payment_common_cheliang_info">房产信息</string>
+    <string name="payment_common_yunyingshang">运营商</string>
+    <string name="payment_common_cheliang_info">车辆信息</string>
     <string name="payment_common_fangchan_info">房产信息</string>
+    <string name="payment_common_phone_info">手机号码</string>
 
     <!-- 首页 -->
     <string name="payment_home_water">水费</string>

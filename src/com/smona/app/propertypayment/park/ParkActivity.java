@@ -5,6 +5,7 @@ import android.view.View;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentTypeItem;
 import com.smona.app.propertypayment.common.ui.PaymentComplexFeectivity;
+import com.smona.app.propertypayment.common.util.PaymentConstants;
 
 public class ParkActivity extends PaymentComplexFeectivity {
 
@@ -27,12 +28,15 @@ public class ParkActivity extends PaymentComplexFeectivity {
 
         parent = mRoot.findViewById(R.id.property_company);
         initText(parent, R.id.name, R.string.payment_park_company);
+        initText(parent, R.id.value, "万科物业");
 
         parent = mRoot.findViewById(R.id.yingjiao_jine);
         initText(parent, R.id.name, R.string.payment_park_yingjiao_jine);
+        initText(parent, R.id.value, 560.5 + "元");
+        initText(parent, R.id.description, "您的停车费将于一个月后到期");
 
         parent = mRoot.findViewById(R.id.dazhe_info);
-        initText(parent, R.id.select_type,
+        initTextHint(parent, R.id.select_type,
                 R.string.payment_park_dazhe_info_hint);
         initText(parent, R.id.select_type_value,
                 R.string.payment_park_dazhe_info);
@@ -40,9 +44,11 @@ public class ParkActivity extends PaymentComplexFeectivity {
 
         parent = mRoot.findViewById(R.id.yucun_jine);
         initText(parent, R.id.name, R.string.payment_park_yucun_info);
+        initText(parent, R.id.value, 1000 + "元");
 
         parent = mRoot.findViewById(R.id.heji_jine);
         initText(parent, R.id.name, R.string.payment_park_heji_info);
+        initText(parent, R.id.value, 1560.5 + "元");
 
         initText(R.id.next_step, R.string.payment_common_liji_pay);
         initView(R.id.next_step);
@@ -63,5 +69,9 @@ public class ParkActivity extends PaymentComplexFeectivity {
             item.type_name = i + "折";
             mZhekous.add(item);
         }
+    }
+    
+    protected int getSource() {
+    	return PaymentConstants.DATA_SOURCE_PARK;
     }
 }

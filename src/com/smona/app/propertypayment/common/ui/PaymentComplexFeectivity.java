@@ -29,6 +29,7 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
     }
     
     protected abstract void aquireDatas();
+    protected abstract int getSource();
 
     protected void clickSelectInfos() {
         final ArrayList<PaymentItemInfo> datas = mSelectInfos;
@@ -71,7 +72,7 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
         }
         switch (id) {
         case R.id.detail:
-            gotoSubActivity(PaymentComplexFeeDetailListActivity.class);
+        	gotoSubActivity(getSource(), PaymentComplexFeeDetailListActivity.class);
             break;
         case R.id.select_info:
             clickSelectInfos();

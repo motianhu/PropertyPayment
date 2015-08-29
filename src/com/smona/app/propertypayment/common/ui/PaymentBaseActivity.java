@@ -195,6 +195,13 @@ public abstract class PaymentBaseActivity extends PaymentDialogActivity {
         startActivity(intent);
     }
     
+    protected void gotoSubActivity(int source, Class<?> clazz) {
+        Intent intent = new Intent();
+        intent.setClass(this, clazz);
+        intent.putExtra(PaymentConstants.DATA_SOURCE, source);
+        startActivity(intent);
+    }
+    
     protected void gotoSubActivity(PaymentItemInfo item, Class<?> clazz) {
         Intent intent = new Intent();
         intent.setClass(this, clazz);

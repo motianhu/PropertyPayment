@@ -15,14 +15,12 @@
 
     <Button
         android:id="@+id/goto_app"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/payment_common_select_type_height"
+        android:layout_height="@dimen/payment_common_select_type_height"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/payment_common_select_type_margin_right"
-        android:background="@drawable/payment_app_shape"
-        android:gravity="center"
-        android:text="@string/payment_phone_contants"
-        android:textColor="@color/payment_color_common_title" />
+        android:background="@drawable/payment_contants"
+        android:gravity="center" />
 
 </RelativeLayout>
