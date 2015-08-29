@@ -3,6 +3,7 @@ package com.smona.app.propertypayment.property;
 import android.view.View;
 
 import com.smona.app.propertypayment.R;
+import com.smona.app.propertypayment.common.data.PaymentTypeItem;
 import com.smona.app.propertypayment.common.ui.PaymentComplexFeectivity;
 
 public class PropertyActivity extends PaymentComplexFeectivity {
@@ -44,5 +45,22 @@ public class PropertyActivity extends PaymentComplexFeectivity {
 
         initText(R.id.next_step, R.string.payment_common_liji_pay);
         initView(R.id.next_step);
+    }
+    
+    @Override
+    protected void aquireDatas() {
+        for (int i = 0; i < 10; i++) {
+            PaymentTypeItem item = new PaymentTypeItem();
+            item.type_id = "" + i;
+            item.type_name = "house " + i;
+            mSelectInfos.add(item);
+        }
+
+        for (int i = 0; i < 10; i++) {
+            PaymentTypeItem item = new PaymentTypeItem();
+            item.type_id = "" + i;
+            item.type_name = i + "折";
+            mZhekous.add(item);
+        }
     }
 }

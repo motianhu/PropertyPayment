@@ -15,8 +15,8 @@ import com.smona.app.propertypayment.common.util.LogUtil;
 public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
     private static final String TAG = "PaymentComplexFeectivity";
 
-    private ArrayList<PaymentItemInfo> mSelectInfos = new ArrayList<PaymentItemInfo>();
-    private ArrayList<PaymentItemInfo> mZhekous = new ArrayList<PaymentItemInfo>();
+    protected ArrayList<PaymentItemInfo> mSelectInfos = new ArrayList<PaymentItemInfo>();
+    protected ArrayList<PaymentItemInfo> mZhekous = new ArrayList<PaymentItemInfo>();
     
     private PaymentFeeDanInfo mFeeDan;
 
@@ -24,8 +24,11 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.payment_complex_fee);
+        aquireDatas();
         initViews();
     }
+    
+    protected abstract void aquireDatas();
 
     protected void clickSelectInfos() {
         final ArrayList<PaymentItemInfo> datas = mSelectInfos;
