@@ -31,37 +31,47 @@ public class PayHomeActivity extends PaymentBaseActivity {
     protected void initBody() {
         initView(R.id.water);
         initImageAndText(R.id.water, R.drawable.home_water,
-                R.string.payment_home_water, R.string.payment_home_wo_will);
+                "郑州高新区自来水公司\n我家-6666", R.string.payment_home_wo_will);
 
         initView(R.id.power);
-        initImageAndText(R.id.power, R.drawable.home_power,
-                R.string.payment_home_power, R.string.payment_home_wo_will);
+        initImageAndTextHint(R.id.power, R.drawable.home_power,
+                R.string.payment_home_power, R.string.payment_home_wo_will_hint);
 
         initView(R.id.gas);
-        initImageAndText(R.id.gas, R.drawable.home_gas,
-                R.string.payment_home_gas, R.string.payment_home_wo_will);
+        initImageAndTextHint(R.id.gas, R.drawable.home_gas,
+                R.string.payment_home_gas, R.string.payment_home_wo_will_hint);
 
         initView(R.id.phone);
-        initImageAndText(R.id.phone, R.drawable.home_phone,
-                R.string.payment_home_phone, R.string.payment_home_wo_will);
+        initImageAndTextHint(R.id.phone, R.drawable.home_phone,
+                R.string.payment_home_phone, R.string.payment_home_wo_will_hint);
 
         initView(R.id.park);
-        initImageAndText(R.id.park, R.drawable.home_park,
-                R.string.payment_home_park, R.string.payment_home_wo_will);
+        initImageAndTextHint(R.id.park, R.drawable.home_park,
+                R.string.payment_home_park, R.string.payment_home_wo_will_hint);
 
         initView(R.id.property);
-        initImageAndText(R.id.property, R.drawable.home_property,
-                R.string.payment_home_property, R.string.payment_home_wo_will);
+        initImageAndTextHint(R.id.property, R.drawable.home_property,
+                R.string.payment_home_property, R.string.payment_home_wo_will_hint);
     }
 
-    private void initImageAndText(int parentResId, int imageResId, int textResId, int textResWillId) {
+    private void initImageAndTextHint(int parentResId, int imageResId, int textResId, int textResWillId) {
         View parent = mRoot.findViewById(parentResId);
         ImageView image = (ImageView) parent.findViewById(R.id.home_item_image);
         image.setImageResource(imageResId);
         TextView text = (TextView) parent.findViewById(R.id.home_item_text);
         text.setText(textResId);
         text = (TextView) parent.findViewById(R.id.home_item_text_wo_will);
-        text.setText(textResWillId);
+        text.setHint(textResWillId);
+    }
+    
+    private void initImageAndText(int parentResId, int imageResId, String text, int textResWillId) {
+        View parent = mRoot.findViewById(parentResId);
+        ImageView image = (ImageView) parent.findViewById(R.id.home_item_image);
+        image.setImageResource(imageResId);
+        TextView title = (TextView) parent.findViewById(R.id.home_item_text);
+        title.setText(text);
+        title = (TextView) parent.findViewById(R.id.home_item_text_wo_will);
+        title.setText(textResWillId);
     }
 
     @Override

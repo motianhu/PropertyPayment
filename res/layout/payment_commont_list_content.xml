@@ -6,6 +6,8 @@
     <com.smona.app.propertypayment.source.xlistview.XListView
         android:id="@+id/list_content"
         android:layout_width="match_parent"
+        android:dividerHeight="1dp"
+        android:divider="@color/payment_color_common_home_bg_content"
         android:layout_height="match_parent" />
 
 </LinearLayout>
