@@ -51,10 +51,12 @@ public class PayHomeActivity extends PaymentBaseActivity {
 
         initView(R.id.property);
         initImageAndTextHint(R.id.property, R.drawable.home_property,
-                R.string.payment_home_property, R.string.payment_home_wo_will_hint);
+                R.string.payment_home_property,
+                R.string.payment_home_wo_will_hint);
     }
 
-    private void initImageAndTextHint(int parentResId, int imageResId, int textResId, int textResWillId) {
+    private void initImageAndTextHint(int parentResId, int imageResId,
+            int textResId, int textResWillId) {
         View parent = mRoot.findViewById(parentResId);
         ImageView image = (ImageView) parent.findViewById(R.id.home_item_image);
         image.setImageResource(imageResId);
@@ -63,8 +65,9 @@ public class PayHomeActivity extends PaymentBaseActivity {
         text = (TextView) parent.findViewById(R.id.home_item_text_wo_will);
         text.setHint(textResWillId);
     }
-    
-    private void initImageAndText(int parentResId, int imageResId, String text, int textResWillId) {
+
+    private void initImageAndText(int parentResId, int imageResId, String text,
+            int textResWillId) {
         View parent = mRoot.findViewById(parentResId);
         ImageView image = (ImageView) parent.findViewById(R.id.home_item_image);
         image.setImageResource(imageResId);

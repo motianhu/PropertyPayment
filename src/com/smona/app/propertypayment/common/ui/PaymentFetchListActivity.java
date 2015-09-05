@@ -7,7 +7,6 @@ import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.source.xlistview.XListView;
 import com.smona.app.propertypayment.source.xlistview.XListView.IXListViewListener;
 
-
 public abstract class PaymentFetchListActivity extends PaymentBaseActivity
         implements IXListViewListener {
 

@@ -184,7 +184,7 @@ public abstract class PaymentBaseActivity extends PaymentDialogActivity {
         View view = mRoot.findViewById(resId);
         view.setOnClickListener(mClickListener);
     }
-    
+
     protected void initView(View view) {
         view.setOnClickListener(mClickListener);
     }
@@ -194,17 +194,25 @@ public abstract class PaymentBaseActivity extends PaymentDialogActivity {
         intent.setClass(this, clazz);
         startActivity(intent);
     }
-    
+
     protected void gotoSubActivity(int source, Class<?> clazz) {
         Intent intent = new Intent();
         intent.setClass(this, clazz);
         intent.putExtra(PaymentConstants.DATA_SOURCE, source);
         startActivity(intent);
     }
-    
+
     protected void gotoSubActivity(PaymentItemInfo item, Class<?> clazz) {
         Intent intent = new Intent();
         intent.setClass(this, clazz);
+        intent.putExtra(PaymentConstants.DATA_ITEM_INFO, item);
+        startActivity(intent);
+    }
+    
+    protected void gotoSubActivity(String title, PaymentItemInfo item, Class<?> clazz) {
+        Intent intent = new Intent();
+        intent.setClass(this, clazz);
+        intent.putExtra(PaymentConstants.DATA_TITLE, title);
         intent.putExtra(PaymentConstants.DATA_ITEM_INFO, item);
         startActivity(intent);
     }
@@ -249,7 +257,6 @@ public abstract class PaymentBaseActivity extends PaymentDialogActivity {
                 });
         builder.show();
     }
-    
 
     public interface IChoiceCallback {
         void onChoice(int which);

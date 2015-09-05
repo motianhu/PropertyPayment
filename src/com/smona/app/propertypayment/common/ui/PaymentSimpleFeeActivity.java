@@ -134,7 +134,10 @@ public abstract class PaymentSimpleFeeActivity extends PaymentBaseActivity {
         }
 
         mContent.housecode = housecode;
-        gotoSubActivity(mContent, PaymentSimpleFeePayActivity.class);
+
+        TextView text = (TextView) mRoot.findViewById(R.id.title);
+        gotoSubActivity(text.getText().toString(), mContent,
+                PaymentSimpleFeePayActivity.class);
     }
 
 }

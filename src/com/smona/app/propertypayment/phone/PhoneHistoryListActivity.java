@@ -22,7 +22,7 @@ public class PhoneHistoryListActivity extends PaymentBaseActivity {
 
     @Override
     protected void initBody() {
-        
+
     }
 
     @Override

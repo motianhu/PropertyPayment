@@ -43,7 +43,7 @@ public class PaymentSimpleFeeDetailListActivity extends
             item.housecode = i + "";
             item.money = i + "";
             item.paytime = "time " + i;
-            
+
             mDatas.add(item);
         }
         setFetchListener(mDatas);

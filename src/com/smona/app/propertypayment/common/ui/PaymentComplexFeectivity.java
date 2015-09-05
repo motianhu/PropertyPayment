@@ -17,7 +17,7 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
 
     protected ArrayList<PaymentItemInfo> mSelectInfos = new ArrayList<PaymentItemInfo>();
     protected ArrayList<PaymentItemInfo> mZhekous = new ArrayList<PaymentItemInfo>();
-    
+
     private PaymentFeeDanInfo mFeeDan;
 
     @Override
@@ -27,8 +27,9 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
         aquireDatas();
         initViews();
     }
-    
+
     protected abstract void aquireDatas();
+
     protected abstract int getSource();
 
     protected void clickSelectInfos() {
@@ -72,7 +73,8 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
         }
         switch (id) {
         case R.id.detail:
-        	gotoSubActivity(getSource(), PaymentComplexFeeDetailListActivity.class);
+            gotoSubActivity(getSource(),
+                    PaymentComplexFeeDetailListActivity.class);
             break;
         case R.id.select_info:
             clickSelectInfos();
@@ -87,12 +89,12 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
     }
 
     private void clickNextStep() {
-        
+
         mFeeDan = new PaymentFeeDanInfo();
         mFeeDan.companycode = "1";
         mFeeDan.companyname = "company 1";
         mFeeDan.money = 100;
-        
+
         gotoSubActivity(mFeeDan, PaymentConfirmActivity.class);
     }
 }

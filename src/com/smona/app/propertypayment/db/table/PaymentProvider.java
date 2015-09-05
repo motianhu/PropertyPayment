@@ -29,7 +29,7 @@ public class PaymentProvider extends ContentProvider {
     private static HashMap<Integer, String> TABLE_MATCH = new HashMap<Integer, String>();
 
     static {
-       
+
     }
 
     @Override

@@ -8,7 +8,7 @@ import com.smona.app.propertypayment.common.ui.PaymentComplexFeectivity;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
 
 public class PropertyActivity extends PaymentComplexFeectivity {
-	
+
     @Override
     protected void initHeader() {
         initText(R.id.title, R.string.payment_home_property);
@@ -53,7 +53,7 @@ public class PropertyActivity extends PaymentComplexFeectivity {
         initText(R.id.next_step, R.string.payment_common_liji_pay);
         initView(R.id.next_step);
     }
-    
+
     @Override
     protected void aquireDatas() {
         for (int i = 0; i < 10; i++) {
@@ -70,8 +70,8 @@ public class PropertyActivity extends PaymentComplexFeectivity {
             mZhekous.add(item);
         }
     }
-    
+
     protected int getSource() {
-    	return PaymentConstants.DATA_SOURCE_PROPERTY;
+        return PaymentConstants.DATA_SOURCE_PROPERTY;
     }
 }
