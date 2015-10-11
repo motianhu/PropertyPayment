@@ -1,0 +1,11 @@
+{
+    "iccode": "0410",
+    "loginname": "13939093625",
+    "sessionid": "48RTFBHV",
+    "answercode": "00",
+    "pstartdate": "20151101",
+    "penddate": "20160131",
+    "needfare": "1800",
+    "needdscrp": "您的物业费将于34天后到期",
+    "monthnum": "6"
+}

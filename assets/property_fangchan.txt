@@ -1,0 +1,28 @@
+{
+    "iccode": "0210",
+    "loginname": "13939093625",
+    "sessionid": "48RTFBHV",
+    "answercode": "00",
+    "icobject": [
+        {
+            "communitycode": "1",
+            "communityname": "万科城",
+            "housingbancode": "1",
+            "housingbanname": "万科城1号楼",
+            "housingbantranscode": "1",
+            "housingbantransname": "A1-01",
+            "propertyname": "万科物业",
+            "payaccount": "100"
+        },
+        {
+            "communitycode": "2",
+            "communityname": "西湖春天",
+            "housingbancode": "2",
+            "housingbanname": "16号楼",
+            "housingbantranscode": "4",
+            "housingbantransname": "A101",
+            "propertyname": "杭州西湖春天管理",
+            "payaccount": "100"
+        }
+    ]
+}

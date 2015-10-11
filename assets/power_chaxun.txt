@@ -1,0 +1,13 @@
+{
+    "iccode": "1210",
+    "loginname": "13939093625",
+    "sessionid": "48RTFBHV",
+    "answercode": "00",
+    "consno": null,
+    "trans_name": "21-1-601吴冠军",
+    "elec_addr": "石家庄北二环裕华小区",
+    "exchg_atm": "8950",
+    "postradeno": "1000000800000005",
+    "return_code": "0000",
+    "return_msg": "查询成功"
+}
