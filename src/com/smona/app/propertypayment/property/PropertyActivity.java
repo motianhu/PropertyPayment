@@ -6,6 +6,8 @@ import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentTypeItem;
 import com.smona.app.propertypayment.common.ui.PaymentComplexFeectivity;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
+import com.smona.app.propertypayment.property.bean.PaymentPropertyFangchansBean;
+import com.smona.app.propertypayment.property.process.PaymentPropertyMessageProcessProxy;
 
 public class PropertyActivity extends PaymentComplexFeectivity {
 
@@ -73,5 +75,30 @@ public class PropertyActivity extends PaymentComplexFeectivity {
 
     protected int getSource() {
         return PaymentConstants.DATA_SOURCE_PROPERTY;
+    }
+
+    protected void loadData() {
+        requestData();
+    }
+
+    protected void requestData() {
+        showCustomProgrssDialog();
+
+        mItemInfo = new PaymentPropertyFangchansBean();
+        mMessageProcess = new PaymentPropertyMessageProcessProxy();
+        ((PaymentPropertyMessageProcessProxy) mMessageProcess).requestFangchan(
+                this, this);
+    }
+
+    protected void saveData(String content) {
+        requestRefreshUI();
+        hideCustomProgressDialog();
+    }
+
+    protected void refreshUI() {
+    }
+
+    protected void failedRequest() {
+        hideCustomProgressDialog();
     }
 }

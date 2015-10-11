@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
+import com.smona.app.propertypayment.process.PaymentMessageProcess.IQuestCallback;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -17,11 +18,13 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public abstract class PaymentBaseActivity extends PaymentDialogActivity {
+public abstract class PaymentBaseActivity extends PaymentDialogActivity
+        implements IQuestCallback {
 
     private static final int MSG_LOAD_DATA = 1;
     private static final int MSG_NOTIFY_REFRESH_UI = 2;
 
+    protected PaymentItemInfo mItemInfo;
     protected View mRoot = null;
 
     @SuppressLint("HandlerLeak")
@@ -208,8 +211,9 @@ public abstract class PaymentBaseActivity extends PaymentDialogActivity {
         intent.putExtra(PaymentConstants.DATA_ITEM_INFO, item);
         startActivity(intent);
     }
-    
-    protected void gotoSubActivity(String title, PaymentItemInfo item, Class<?> clazz) {
+
+    protected void gotoSubActivity(String title, PaymentItemInfo item,
+            Class<?> clazz) {
         Intent intent = new Intent();
         intent.setClass(this, clazz);
         intent.putExtra(PaymentConstants.DATA_TITLE, title);

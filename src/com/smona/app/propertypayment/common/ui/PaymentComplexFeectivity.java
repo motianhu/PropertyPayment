@@ -18,14 +18,13 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
     protected ArrayList<PaymentItemInfo> mSelectInfos = new ArrayList<PaymentItemInfo>();
     protected ArrayList<PaymentItemInfo> mZhekous = new ArrayList<PaymentItemInfo>();
 
-    private PaymentFeeDanInfo mFeeDan;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.payment_complex_fee);
         aquireDatas();
         initViews();
+        requestLoadData();
     }
 
     protected abstract void aquireDatas();
@@ -89,12 +88,11 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
     }
 
     private void clickNextStep() {
-
-        mFeeDan = new PaymentFeeDanInfo();
-        mFeeDan.companycode = "1";
-        mFeeDan.companyname = "company 1";
-        mFeeDan.money = 100;
-
-        gotoSubActivity(mFeeDan, PaymentConfirmActivity.class);
+        mItemInfo = new PaymentFeeDanInfo();
+        PaymentFeeDanInfo itemInfo = (PaymentFeeDanInfo)mItemInfo;
+        itemInfo.companycode = "1";
+        itemInfo.companyname = "company 1";
+        itemInfo.money = 100;
+        gotoSubActivity(itemInfo, PaymentConfirmActivity.class);
     }
 }

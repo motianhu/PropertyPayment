@@ -2,6 +2,7 @@ package com.smona.app.propertypayment.common.ui;
 
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.util.LogUtil;
+import com.smona.app.propertypayment.process.PaymentMessageProcessProxy;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -16,6 +17,7 @@ public class PaymentDialogActivity extends Activity {
     private static final int DIALOG_SHOW = 0;
     private static final int DIALOG_HIDE = 1;
 
+    protected PaymentMessageProcessProxy mMessageProcess;
     protected PaymentLoadingDialog mDialog;
 
     @SuppressLint("HandlerLeak")
