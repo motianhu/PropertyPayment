@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
-import com.smona.app.propertypayment.common.data.PaymentTypeItem;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -28,7 +27,7 @@ public class PaymentTypeAdapter extends PaymentBaseDataAdapter {
 
     public void initConvertView(View convertView, final PaymentItemInfo info) {
         TextView text = (TextView) convertView;
-        text.setText(((PaymentTypeItem) info).type_name);
+        //text.setText(((PaymentTypeItem) info).type_name);
         text.setTextColor(Color.BLACK);
     }
 }

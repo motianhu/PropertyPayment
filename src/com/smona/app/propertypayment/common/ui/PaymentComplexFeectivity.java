@@ -39,13 +39,12 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
             public void onChoice(int which) {
                 PaymentItemInfo info = datas.get(which);
                 LogUtil.d(TAG, "clickSelectInfos: info: " + info);
-                View parent = mRoot.findViewById(R.id.select_info);
-                initText(parent, R.id.select_type,
-                        ((PaymentTypeItem) info).type_name);
-                setTag(R.id.select_type, info);
+                requestRelativeData(mRoot, info);
             }
         });
     }
+    
+    abstract protected void requestRelativeData(View root, PaymentItemInfo info);
 
     protected void clickSelectZhekous() {
         final ArrayList<PaymentItemInfo> datas = mZhekous;
@@ -58,7 +57,7 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
                 View parent = mRoot.findViewById(R.id.dazhe_info);
                 initText(parent, R.id.select_type,
                         ((PaymentTypeItem) info).type_name);
-                setTag(R.id.select_type, info);
+                setTag(R.id.dazhe_info, info);
             }
         });
     }

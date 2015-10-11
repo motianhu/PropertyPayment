@@ -1,7 +1,6 @@
 package com.smona.app.propertypayment.process;
 
-public class PaymentRequestInfo {
-    public String iccode;
-    public String loginname;
-    public String sessionid;
+import com.smona.app.propertypayment.common.data.PaymentItemInfo;
+
+public class PaymentRequestInfo extends PaymentItemInfo {
 }

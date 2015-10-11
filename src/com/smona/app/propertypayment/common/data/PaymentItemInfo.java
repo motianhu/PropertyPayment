@@ -7,6 +7,7 @@ public class PaymentItemInfo implements Parcelable {
     public String iccode;
     public String loginname;
     public String answercode;
+    public String sessionid;
 
     public PaymentItemInfo() {
     }
@@ -36,7 +37,8 @@ public class PaymentItemInfo implements Parcelable {
     };
 
     public String toString() {
-        return "PropertyItemInfo[iccode: " + iccode + ", answercode: "
-                + answercode + "]";
+        return "PropertyItemInfo[iccode: " + iccode + ", sessionid: "
+                + sessionid + ", answercode: " + answercode + ", loginname: "
+                + loginname + "]";
     }
 }

@@ -1,6 +1,8 @@
 package com.smona.app.propertypayment.property.bean;
 
-public class PaymentPropertyFangchanBean {
+import com.smona.app.propertypayment.common.data.PaymentItemInfo;
+
+public class PaymentPropertyFangchanBean extends PaymentItemInfo {
     public String communitycode;
     public String communityname;
     public String housingbancode;

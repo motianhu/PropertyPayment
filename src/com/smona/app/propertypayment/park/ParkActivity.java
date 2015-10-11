@@ -3,6 +3,7 @@ package com.smona.app.propertypayment.park;
 import android.view.View;
 
 import com.smona.app.propertypayment.R;
+import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.data.PaymentTypeItem;
 import com.smona.app.propertypayment.common.ui.PaymentComplexFeectivity;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
@@ -73,5 +74,9 @@ public class ParkActivity extends PaymentComplexFeectivity {
 
     protected int getSource() {
         return PaymentConstants.DATA_SOURCE_PARK;
+    }
+
+    protected void requestRelativeData(View root, PaymentItemInfo source) {
+
     }
 }
