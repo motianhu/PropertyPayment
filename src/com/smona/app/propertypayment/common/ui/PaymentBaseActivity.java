@@ -265,4 +265,8 @@ public abstract class PaymentBaseActivity extends PaymentDialogActivity
     public interface IChoiceCallback {
         void onChoice(int which);
     }
+    
+    protected boolean isRequestOk(PaymentItemInfo bean) {
+        return "00".equals(bean.answercode);
+    }
 }

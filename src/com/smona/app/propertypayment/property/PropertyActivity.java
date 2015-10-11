@@ -1,11 +1,21 @@
 package com.smona.app.propertypayment.property;
 
+import java.lang.reflect.Type;
+
 import android.view.View;
 
+import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
+import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.data.PaymentTypeItem;
+import com.smona.app.propertypayment.common.data.discount.PaymentDiscountsBean;
+import com.smona.app.propertypayment.common.data.payplan.PaymentPayPlanBean;
 import com.smona.app.propertypayment.common.ui.PaymentComplexFeectivity;
+import com.smona.app.propertypayment.common.util.JsonUtils;
+import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
+import com.smona.app.propertypayment.process.PaymentRequestInfo;
+import com.smona.app.propertypayment.property.bean.PaymentPropertyBean;
 import com.smona.app.propertypayment.property.bean.PaymentPropertyFangchansBean;
 import com.smona.app.propertypayment.property.process.PaymentPropertyMessageProcessProxy;
 
@@ -83,16 +93,60 @@ public class PropertyActivity extends PaymentComplexFeectivity {
 
     protected void requestData() {
         showCustomProgrssDialog();
-
-        mItemInfo = new PaymentPropertyFangchansBean();
+        mItemInfo = new PaymentPropertyBean();
         mMessageProcess = new PaymentPropertyMessageProcessProxy();
         ((PaymentPropertyMessageProcessProxy) mMessageProcess).requestFangchan(
                 this, this);
+
+        PaymentRequestInfo request = new PaymentRequestInfo();
+        ((PaymentPropertyMessageProcessProxy) mMessageProcess).requestDiscount(
+                this, request, this);
+        
+        request = new PaymentRequestInfo();
+        ((PaymentPropertyMessageProcessProxy) mMessageProcess).requestDiscount(
+                this, request, this);
     }
 
     protected void saveData(String content) {
-        requestRefreshUI();
-        hideCustomProgressDialog();
+        Type type = new TypeToken<PaymentItemInfo>() {
+        }.getType();
+        PaymentItemInfo bean = JsonUtils.parseJson(content, type);
+        if ("0200".equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentPropertyFangchansBean>() {
+                }.getType();
+                PaymentPropertyFangchansBean fangchans = JsonUtils.parseJson(
+                        content, type);
+                ((PaymentPropertyBean) mItemInfo).mFangchanBean = fangchans;
+            } else {
+                hideCustomProgressDialog();
+            }
+        } else if ("0300".equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentDiscountsBean>() {
+                }.getType();
+                PaymentDiscountsBean discount = JsonUtils.parseJson(content,
+                        type);
+                ((PaymentPropertyBean) mItemInfo).mDiscountBean = discount;
+            } else {
+                hideCustomProgressDialog();
+            }
+        } else if ("0400".equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentPayPlanBean>() {
+                }.getType();
+                PaymentPayPlanBean plan = JsonUtils.parseJson(content, type);
+                ((PaymentPropertyBean) mItemInfo).mPlanBean = plan;
+            } else {
+                hideCustomProgressDialog();
+            }
+        }
+
+        if (((PaymentPropertyBean) mItemInfo).finishInit()) {
+            requestRefreshUI();
+            hideCustomProgressDialog();
+            LogUtil.d("motianhu", mItemInfo.toString());
+        }
     }
 
     protected void refreshUI() {
