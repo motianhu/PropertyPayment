@@ -248,7 +248,7 @@ public abstract class PaymentBaseActivity extends PaymentDialogActivity
 
     protected void showSingleChoiceType(ArrayList<PaymentItemInfo> datas,
             final IChoiceCallback callback) {
-        PaymentTypeAdapter dapter = new PaymentTypeAdapter(this, datas);
+        PaymentTypeAdapter dapter = createTypeAdapter(datas);
 
         PaymentSelectedDialog.Builder builder = new PaymentSelectedDialog.Builder(
                 this);
@@ -260,6 +260,11 @@ public abstract class PaymentBaseActivity extends PaymentDialogActivity
                     }
                 });
         builder.show();
+    }
+
+    protected PaymentTypeAdapter createTypeAdapter(
+            ArrayList<PaymentItemInfo> datas) {
+        return new PaymentTypeAdapter(this, datas);
     }
 
     public interface IChoiceCallback {

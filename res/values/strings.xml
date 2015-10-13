@@ -26,6 +26,8 @@
     <string name="payment_common_cheliang_info">车辆信息</string>
     <string name="payment_common_fangchan_info">房产信息</string>
     <string name="payment_common_phone_info">手机号码</string>
+    <string name="payment_common_discount_zhekou">折</string>
+    <string name="payment_common_rmb">"元"</string>
 
     <!-- 首页 -->
     <string name="payment_home_water">水费</string>

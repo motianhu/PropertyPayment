@@ -21,4 +21,8 @@ public class PaymentPropertyFangchanBean extends PaymentItemInfo {
                 + "propertyname=" + propertyname + "payaccount=" + payaccount
                 + "]";
     }
+    
+    public String getFangchanAddr() {
+        return communityname +  housingbanname + housingbantransname;
+    }
 }

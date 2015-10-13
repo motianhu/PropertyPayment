@@ -79,4 +79,9 @@ public class ParkActivity extends PaymentComplexFeectivity {
     protected void requestRelativeData(View root, PaymentItemInfo source) {
 
     }
+
+    @Override
+    protected void setupSelectedUI(View root, PaymentItemInfo info) {
+        
+    }
 }

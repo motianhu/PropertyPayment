@@ -1,15 +1,18 @@
 package com.smona.app.propertypayment.property;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 import android.view.View;
 
 import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
+import com.smona.app.propertypayment.common.data.discount.PaymentDiscountBean;
 import com.smona.app.propertypayment.common.data.discount.PaymentDiscountsBean;
 import com.smona.app.propertypayment.common.data.payplan.PaymentPayPlanBean;
 import com.smona.app.propertypayment.common.ui.PaymentComplexFeectivity;
+import com.smona.app.propertypayment.common.ui.PaymentTypeAdapter;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
@@ -43,12 +46,9 @@ public class PropertyActivity extends PaymentComplexFeectivity {
 
         parent = mRoot.findViewById(R.id.property_company);
         initText(parent, R.id.name, R.string.payment_property_company);
-        initText(parent, R.id.value, "万科物业");
 
         parent = mRoot.findViewById(R.id.yingjiao_jine);
         initText(parent, R.id.name, R.string.payment_property_yingjiao_jine);
-        initText(parent, R.id.value, 560.5 + "元");
-        initText(parent, R.id.description, "您的停车费将于一个月后到期");
 
         parent = mRoot.findViewById(R.id.dazhe_info);
         initTextHint(parent, R.id.select_type,
@@ -77,6 +77,11 @@ public class PropertyActivity extends PaymentComplexFeectivity {
         return PaymentConstants.DATA_SOURCE_PROPERTY;
     }
 
+    protected PaymentTypeAdapter createTypeAdapter(
+            ArrayList<PaymentItemInfo> datas) {
+        return new PaymentPropertyTypeAdapter(this, datas);
+    }
+
     protected void loadData() {
         requestData();
     }
@@ -90,22 +95,38 @@ public class PropertyActivity extends PaymentComplexFeectivity {
     }
 
     protected void requestRelativeData(View root, PaymentItemInfo source) {
+        // refresh ui
+        PaymentPropertyFangchanBean fangchan = (PaymentPropertyFangchanBean) source;
+
         View parent = mRoot.findViewById(R.id.select_info);
-        initText(parent, R.id.select_type,
-                ((PaymentPropertyFangchanBean) source).housingbanname);
-        setTag(R.id.select_info, source);
+        initText(parent, R.id.select_type, fangchan.getFangchanAddr());
+        setTag(R.id.select_info, fangchan);
+
+        parent = mRoot.findViewById(R.id.property_company);
+        initText(parent, R.id.value, fangchan.propertyname);
+
+        // loading relative data;
         showCustomProgrssDialog();
 
         PaymentRequestInfo request = new PaymentPropertyDiscountRequestInfo();
-        ((PaymentPropertyDiscountRequestInfo) request).communitycode = ((PaymentPropertyFangchanBean) source).communitycode;
+        ((PaymentPropertyDiscountRequestInfo) request).communitycode = fangchan.communitycode;
         ((PaymentPropertyMessageProcessProxy) mMessageProcess).requestDiscount(
                 this, request, this);
 
         request = new PaymentPropertyPlanRequestInfo();
-        ((PaymentPropertyPlanRequestInfo) request).communitycode = ((PaymentPropertyFangchanBean) source).communitycode;
-        ((PaymentPropertyPlanRequestInfo) request).housingbantranscode = ((PaymentPropertyFangchanBean) source).housingbantranscode;
+        ((PaymentPropertyPlanRequestInfo) request).communitycode = fangchan.communitycode;
+        ((PaymentPropertyPlanRequestInfo) request).housingbantranscode = fangchan.housingbantranscode;
         ((PaymentPropertyMessageProcessProxy) mMessageProcess).requestPlan(
                 this, request, this);
+    }
+
+    protected void setupSelectedUI(View root, PaymentItemInfo info) {
+        // refresh ui
+        PaymentDiscountBean discount = (PaymentDiscountBean) info;
+
+        View parent = root.findViewById(R.id.dazhe_info);
+        initText(parent, R.id.select_type, discount.getDiscountName(this));
+        setTag(R.id.dazhe_info, info);
     }
 
     protected void saveData(String content) {
@@ -131,6 +152,9 @@ public class PropertyActivity extends PaymentComplexFeectivity {
                 }.getType();
                 ((PaymentPropertyBean) mItemInfo).mDiscountBean = JsonUtils
                         .parseJson(content, type);
+
+                mZhekous.clear();
+                mZhekous.addAll(((PaymentPropertyBean) mItemInfo).mDiscountBean.icobject);
             } else {
                 hideCustomProgressDialog();
             }
@@ -153,6 +177,15 @@ public class PropertyActivity extends PaymentComplexFeectivity {
     }
 
     protected void refreshUI() {
+        PaymentPayPlanBean plan = ((PaymentPropertyBean) mItemInfo).mPlanBean;
+
+        View parent = mRoot.findViewById(R.id.yingjiao_jine);
+        initText(
+                parent,
+                R.id.value,
+                plan.needfare
+                        + getResources().getString(R.string.payment_common_rmb));
+        initText(parent, R.id.description, plan.needdscrp);
     }
 
     protected void failedRequest() {
