@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
+import com.smona.app.propertypayment.park.bean.PaymentParkDetailBean;
 import com.smona.app.propertypayment.property.bean.PaymentPropertyDetailBean;
 
 import android.annotation.SuppressLint;
@@ -58,7 +59,10 @@ public class PaymentComplexFeeListAdapter extends PaymentBaseDataAdapter {
         }
 
         if (info instanceof PaymentPropertyDetailBean) {
-            setupPropertyDetailViews(convertView, ((PaymentPropertyDetailBean)info));
+            setupPropertyDetailViews(convertView,
+                    ((PaymentPropertyDetailBean) info));
+        } else if (info instanceof PaymentParkDetailBean) {
+            setupParkDetailViews(convertView, ((PaymentParkDetailBean) info));
         } else {
             return;
         }
@@ -66,6 +70,24 @@ public class PaymentComplexFeeListAdapter extends PaymentBaseDataAdapter {
 
     private void setupPropertyDetailViews(View convertView,
             PaymentPropertyDetailBean item) {
+        View parent = convertView.findViewById(R.id.company_name);
+        parent = convertView.findViewById(R.id.company_name);
+        initText(parent, R.id.value, item.needfare);
+
+        parent = convertView.findViewById(R.id.pay_money);
+        initText(parent, R.id.value, item.needfare
+                + mContext.getResources()
+                        .getString(R.string.payment_common_rmb));
+
+        parent = convertView.findViewById(R.id.pay_time);
+        initText(parent, R.id.value, item.pstartdate);
+
+        parent = convertView.findViewById(R.id.objinfo);
+        initText(parent, R.id.value, item.paylinefare);
+    }
+
+    private void setupParkDetailViews(View convertView,
+            PaymentParkDetailBean item) {
         View parent = convertView.findViewById(R.id.company_name);
         parent = convertView.findViewById(R.id.company_name);
         initText(parent, R.id.value, item.needfare);

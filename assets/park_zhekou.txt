@@ -1,0 +1,21 @@
+{
+    "iccode": "0810",
+    "loginname": "13939093625",
+    "sessionid": "48RTFBHV",
+    "answercode": "00",
+    "communitycode": null,
+    "icobject": [
+        {
+            "did": "1",
+            "discount": "90",
+            "yearnum": "1",
+            "yeardscrp": "一年"
+        },
+        {
+            "did": "2",
+            "discount": "80",
+            "yearnum": "2",
+            "yeardscrp": "二年"
+        }
+    ]
+}

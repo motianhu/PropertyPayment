@@ -1,0 +1,15 @@
+{
+    "iccode": "0710",
+    "loginname": "13939093625",
+    "sessionid": "48RTFBHV",
+    "answercode": "00",
+    "icobject": [
+        {
+            "parknum": "19A06",
+            "cardnum": "豫A278WX",
+            "propertyname": "万科物业",
+            "communitycode":"1",
+            "payaccount": "100"
+        }
+    ]
+}

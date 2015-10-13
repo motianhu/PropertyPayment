@@ -1,14 +1,34 @@
 package com.smona.app.propertypayment.park;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+
 import android.view.View;
 
+import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
-import com.smona.app.propertypayment.common.data.PaymentTypeItem;
+import com.smona.app.propertypayment.common.data.discount.PaymentDiscountBean;
+import com.smona.app.propertypayment.common.data.discount.PaymentDiscountsBean;
+import com.smona.app.propertypayment.common.data.payplan.PaymentPayPlanBean;
 import com.smona.app.propertypayment.common.ui.PaymentComplexFeectivity;
+import com.smona.app.propertypayment.common.ui.PaymentTypeAdapter;
+import com.smona.app.propertypayment.common.util.JsonUtils;
+import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
+import com.smona.app.propertypayment.park.bean.PaymentParkBean;
+import com.smona.app.propertypayment.park.process.PaymentParkMessageProcessProxy;
+import com.smona.app.propertypayment.process.PaymentRequestInfo;
+import com.smona.app.propertypayment.park.PaymentParkTypeAdapter;
+import com.smona.app.propertypayment.park.bean.PaymentParkDiscountRequestInfo;
+import com.smona.app.propertypayment.park.bean.PaymentParkCheweiBean;
+import com.smona.app.propertypayment.park.bean.PaymentParkCheweisBean;
+import com.smona.app.propertypayment.park.bean.PaymentParkPlanRequestInfo;
 
 public class ParkActivity extends PaymentComplexFeectivity {
+    private final static String TAG = "ParkActivity";
+
+    private PaymentParkBean mParkBean;
 
     @Override
     protected void initHeader() {
@@ -29,12 +49,9 @@ public class ParkActivity extends PaymentComplexFeectivity {
 
         parent = mRoot.findViewById(R.id.property_company);
         initText(parent, R.id.name, R.string.payment_park_company);
-        initText(parent, R.id.value, "万科物业");
 
         parent = mRoot.findViewById(R.id.yingjiao_jine);
         initText(parent, R.id.name, R.string.payment_park_yingjiao_jine);
-        initText(parent, R.id.value, 560.5 + "元");
-        initText(parent, R.id.description, "您的停车费将于一个月后到期");
 
         parent = mRoot.findViewById(R.id.dazhe_info);
         initTextHint(parent, R.id.select_type,
@@ -57,31 +74,124 @@ public class ParkActivity extends PaymentComplexFeectivity {
 
     @Override
     protected void aquireDatas() {
-        for (int i = 0; i < 10; i++) {
-            PaymentTypeItem item = new PaymentTypeItem();
-            item.type_id = "" + i;
-            item.type_name = "车牌 " + i;
-            mSelectInfos.add(item);
-        }
-
-        for (int i = 0; i < 10; i++) {
-            PaymentTypeItem item = new PaymentTypeItem();
-            item.type_id = "" + i;
-            item.type_name = i + "折";
-            mZhekous.add(item);
-        }
     }
 
     protected int getSource() {
         return PaymentConstants.DATA_SOURCE_PARK;
     }
 
-    protected void requestRelativeData(View root, PaymentItemInfo source) {
-
+    protected PaymentTypeAdapter createTypeAdapter(
+            ArrayList<PaymentItemInfo> datas) {
+        return new PaymentParkTypeAdapter(this, datas);
     }
 
-    @Override
+    protected void loadData() {
+        requestData();
+    }
+
+    protected void requestData() {
+        showCustomProgrssDialog();
+
+        mParkBean = new PaymentParkBean();
+
+        mMessageProcess = new PaymentParkMessageProcessProxy();
+        ((PaymentParkMessageProcessProxy) mMessageProcess).requestChewei(this,
+                this);
+    }
+
+    protected void saveData(String content) {
+        Type type = new TypeToken<PaymentItemInfo>() {
+        }.getType();
+        PaymentItemInfo bean = JsonUtils.parseJson(content, type);
+        LogUtil.d(TAG, "content: " + content);
+        if ("0710".equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentParkCheweisBean>() {
+                }.getType();
+                mItemInfo = JsonUtils.parseJson(content, type);
+                mSelectInfos.clear();
+                mSelectInfos
+                        .addAll(((PaymentParkCheweisBean) mItemInfo).icobject);
+            } else {
+
+            }
+            hideCustomProgressDialog();
+        } else if ("0810".equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentDiscountsBean>() {
+                }.getType();
+                mParkBean.mDiscountBean = JsonUtils.parseJson(content, type);
+
+                mZhekous.clear();
+                mZhekous.addAll(mParkBean.mDiscountBean.icobject);
+            } else {
+                hideCustomProgressDialog();
+            }
+        } else if ("0910".equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentPayPlanBean>() {
+                }.getType();
+                mParkBean.mPlanBean = JsonUtils.parseJson(content, type);
+            } else {
+                hideCustomProgressDialog();
+            }
+        }
+
+        boolean finishInit = mParkBean.finishInit();
+        if (finishInit) {
+            requestRefreshUI();
+            hideCustomProgressDialog();
+        }
+    }
+
+    protected void refreshUI() {
+        PaymentPayPlanBean plan = mParkBean.mPlanBean;
+
+        View parent = mRoot.findViewById(R.id.yingjiao_jine);
+        initText(
+                parent,
+                R.id.value,
+                plan.needfare
+                        + getResources().getString(R.string.payment_common_rmb));
+        initText(parent, R.id.description, plan.needdscrp);
+    }
+
+    protected void failedRequest() {
+        hideCustomProgressDialog();
+    }
+
+    protected void requestRelativeData(View root, PaymentItemInfo source) {
+        // refresh ui
+        PaymentParkCheweiBean chewei = (PaymentParkCheweiBean) source;
+
+        View parent = mRoot.findViewById(R.id.select_info);
+        initText(parent, R.id.select_type, chewei.getCarInfo());
+        setTag(R.id.select_info, chewei);
+
+        parent = mRoot.findViewById(R.id.property_company);
+        initText(parent, R.id.value, chewei.propertyname);
+
+        // loading relative data;
+        showCustomProgrssDialog();
+
+        PaymentRequestInfo request = new PaymentParkDiscountRequestInfo();
+        ((PaymentParkDiscountRequestInfo) request).communitycode = chewei.communitycode;
+        ((PaymentParkMessageProcessProxy) mMessageProcess).requestDiscount(
+                this, request, this);
+
+        request = new PaymentParkPlanRequestInfo();
+        ((PaymentParkPlanRequestInfo) request).communitycode = chewei.communitycode;
+        ((PaymentParkPlanRequestInfo) request).parknum = chewei.parknum;
+        ((PaymentParkMessageProcessProxy) mMessageProcess).requestPlan(
+                this, request, this);
+    }
+
     protected void setupSelectedUI(View root, PaymentItemInfo info) {
-        
+        // refresh ui
+        PaymentDiscountBean discount = (PaymentDiscountBean) info;
+
+        View parent = root.findViewById(R.id.dazhe_info);
+        initText(parent, R.id.select_type, discount.getDiscountName(this));
+        setTag(R.id.dazhe_info, info);
     }
 }

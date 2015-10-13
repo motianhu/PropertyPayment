@@ -12,11 +12,14 @@ import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
+import com.smona.app.propertypayment.park.bean.PaymentParkCheweiBean;
+import com.smona.app.propertypayment.park.bean.PaymentParkDetailRequestInfo;
+import com.smona.app.propertypayment.park.bean.PaymentParkDetailsBean;
+import com.smona.app.propertypayment.park.process.PaymentParkMessageProcessProxy;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
 import com.smona.app.propertypayment.property.bean.PaymentPropertyDetailRequestInfo;
 import com.smona.app.propertypayment.property.bean.PaymentPropertyDetailsBean;
 import com.smona.app.propertypayment.property.bean.PaymentPropertyFangchanBean;
-import com.smona.app.propertypayment.property.bean.PaymentPropertyFangchansBean;
 import com.smona.app.propertypayment.property.process.PaymentPropertyMessageProcessProxy;
 
 public class PaymentComplexFeeDetailListActivity extends
@@ -59,13 +62,18 @@ public class PaymentComplexFeeDetailListActivity extends
 
     protected void requestData() {
         showCustomProgrssDialog();
+        PaymentRequestInfo request = null;
+        if (mItemInfo instanceof PaymentPropertyFangchanBean) {
+            request = new PaymentPropertyDetailRequestInfo();
 
-        if (mItemInfo instanceof PaymentPropertyFangchansBean) {
-            PaymentRequestInfo request = new PaymentPropertyDetailRequestInfo();
-            
             mMessageProcess = new PaymentPropertyMessageProcessProxy();
             ((PaymentPropertyMessageProcessProxy) mMessageProcess)
                     .requestDetail(this, request, this);
+        } else if (mItemInfo instanceof PaymentParkCheweiBean) {
+            request = new PaymentParkDetailRequestInfo();
+            mMessageProcess = new PaymentParkMessageProcessProxy();
+            ((PaymentParkMessageProcessProxy) mMessageProcess).requestDetail(
+                    this, request, this);
         } else {
             hideCustomProgressDialog();
         }
@@ -79,6 +87,16 @@ public class PaymentComplexFeeDetailListActivity extends
         if ("0510".equals(bean.iccode)) {
             if (isRequestOk(bean)) {
                 type = new TypeToken<PaymentPropertyDetailsBean>() {
+                }.getType();
+                mDetailsBean = JsonUtils.parseJson(content, type);
+                mAllDatas.addAll(mDetailsBean.icobject);
+                requestRefreshUI();
+            } else {
+
+            }
+        } else if ("1010".equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentParkDetailsBean>() {
                 }.getType();
                 mDetailsBean = JsonUtils.parseJson(content, type);
                 mAllDatas.addAll(mDetailsBean.icobject);
