@@ -27,6 +27,8 @@ import com.smona.app.propertypayment.property.process.PaymentPropertyMessageProc
 public class PropertyActivity extends PaymentComplexFeectivity {
     private final static String TAG = "PropertyActivity";
 
+    private PaymentPropertyBean mPropertyBean;
+
     @Override
     protected void initHeader() {
         initText(R.id.title, R.string.payment_home_property);
@@ -88,11 +90,76 @@ public class PropertyActivity extends PaymentComplexFeectivity {
 
     protected void requestData() {
         showCustomProgrssDialog();
-        mItemInfo = new PaymentPropertyBean();
+        
+        mPropertyBean = new PaymentPropertyBean();
+        
         mMessageProcess = new PaymentPropertyMessageProcessProxy();
         ((PaymentPropertyMessageProcessProxy) mMessageProcess).requestFangchan(
                 this, this);
     }
+
+    protected void saveData(String content) {
+        Type type = new TypeToken<PaymentItemInfo>() {
+        }.getType();
+        PaymentItemInfo bean = JsonUtils.parseJson(content, type);
+        LogUtil.d(TAG, "content: " + content);
+        if ("0210".equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentPropertyFangchansBean>() {
+                }.getType();
+                mItemInfo = JsonUtils.parseJson(content, type);
+                mSelectInfos.clear();
+                mSelectInfos
+                        .addAll(((PaymentPropertyFangchansBean) mItemInfo).icobject);
+            } else {
+
+            }
+            hideCustomProgressDialog();
+        } else if ("0310".equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentDiscountsBean>() {
+                }.getType();
+                mPropertyBean.mDiscountBean = JsonUtils
+                        .parseJson(content, type);
+
+                mZhekous.clear();
+                mZhekous.addAll(mPropertyBean.mDiscountBean.icobject);
+            } else {
+                hideCustomProgressDialog();
+            }
+        } else if ("0410".equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentPayPlanBean>() {
+                }.getType();
+                mPropertyBean.mPlanBean = JsonUtils.parseJson(content, type);
+            } else {
+                hideCustomProgressDialog();
+            }
+        }
+
+        boolean finishInit = mPropertyBean.finishInit();
+        if (finishInit) {
+            requestRefreshUI();
+            hideCustomProgressDialog();
+        }
+    }
+
+    protected void refreshUI() {
+        PaymentPayPlanBean plan = mPropertyBean.mPlanBean;
+
+        View parent = mRoot.findViewById(R.id.yingjiao_jine);
+        initText(
+                parent,
+                R.id.value,
+                plan.needfare
+                        + getResources().getString(R.string.payment_common_rmb));
+        initText(parent, R.id.description, plan.needdscrp);
+    }
+
+    protected void failedRequest() {
+        hideCustomProgressDialog();
+    }
+    
 
     protected void requestRelativeData(View root, PaymentItemInfo source) {
         // refresh ui
@@ -129,66 +196,4 @@ public class PropertyActivity extends PaymentComplexFeectivity {
         setTag(R.id.dazhe_info, info);
     }
 
-    protected void saveData(String content) {
-        Type type = new TypeToken<PaymentItemInfo>() {
-        }.getType();
-        PaymentItemInfo bean = JsonUtils.parseJson(content, type);
-        LogUtil.d(TAG, "content: " + content);
-        if ("0210".equals(bean.iccode)) {
-            if (isRequestOk(bean)) {
-                type = new TypeToken<PaymentPropertyFangchansBean>() {
-                }.getType();
-                PaymentPropertyFangchansBean fangchans = JsonUtils.parseJson(
-                        content, type);
-                mSelectInfos.clear();
-                mSelectInfos.addAll(fangchans.icobject);
-            } else {
-
-            }
-            hideCustomProgressDialog();
-        } else if ("0310".equals(bean.iccode)) {
-            if (isRequestOk(bean)) {
-                type = new TypeToken<PaymentDiscountsBean>() {
-                }.getType();
-                ((PaymentPropertyBean) mItemInfo).mDiscountBean = JsonUtils
-                        .parseJson(content, type);
-
-                mZhekous.clear();
-                mZhekous.addAll(((PaymentPropertyBean) mItemInfo).mDiscountBean.icobject);
-            } else {
-                hideCustomProgressDialog();
-            }
-        } else if ("0410".equals(bean.iccode)) {
-            if (isRequestOk(bean)) {
-                type = new TypeToken<PaymentPayPlanBean>() {
-                }.getType();
-                ((PaymentPropertyBean) mItemInfo).mPlanBean = JsonUtils
-                        .parseJson(content, type);
-            } else {
-                hideCustomProgressDialog();
-            }
-        }
-
-        boolean finishInit = ((PaymentPropertyBean) mItemInfo).finishInit();
-        if (finishInit) {
-            requestRefreshUI();
-            hideCustomProgressDialog();
-        }
-    }
-
-    protected void refreshUI() {
-        PaymentPayPlanBean plan = ((PaymentPropertyBean) mItemInfo).mPlanBean;
-
-        View parent = mRoot.findViewById(R.id.yingjiao_jine);
-        initText(
-                parent,
-                R.id.value,
-                plan.needfare
-                        + getResources().getString(R.string.payment_common_rmb));
-        initText(parent, R.id.description, plan.needdscrp);
-    }
-
-    protected void failedRequest() {
-        hideCustomProgressDialog();
-    }
 }

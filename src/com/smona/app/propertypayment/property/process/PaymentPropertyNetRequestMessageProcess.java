@@ -15,6 +15,7 @@ public class PaymentPropertyNetRequestMessageProcess extends
     private static final String MSG_PROPERTY_FANGCHAN = "0200";
     private static final String MSG_PROPERTY_DISCOUNT = "0300";
     private static final String MSG_PROPERTY_PLAN = "0400";
+    private static final String MSG_PROPERTY_DETAIL = "0500";
 
     private void requestCommon(final String MSG_CODE,
             final IQuestCallback callback) {
@@ -74,5 +75,10 @@ public class PaymentPropertyNetRequestMessageProcess extends
     public void requestPropertyPlan(PaymentRequestInfo request,
             IQuestCallback callback) {
         requestCommon(MSG_PROPERTY_PLAN, request, callback);
+    }
+    
+    public void requestPropertyDetail(PaymentRequestInfo request,
+            IQuestCallback callback) {
+        requestCommon(MSG_PROPERTY_DETAIL, request, callback);
     }
 }

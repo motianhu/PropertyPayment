@@ -2,15 +2,16 @@ package com.smona.app.propertypayment.common.ui;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentFeeDanInfo;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
-import com.smona.app.propertypayment.common.data.PaymentTypeItem;
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
 import com.smona.app.propertypayment.common.util.LogUtil;
+import com.smona.app.propertypayment.common.util.PaymentConstants;
 
 public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
     private static final String TAG = "PaymentComplexFeectivity";
@@ -82,6 +83,12 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
             clickNextStep();
             break;
         }
+    }
+    
+    protected Intent createIntent() {
+        Intent intent = new Intent();
+        intent.putExtra(PaymentConstants.DATA_ITEM_INFO, mItemInfo);
+        return intent;
     }
 
     private void clickNextStep() {

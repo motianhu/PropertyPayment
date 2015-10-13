@@ -47,4 +47,15 @@ public class PaymentPropertyMessageProcessProxy extends
                     .requestPropertyPlan(request, callback);
         }
     }
+    
+    public void requestDetail(Context context, PaymentRequestInfo request,
+            IQuestCallback callback) {
+        if (DEBUG) {
+            ((PaymentPropertyLocalMessageProcess) mLocal)
+                    .requestPropertyDetail(context, callback);
+        } else {
+            ((PaymentPropertyNetRequestMessageProcess) mNetRequest)
+                    .requestPropertyDetail(request, callback);
+        }
+    }
 }

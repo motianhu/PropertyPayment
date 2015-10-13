@@ -3,9 +3,9 @@ package com.smona.app.propertypayment.common.ui;
 import java.util.ArrayList;
 
 import com.smona.app.propertypayment.R;
-import com.smona.app.propertypayment.common.data.PaymentComplexListItem;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
+import com.smona.app.propertypayment.property.bean.PaymentPropertyDetailBean;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -57,24 +57,29 @@ public class PaymentComplexFeeListAdapter extends PaymentBaseDataAdapter {
             initText(parent, R.id.name, R.string.payment_common_fangchan_info);
         }
 
-        PaymentComplexListItem item;
-        if (info instanceof PaymentComplexListItem) {
-            item = (PaymentComplexListItem) info;
+        if (info instanceof PaymentPropertyDetailBean) {
+            setupPropertyDetailViews(convertView, ((PaymentPropertyDetailBean)info));
         } else {
             return;
         }
+    }
 
+    private void setupPropertyDetailViews(View convertView,
+            PaymentPropertyDetailBean item) {
+        View parent = convertView.findViewById(R.id.company_name);
         parent = convertView.findViewById(R.id.company_name);
-        initText(parent, R.id.value, item.companyname);
+        initText(parent, R.id.value, item.needfare);
 
         parent = convertView.findViewById(R.id.pay_money);
-        initText(parent, R.id.value, item.money + "元");
+        initText(parent, R.id.value, item.needfare
+                + mContext.getResources()
+                        .getString(R.string.payment_common_rmb));
 
         parent = convertView.findViewById(R.id.pay_time);
-        initText(parent, R.id.value, item.paytime);
+        initText(parent, R.id.value, item.pstartdate);
 
         parent = convertView.findViewById(R.id.objinfo);
-        initText(parent, R.id.value, item.objinfo);
+        initText(parent, R.id.value, item.paylinefare);
     }
 
     private void initText(View parent, int childId, int textId) {

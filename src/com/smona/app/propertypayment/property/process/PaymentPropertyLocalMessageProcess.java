@@ -31,4 +31,12 @@ public class PaymentPropertyLocalMessageProcess extends
         }
         callback.onResult(true, geFileFromAssets(context, "property_plan.txt"));
     }
+    
+    public void requestPropertyDetail(Context context,
+            final IQuestCallback callback) {
+        if (callback == null) {
+            return;
+        }
+        callback.onResult(true, geFileFromAssets(context, "property_detail.txt"));
+    }
 }

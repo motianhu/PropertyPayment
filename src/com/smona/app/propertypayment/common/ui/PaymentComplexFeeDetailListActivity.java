@@ -1,19 +1,32 @@
 package com.smona.app.propertypayment.common.ui;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
-import com.smona.app.propertypayment.common.data.PaymentComplexListItem;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
+import com.smona.app.propertypayment.common.util.JsonUtils;
+import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
+import com.smona.app.propertypayment.process.PaymentRequestInfo;
+import com.smona.app.propertypayment.property.bean.PaymentPropertyDetailRequestInfo;
+import com.smona.app.propertypayment.property.bean.PaymentPropertyDetailsBean;
+import com.smona.app.propertypayment.property.bean.PaymentPropertyFangchanBean;
+import com.smona.app.propertypayment.property.bean.PaymentPropertyFangchansBean;
+import com.smona.app.propertypayment.property.process.PaymentPropertyMessageProcessProxy;
 
 public class PaymentComplexFeeDetailListActivity extends
         PaymentFetchListActivity {
 
-    private ArrayList<PaymentItemInfo> mDatas = new ArrayList<PaymentItemInfo>();
+    private static final String TAG = "PaymentComplexFeeDetailListActivity";
+
+    private PaymentPropertyDetailsBean mDetailsBean;
+    protected ArrayList<PaymentItemInfo> mAllDatas = new ArrayList<PaymentItemInfo>();
+    protected ArrayList<PaymentItemInfo> mShowDatas = new ArrayList<PaymentItemInfo>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,9 +34,12 @@ public class PaymentComplexFeeDetailListActivity extends
         setContentView(R.layout.payment_simple_fee_detail_list);
         acquireItemInfo();
         initViews();
+        requestLoadData();
     }
 
     private void acquireItemInfo() {
+        mItemInfo = getIntent().getParcelableExtra(
+                PaymentConstants.DATA_ITEM_INFO);
     }
 
     @Override
@@ -34,17 +50,55 @@ public class PaymentComplexFeeDetailListActivity extends
 
     @Override
     protected void initBody() {
-        for (int i = 0; i < 10; i++) {
-            PaymentComplexListItem item = new PaymentComplexListItem();
-            item.companyname = "company " + i;
-            item.companycode = i + "";
-            item.objinfo = i + "";
-            item.money = i + "";
-            item.paytime = "time " + i;
+        setFetchListener(mAllDatas);
+    }
 
-            mDatas.add(item);
+    protected void loadData() {
+        requestData();
+    }
+
+    protected void requestData() {
+        showCustomProgrssDialog();
+
+        if (mItemInfo instanceof PaymentPropertyFangchansBean) {
+            PaymentRequestInfo request = new PaymentPropertyDetailRequestInfo();
+            
+            mMessageProcess = new PaymentPropertyMessageProcessProxy();
+            ((PaymentPropertyMessageProcessProxy) mMessageProcess)
+                    .requestDetail(this, request, this);
+        } else {
+            hideCustomProgressDialog();
         }
-        setFetchListener(mDatas);
+    }
+
+    protected void saveData(String content) {
+        Type type = new TypeToken<PaymentItemInfo>() {
+        }.getType();
+        PaymentItemInfo bean = JsonUtils.parseJson(content, type);
+        LogUtil.d(TAG, "content: " + content);
+        if ("0510".equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentPropertyDetailsBean>() {
+                }.getType();
+                mDetailsBean = JsonUtils.parseJson(content, type);
+                mAllDatas.addAll(mDetailsBean.icobject);
+                requestRefreshUI();
+            } else {
+
+            }
+        }
+        hideCustomProgressDialog();
+    }
+
+    protected void refreshUI() {
+        mShowDatas.clear();
+        mShowDatas.addAll(mAllDatas);
+
+        notifyDataSetChanged();
+    }
+
+    protected void failedRequest() {
+        hideCustomProgressDialog();
     }
 
     @Override
