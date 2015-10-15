@@ -61,11 +61,13 @@ public class PropertyActivity extends PaymentComplexFeectivity {
 
         parent = mRoot.findViewById(R.id.yucun_jine);
         initText(parent, R.id.name, R.string.payment_property_yucun_info);
-        initText(parent, R.id.value, 1000 + "元");
+        initText(parent, R.id.value,
+                0.0 + getResources().getString(R.string.payment_common_rmb));
 
         parent = mRoot.findViewById(R.id.heji_jine);
         initText(parent, R.id.name, R.string.payment_property_heji_info);
-        initText(parent, R.id.value, 1560.5 + "元");
+        initText(parent, R.id.value,
+                0.0 + getResources().getString(R.string.payment_common_rmb));
 
         initText(R.id.next_step, R.string.payment_common_liji_pay);
         initView(R.id.next_step);
@@ -90,9 +92,9 @@ public class PropertyActivity extends PaymentComplexFeectivity {
 
     protected void requestData() {
         showCustomProgrssDialog();
-        
+
         mPropertyBean = new PaymentPropertyBean();
-        
+
         mMessageProcess = new PaymentPropertyMessageProcessProxy();
         ((PaymentPropertyMessageProcessProxy) mMessageProcess).requestFangchan(
                 this, this);
@@ -154,12 +156,13 @@ public class PropertyActivity extends PaymentComplexFeectivity {
                 plan.needfare
                         + getResources().getString(R.string.payment_common_rmb));
         initText(parent, R.id.description, plan.needdscrp);
+        
+        updateTotal(Double.valueOf(plan.needfare));
     }
 
     protected void failedRequest() {
         hideCustomProgressDialog();
     }
-    
 
     protected void requestRelativeData(View root, PaymentItemInfo source) {
         // refresh ui
@@ -171,7 +174,7 @@ public class PropertyActivity extends PaymentComplexFeectivity {
 
         parent = mRoot.findViewById(R.id.property_company);
         initText(parent, R.id.value, fangchan.propertyname);
-
+        
         // loading relative data;
         showCustomProgrssDialog();
 
@@ -194,6 +197,41 @@ public class PropertyActivity extends PaymentComplexFeectivity {
         View parent = root.findViewById(R.id.dazhe_info);
         initText(parent, R.id.select_type, discount.getDiscountName(this));
         setTag(R.id.dazhe_info, info);
+
+        // calc
+        PaymentPayPlanBean plan = mPropertyBean.mPlanBean;
+
+        parent = mRoot.findViewById(R.id.select_info);
+        PaymentPropertyFangchanBean fangchan = (PaymentPropertyFangchanBean) getTag(
+                parent, R.id.select_info);
+
+        Double fee = Double.valueOf(fangchan.payaccount);
+        int months = Integer.valueOf(discount.yearnum) * 12;
+        double discountNum = Double.valueOf(discount.discount) / 100;
+        double yucun = fee * months * discountNum;
+
+        Double needfare = Double.valueOf(plan.needfare);
+
+        // set value
+        parent = root.findViewById(R.id.yucun_jine);
+        initText(
+                parent,
+                R.id.value,
+                yucun
+                        + this.getResources().getString(
+                                R.string.payment_common_rmb));
+
+        updateTotal(yucun + needfare);
+    }
+
+    private void updateTotal(double fee) {
+        View parent = mRoot.findViewById(R.id.heji_jine);
+        initText(
+                parent,
+                R.id.value,
+                fee
+                        + this.getResources().getString(
+                                R.string.payment_common_rmb));
     }
 
 }

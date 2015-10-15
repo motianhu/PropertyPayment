@@ -9,12 +9,14 @@ public class PaymentPayPlanBean extends PaymentItemInfo {
     public String penddate;
     public String needfare;
     public String needdscrp;
+    public int monthnum;
 
     public String toString() {
         return "PaymentPropertyPayPlanBean[" + ", communitycode="
                 + communitycode + ", housingbantranscode="
                 + housingbantranscode + ", pstartdate=" + pstartdate
                 + ", penddate=" + penddate + ", penddate=" + penddate
-                + ", needfare=" + needfare + ", needdscrp=" + needdscrp + "]";
+                + ", needfare=" + needfare + ", needdscrp=" + needdscrp
+                + ", monthnum=" + monthnum + "]";
     }
 }

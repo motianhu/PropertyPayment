@@ -8,13 +8,13 @@
         {
             "did": "5",
             "discount": "80",
-            "yearnum": "1",
+            "yearnum": "2",
             "yeardscrp": "二年"
         },
         {
             "did": "6",
             "discount": "90",
-            "yearnum": "2",
+            "yearnum": "1",
             "yeardscrp": "一年"
         }
     ]

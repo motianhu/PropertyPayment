@@ -19,6 +19,7 @@ import com.smona.app.propertypayment.common.util.PaymentConstants;
 import com.smona.app.propertypayment.park.bean.PaymentParkBean;
 import com.smona.app.propertypayment.park.process.PaymentParkMessageProcessProxy;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
+import com.smona.app.propertypayment.property.bean.PaymentPropertyFangchanBean;
 import com.smona.app.propertypayment.park.PaymentParkTypeAdapter;
 import com.smona.app.propertypayment.park.bean.PaymentParkDiscountRequestInfo;
 import com.smona.app.propertypayment.park.bean.PaymentParkCheweiBean;
@@ -62,11 +63,13 @@ public class ParkActivity extends PaymentComplexFeectivity {
 
         parent = mRoot.findViewById(R.id.yucun_jine);
         initText(parent, R.id.name, R.string.payment_park_yucun_info);
-        initText(parent, R.id.value, 1000 + "元");
+        initText(parent, R.id.value,
+                0.0 + getResources().getString(R.string.payment_common_rmb));
 
         parent = mRoot.findViewById(R.id.heji_jine);
         initText(parent, R.id.name, R.string.payment_park_heji_info);
-        initText(parent, R.id.value, 1560.5 + "元");
+        initText(parent, R.id.value,
+                0.0 + getResources().getString(R.string.payment_common_rmb));
 
         initText(R.id.next_step, R.string.payment_common_liji_pay);
         initView(R.id.next_step);
@@ -154,6 +157,8 @@ public class ParkActivity extends PaymentComplexFeectivity {
                 plan.needfare
                         + getResources().getString(R.string.payment_common_rmb));
         initText(parent, R.id.description, plan.needdscrp);
+        
+        updateTotal(Double.valueOf(plan.needfare));
     }
 
     protected void failedRequest() {
@@ -182,8 +187,8 @@ public class ParkActivity extends PaymentComplexFeectivity {
         request = new PaymentParkPlanRequestInfo();
         ((PaymentParkPlanRequestInfo) request).communitycode = chewei.communitycode;
         ((PaymentParkPlanRequestInfo) request).parknum = chewei.parknum;
-        ((PaymentParkMessageProcessProxy) mMessageProcess).requestPlan(
-                this, request, this);
+        ((PaymentParkMessageProcessProxy) mMessageProcess).requestPlan(this,
+                request, this);
     }
 
     protected void setupSelectedUI(View root, PaymentItemInfo info) {
@@ -193,5 +198,39 @@ public class ParkActivity extends PaymentComplexFeectivity {
         View parent = root.findViewById(R.id.dazhe_info);
         initText(parent, R.id.select_type, discount.getDiscountName(this));
         setTag(R.id.dazhe_info, info);
+        // calc
+        PaymentPayPlanBean plan = mParkBean.mPlanBean;
+
+        parent = mRoot.findViewById(R.id.select_info);
+        PaymentParkCheweiBean chewei = (PaymentParkCheweiBean) getTag(
+                parent, R.id.select_info);
+
+        Double fee = Double.valueOf(chewei.payaccount);
+        int months = Integer.valueOf(discount.yearnum) * 12;
+        double discountNum = Double.valueOf(discount.discount) / 100;
+        double yucun = fee * months * discountNum;
+
+        Double needfare = Double.valueOf(plan.needfare);
+
+        // set value
+        parent = root.findViewById(R.id.yucun_jine);
+        initText(
+                parent,
+                R.id.value,
+                yucun
+                        + this.getResources().getString(
+                                R.string.payment_common_rmb));
+
+        updateTotal(yucun + needfare);
+    }
+
+    private void updateTotal(double fee) {
+        View parent = mRoot.findViewById(R.id.heji_jine);
+        initText(
+                parent,
+                R.id.value,
+                fee
+                        + this.getResources().getString(
+                                R.string.payment_common_rmb));
     }
 }
