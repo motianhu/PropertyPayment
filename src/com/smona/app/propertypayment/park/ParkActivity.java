@@ -11,6 +11,7 @@ import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.data.discount.PaymentDiscountBean;
 import com.smona.app.propertypayment.common.data.discount.PaymentDiscountsBean;
 import com.smona.app.propertypayment.common.data.payplan.PaymentPayPlanBean;
+import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
 import com.smona.app.propertypayment.common.ui.PaymentComplexFeectivity;
 import com.smona.app.propertypayment.common.ui.PaymentTypeAdapter;
 import com.smona.app.propertypayment.common.util.JsonUtils;
@@ -19,11 +20,11 @@ import com.smona.app.propertypayment.common.util.PaymentConstants;
 import com.smona.app.propertypayment.park.bean.PaymentParkBean;
 import com.smona.app.propertypayment.park.process.PaymentParkMessageProcessProxy;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
-import com.smona.app.propertypayment.property.bean.PaymentPropertyFangchanBean;
 import com.smona.app.propertypayment.park.PaymentParkTypeAdapter;
 import com.smona.app.propertypayment.park.bean.PaymentParkDiscountRequestInfo;
 import com.smona.app.propertypayment.park.bean.PaymentParkCheweiBean;
 import com.smona.app.propertypayment.park.bean.PaymentParkCheweisBean;
+import com.smona.app.propertypayment.park.bean.PaymentParkPaySubmitBean;
 import com.smona.app.propertypayment.park.bean.PaymentParkPlanRequestInfo;
 
 public class ParkActivity extends PaymentComplexFeectivity {
@@ -157,7 +158,7 @@ public class ParkActivity extends PaymentComplexFeectivity {
                 plan.needfare
                         + getResources().getString(R.string.payment_common_rmb));
         initText(parent, R.id.description, plan.needdscrp);
-        
+
         updateTotal(Double.valueOf(plan.needfare));
     }
 
@@ -202,8 +203,8 @@ public class ParkActivity extends PaymentComplexFeectivity {
         PaymentPayPlanBean plan = mParkBean.mPlanBean;
 
         parent = mRoot.findViewById(R.id.select_info);
-        PaymentParkCheweiBean chewei = (PaymentParkCheweiBean) getTag(
-                parent, R.id.select_info);
+        PaymentParkCheweiBean chewei = (PaymentParkCheweiBean) getTag(parent,
+                R.id.select_info);
 
         Double fee = Double.valueOf(chewei.payaccount);
         int months = Integer.valueOf(discount.yearnum) * 12;
@@ -232,5 +233,37 @@ public class ParkActivity extends PaymentComplexFeectivity {
                 fee
                         + this.getResources().getString(
                                 R.string.payment_common_rmb));
+    }
+
+    @Override
+    protected PaymentSubmitBean createFeedan() {
+        PaymentParkPaySubmitBean pay = new PaymentParkPaySubmitBean();
+
+        View parent = mRoot.findViewById(R.id.select_info);
+        PaymentParkCheweiBean chewei = (PaymentParkCheweiBean) getTag(parent,
+                R.id.select_info);
+
+        pay.communitycode = chewei.communitycode;
+        pay.storedfare = chewei.payaccount;
+        pay.companyname = chewei.propertyname;
+        pay.parknum = chewei.parknum;
+
+        parent = mRoot.findViewById(R.id.dazhe_info);
+        PaymentDiscountBean discount = (PaymentDiscountBean) getTag(R.id.dazhe_info);
+
+        if (discount != null) {
+            pay.did = discount.did;
+        }
+
+        parent = mRoot.findViewById(R.id.heji_jine);
+        String heji = getTextContent(parent, R.id.value);
+        heji = heji.substring(0, heji.length() - 2);
+
+        pay.needfare = heji;
+
+        pay.pstartdate = mParkBean.mPlanBean.pstartdate;
+        pay.penddate = mParkBean.mPlanBean.penddate;
+
+        return pay;
     }
 }

@@ -1,7 +1,7 @@
 package com.smona.app.propertypayment.common.ui;
 
 import com.smona.app.propertypayment.R;
-import com.smona.app.propertypayment.common.data.PaymentFeeDanInfo;
+import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
 import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
 
@@ -16,7 +16,7 @@ import android.widget.TextView;
 public class PaymentConfirmActivity extends PaymentBaseActivity {
     private static final String TAG = "PaymentConfirmActivity";
 
-    protected PaymentFeeDanInfo mParam;
+    protected PaymentSubmitBean mParam;
     private int[] imageIds;
 
     @Override
@@ -30,7 +30,7 @@ public class PaymentConfirmActivity extends PaymentBaseActivity {
     private void aquireData() {
         imageIds = new int[] { R.drawable.payment_zhifubao,
                 R.drawable.payment_weixin, R.drawable.payment_yanlian };
-        mParam = (PaymentFeeDanInfo) getIntent().getParcelableExtra(
+        mParam = (PaymentSubmitBean) getIntent().getParcelableExtra(
                 PaymentConstants.DATA_ITEM_INFO);
         LogUtil.d(TAG, "acquireItemInfo mItem: " + mParam);
     }
@@ -50,7 +50,7 @@ public class PaymentConfirmActivity extends PaymentBaseActivity {
 
         view = mRoot.findViewById(R.id.jiaofei_money);
         initText(view, R.id.name, R.string.payment_common_yingjiao_money);
-        initText(view, R.id.value, mParam.money + "元");
+        initText(view, R.id.value, mParam.needfare + "元");
 
         ViewGroup zhifu = (ViewGroup) mRoot.findViewById(R.id.zhifu_channel);
         String[] channels = getResources()

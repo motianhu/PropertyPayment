@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.smona.app.propertypayment.R;
-import com.smona.app.propertypayment.common.data.PaymentFeeDanInfo;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
+import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
 import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
@@ -91,12 +91,12 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
         return intent;
     }
 
+    protected abstract PaymentSubmitBean createFeedan();
+    
     private void clickNextStep() {
-        mItemInfo = new PaymentFeeDanInfo();
-        PaymentFeeDanInfo itemInfo = (PaymentFeeDanInfo)mItemInfo;
-        itemInfo.companycode = "1";
-        itemInfo.companyname = "company 1";
-        itemInfo.money = 100;
-        gotoSubActivity(itemInfo, PaymentConfirmActivity.class);
+        mItemInfo = createFeedan();
+        gotoSubActivity(mItemInfo, PaymentConfirmActivity.class);
     }
+    
+    
 }

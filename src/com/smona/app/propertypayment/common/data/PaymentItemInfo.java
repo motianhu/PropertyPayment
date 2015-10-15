@@ -13,6 +13,10 @@ public class PaymentItemInfo implements Parcelable {
     }
 
     public PaymentItemInfo(Parcel in) {
+        iccode = in.readString();
+        loginname = in.readString();
+        answercode = in.readString();
+        sessionid = in.readString();
     }
 
     @Override
@@ -22,6 +26,10 @@ public class PaymentItemInfo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(iccode);
+        dest.writeString(loginname);
+        dest.writeString(answercode);
+        dest.writeString(sessionid);
     }
 
     public static final Parcelable.Creator<PaymentItemInfo> CREATOR = new Creator<PaymentItemInfo>() {
@@ -37,8 +45,7 @@ public class PaymentItemInfo implements Parcelable {
     };
 
     public String toString() {
-        return "PropertyItemInfo[iccode: " + iccode + ", sessionid: "
-                + sessionid + ", answercode: " + answercode + ", loginname: "
-                + loginname + "]";
+        return "iccode: " + iccode + ", sessionid: " + sessionid
+                + ", answercode: " + answercode + ", loginname: " + loginname;
     }
 }

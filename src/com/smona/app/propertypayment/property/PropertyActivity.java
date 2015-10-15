@@ -11,6 +11,7 @@ import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.data.discount.PaymentDiscountBean;
 import com.smona.app.propertypayment.common.data.discount.PaymentDiscountsBean;
 import com.smona.app.propertypayment.common.data.payplan.PaymentPayPlanBean;
+import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
 import com.smona.app.propertypayment.common.ui.PaymentComplexFeectivity;
 import com.smona.app.propertypayment.common.ui.PaymentTypeAdapter;
 import com.smona.app.propertypayment.common.util.JsonUtils;
@@ -21,6 +22,7 @@ import com.smona.app.propertypayment.property.bean.PaymentPropertyBean;
 import com.smona.app.propertypayment.property.bean.PaymentPropertyDiscountRequestInfo;
 import com.smona.app.propertypayment.property.bean.PaymentPropertyFangchanBean;
 import com.smona.app.propertypayment.property.bean.PaymentPropertyFangchansBean;
+import com.smona.app.propertypayment.property.bean.PaymentPropertyPaySubmitBean;
 import com.smona.app.propertypayment.property.bean.PaymentPropertyPlanRequestInfo;
 import com.smona.app.propertypayment.property.process.PaymentPropertyMessageProcessProxy;
 
@@ -156,7 +158,7 @@ public class PropertyActivity extends PaymentComplexFeectivity {
                 plan.needfare
                         + getResources().getString(R.string.payment_common_rmb));
         initText(parent, R.id.description, plan.needdscrp);
-        
+
         updateTotal(Double.valueOf(plan.needfare));
     }
 
@@ -174,7 +176,7 @@ public class PropertyActivity extends PaymentComplexFeectivity {
 
         parent = mRoot.findViewById(R.id.property_company);
         initText(parent, R.id.value, fangchan.propertyname);
-        
+
         // loading relative data;
         showCustomProgrssDialog();
 
@@ -232,6 +234,38 @@ public class PropertyActivity extends PaymentComplexFeectivity {
                 fee
                         + this.getResources().getString(
                                 R.string.payment_common_rmb));
+    }
+
+    @Override
+    protected PaymentSubmitBean createFeedan() {
+        PaymentPropertyPaySubmitBean pay = new PaymentPropertyPaySubmitBean();
+
+        View parent = mRoot.findViewById(R.id.select_info);
+        PaymentPropertyFangchanBean fangchan = (PaymentPropertyFangchanBean) getTag(
+                parent, R.id.select_info);
+
+        pay.communitycode = fangchan.communitycode;
+        pay.storedfare = fangchan.payaccount;
+        pay.companyname = fangchan.propertyname;
+        pay.housingbantranscode = fangchan.housingbantranscode;
+
+        parent = mRoot.findViewById(R.id.dazhe_info);
+        PaymentDiscountBean discount = (PaymentDiscountBean) getTag(R.id.dazhe_info);
+
+        if (discount != null) {
+            pay.did = discount.did;
+        }
+
+        parent = mRoot.findViewById(R.id.heji_jine);
+        String heji = getTextContent(parent, R.id.value);
+        heji = heji.substring(0, heji.length() - 2);
+
+        pay.needfare = heji;
+
+        pay.pstartdate = mPropertyBean.mPlanBean.pstartdate;
+        pay.penddate = mPropertyBean.mPlanBean.penddate;
+
+        return pay;
     }
 
 }
