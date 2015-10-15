@@ -1,14 +1,14 @@
 {
-    "iccode": "0510",
+    "iccode": "1510",
     "loginname": "13939093625",
     "sessionid": "48RTFBHV",
     "answercode": "00",
     "icobject": [
         {
-            "pstartdate": "20151101",
-            "penddate": "20160131",
-            "needfare": "1800",
-            "paylinefare": "0"
+            "propertyname": "20151101",
+            "paydate": "20160131",
+            "housingbantransname": "1800",
+            "payfare": "0"
         }
     ]
 }

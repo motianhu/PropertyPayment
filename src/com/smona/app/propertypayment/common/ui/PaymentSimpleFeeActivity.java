@@ -25,10 +25,14 @@ public abstract class PaymentSimpleFeeActivity extends PaymentBaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.payment_simple_fee);
+        aquireDatas();
         initViews();
-        initData();
+        requestLoadData();
     }
-
+    
+    protected void aquireDatas() {
+    }
+    
     private void initData() {
         initContent();
         initCompanys();

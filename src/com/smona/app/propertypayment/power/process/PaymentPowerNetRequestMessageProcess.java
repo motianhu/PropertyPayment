@@ -1,4 +1,4 @@
-package com.smona.app.propertypayment.property.process;
+package com.smona.app.propertypayment.power.process;
 
 import com.google.gson.Gson;
 import com.jasonwang.informationhuimin.https.DoHttp;
@@ -8,9 +8,9 @@ import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.process.PaymentNetRequestMessageProcess;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
 
-public class PaymentPropertyNetRequestMessageProcess extends
+public class PaymentPowerNetRequestMessageProcess extends
         PaymentNetRequestMessageProcess {
-    private static final String TAG = "PaymentPropertyNetRequestMessageProcess";
+    private static final String TAG = "PaymentPowerNetRequestMessageProcess";
 
     private void requestCommon(final String MSG_CODE,
             final IQuestCallback callback) {
@@ -58,26 +58,14 @@ public class PaymentPropertyNetRequestMessageProcess extends
         }.start();
     }
 
-    public void requestPropertyFangchan(IQuestCallback callback) {
-        requestCommon(PaymentPropertyMessageProcessProxy.MSG_PROPERTY_FANGCHAN,
+    public void requestUserInfo(IQuestCallback callback) {
+        requestCommon(PaymentPowerMessageProcessProxy.MSG_POWER_USER_INFO,
                 callback);
     }
 
-    public void requestPropertyDiscount(PaymentRequestInfo request,
+    public void requestPowerDetail(PaymentRequestInfo request,
             IQuestCallback callback) {
-        requestCommon(PaymentPropertyMessageProcessProxy.MSG_PROPERTY_DISCOUNT,
-                request, callback);
-    }
-
-    public void requestPropertyPlan(PaymentRequestInfo request,
-            IQuestCallback callback) {
-        requestCommon(PaymentPropertyMessageProcessProxy.MSG_PROPERTY_PLAN,
-                request, callback);
-    }
-
-    public void requestPropertyDetail(PaymentRequestInfo request,
-            IQuestCallback callback) {
-        requestCommon(PaymentPropertyMessageProcessProxy.MSG_PROPERTY_DETAIL,
+        requestCommon(PaymentPowerMessageProcessProxy.MSG_POWER_DETAIL,
                 request, callback);
     }
 }

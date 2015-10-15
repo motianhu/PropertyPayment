@@ -1,16 +1,14 @@
 {
-    "iccode": "1010",
+    "iccode": "1610",
     "loginname": "13939093625",
     "sessionid": "48RTFBHV",
     "answercode": "00",
-    "communitycode": null,
-    "parknum": null,
     "icobject": [
         {
-            "pstartdate": "20150801",
-            "penddate": "20160731",
-            "needfare": "1200",
-            "paylinefare": "0"
+            "propertyname": "20150801",
+            "paydate": "20160731",
+            "carnum": "1200",
+            "payfare": "0"
         }
     ]
 }

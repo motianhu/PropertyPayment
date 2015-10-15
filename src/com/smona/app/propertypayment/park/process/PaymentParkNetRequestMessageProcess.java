@@ -12,11 +12,6 @@ public class PaymentParkNetRequestMessageProcess extends
         PaymentNetRequestMessageProcess {
     private static final String TAG = "PaymentPARKNetRequestMessageProcess";
 
-    private static final String MSG_PARK_CHEWEI = "0700";
-    private static final String MSG_PARK_DISCOUNT = "0800";
-    private static final String MSG_PARK_PLAN = "0900";
-    private static final String MSG_PARK_DETAIL = "1000";
-
     private void requestCommon(final String MSG_CODE,
             final IQuestCallback callback) {
         new Thread() {
@@ -64,21 +59,21 @@ public class PaymentParkNetRequestMessageProcess extends
     }
 
     public void requestParkChewei(IQuestCallback callback) {
-        requestCommon(MSG_PARK_CHEWEI, callback);
+        requestCommon(PaymentParkMessageProcessProxy.MSG_PARK_CHEWEI, callback);
     }
 
     public void requestParkDiscount(PaymentRequestInfo request,
             IQuestCallback callback) {
-        requestCommon(MSG_PARK_DISCOUNT, request, callback);
+        requestCommon(PaymentParkMessageProcessProxy.MSG_PARK_DISCOUNT, request, callback);
     }
 
     public void requestParkPlan(PaymentRequestInfo request,
             IQuestCallback callback) {
-        requestCommon(MSG_PARK_PLAN, request, callback);
+        requestCommon(PaymentParkMessageProcessProxy.MSG_PARK_PLAN, request, callback);
     }
     
     public void requestParkDetail(PaymentRequestInfo request,
             IQuestCallback callback) {
-        requestCommon(MSG_PARK_DETAIL, request, callback);
+        requestCommon(PaymentParkMessageProcessProxy.MSG_PARK_DETAIL, request, callback);
     }
 }

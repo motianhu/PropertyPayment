@@ -48,4 +48,19 @@ public class GasActivity extends PaymentSimpleFeeActivity {
             mPayCompanys.add(type);
         }
     }
+    
+    protected void requestData() {
+        showCustomProgrssDialog();
+    }
+
+    protected void saveData(String content) {
+
+    }
+
+    protected void failedRequest() {
+        hideCustomProgressDialog();
+    }
+
+    protected void refreshUI() {
+    }
 }

@@ -6,7 +6,6 @@ import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.data.discount.PaymentDiscountBean;
 import com.smona.app.propertypayment.common.ui.PaymentTypeAdapter;
 import com.smona.app.propertypayment.park.bean.PaymentParkCheweiBean;
-import com.smona.app.propertypayment.property.bean.PaymentPropertyFangchanBean;
 
 import android.content.Context;
 import android.graphics.Color;

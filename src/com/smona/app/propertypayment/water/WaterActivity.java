@@ -49,4 +49,19 @@ public class WaterActivity extends PaymentSimpleFeeActivity {
         }
 
     }
+    
+    protected void requestData() {
+        showCustomProgrssDialog();
+    }
+
+    protected void saveData(String content) {
+
+    }
+
+    protected void failedRequest() {
+        hideCustomProgressDialog();
+    }
+
+    protected void refreshUI() {
+    }
 }

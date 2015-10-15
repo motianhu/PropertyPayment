@@ -9,6 +9,16 @@ public class PaymentPropertyMessageProcessProxy extends
         PaymentMessageProcessProxy {
 
     private static final boolean DEBUG = true;
+    
+    public static final String MSG_PROPERTY_FANGCHAN = "0200";
+    public static final String MSG_PROPERTY_DISCOUNT = "0300";
+    public static final String MSG_PROPERTY_PLAN = "0400";
+    public static final String MSG_PROPERTY_DETAIL = "1500";
+    
+    public static final String MSG_PROPERTY_FANGCHAN_RESPONSE = "0210";
+    public static final String MSG_PROPERTY_DISCOUNT_RESPONSE = "0310";
+    public static final String MSG_PROPERTY_PLAN_RESPONSE = "0410";
+    public static final String MSG_PROPERTY_DETAIL_RESPONSE = "1510";
 
     public PaymentPropertyMessageProcessProxy() {
         mLocal = new PaymentPropertyLocalMessageProcess();

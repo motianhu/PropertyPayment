@@ -11,7 +11,6 @@ import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
 import com.smona.app.propertypayment.common.util.LogUtil;
-import com.smona.app.propertypayment.common.util.PaymentConstants;
 
 public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
     private static final String TAG = "PaymentComplexFeectivity";
@@ -70,8 +69,7 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
         }
         switch (id) {
         case R.id.detail:
-            gotoSubActivity(getSource(),
-                    PaymentComplexFeeDetailListActivity.class);
+            clickDetail();
             break;
         case R.id.select_info:
             clickSelectInfos();
@@ -84,10 +82,14 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
             break;
         }
     }
+
+    private void clickDetail() {
+        gotoSubActivity(getSource(),
+                PaymentComplexFeeDetailListActivity.class);
+    }
     
     protected Intent createIntent() {
         Intent intent = new Intent();
-        intent.putExtra(PaymentConstants.DATA_ITEM_INFO, mItemInfo);
         return intent;
     }
 

@@ -9,6 +9,16 @@ public class PaymentParkMessageProcessProxy extends
         PaymentMessageProcessProxy {
 
     private static final boolean DEBUG = true;
+    
+    public static final String MSG_PARK_CHEWEI = "0700";
+    public static final String MSG_PARK_DISCOUNT = "0800";
+    public static final String MSG_PARK_PLAN = "0900";
+    public static final String MSG_PARK_DETAIL = "1600";
+    
+    public static final String MSG_PARK_CHEWEI_RESPONSE = "0710";
+    public static final String MSG_PARK_DISCOUNT_RESPONSE = "0810";
+    public static final String MSG_PARK_PLAN_RESPONSE = "0910";
+    public static final String MSG_PARK_DETAIL_RESPONSE = "1610";
 
     public PaymentParkMessageProcessProxy() {
         mLocal = new PaymentParkLocalMessageProcess();

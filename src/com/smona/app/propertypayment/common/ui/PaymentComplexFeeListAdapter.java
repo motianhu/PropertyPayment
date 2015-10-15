@@ -72,36 +72,36 @@ public class PaymentComplexFeeListAdapter extends PaymentBaseDataAdapter {
             PaymentPropertyDetailBean item) {
         View parent = convertView.findViewById(R.id.company_name);
         parent = convertView.findViewById(R.id.company_name);
-        initText(parent, R.id.value, item.needfare);
+        initText(parent, R.id.value, item.propertyname);
 
         parent = convertView.findViewById(R.id.pay_money);
-        initText(parent, R.id.value, item.needfare
+        initText(parent, R.id.value, item.payfare
                 + mContext.getResources()
                         .getString(R.string.payment_common_rmb));
 
         parent = convertView.findViewById(R.id.pay_time);
-        initText(parent, R.id.value, item.pstartdate);
+        initText(parent, R.id.value, item.paydate);
 
         parent = convertView.findViewById(R.id.objinfo);
-        initText(parent, R.id.value, item.paylinefare);
+        initText(parent, R.id.value, item.housingbantransname);
     }
 
     private void setupParkDetailViews(View convertView,
             PaymentParkDetailBean item) {
         View parent = convertView.findViewById(R.id.company_name);
         parent = convertView.findViewById(R.id.company_name);
-        initText(parent, R.id.value, item.needfare);
+        initText(parent, R.id.value, item.propertyname);
 
         parent = convertView.findViewById(R.id.pay_money);
-        initText(parent, R.id.value, item.needfare
+        initText(parent, R.id.value, item.payfare
                 + mContext.getResources()
                         .getString(R.string.payment_common_rmb));
 
         parent = convertView.findViewById(R.id.pay_time);
-        initText(parent, R.id.value, item.pstartdate);
+        initText(parent, R.id.value, item.paydate);
 
         parent = convertView.findViewById(R.id.objinfo);
-        initText(parent, R.id.value, item.paylinefare);
+        initText(parent, R.id.value, item.carnum);
     }
 
     private void initText(View parent, int childId, int textId) {

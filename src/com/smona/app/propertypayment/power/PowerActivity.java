@@ -1,12 +1,20 @@
 package com.smona.app.propertypayment.power;
 
+import java.lang.reflect.Type;
+
 import android.view.View;
 
+import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
+import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.data.PaymentTypeItem;
 import com.smona.app.propertypayment.common.ui.PaymentSimpleFeeActivity;
+import com.smona.app.propertypayment.common.util.JsonUtils;
+import com.smona.app.propertypayment.common.util.LogUtil;
+import com.smona.app.propertypayment.power.process.PaymentPowerMessageProcessProxy;
 
 public class PowerActivity extends PaymentSimpleFeeActivity {
+    private static final String TAG = "PowerActivity";
 
     @Override
     protected void initHeader() {
@@ -48,4 +56,48 @@ public class PowerActivity extends PaymentSimpleFeeActivity {
             mPayCompanys.add(type);
         }
     }
+
+    protected void loadData() {
+        requestData();
+    }
+
+    protected void requestData() {
+        showCustomProgrssDialog();
+
+        mMessageProcess = new PaymentPowerMessageProcessProxy();
+        ((PaymentPowerMessageProcessProxy) mMessageProcess).requestUserInfo(
+                this, this);
+    }
+
+    protected void saveData(String content) {
+        Type type = new TypeToken<PaymentItemInfo>() {
+        }.getType();
+        PaymentItemInfo bean = JsonUtils.parseJson(content, type);
+        LogUtil.d(TAG, "content: " + content);
+        if (PaymentPowerMessageProcessProxy.MSG_POWER_USER_INFO_RESPONSE
+                .equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                requestRefreshUI();
+            } else {
+
+            }
+        } else if (PaymentPowerMessageProcessProxy.MSG_POWER_DETAIL_RESPONSE
+                .equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                requestRefreshUI();
+            } else {
+
+            }
+        }
+        hideCustomProgressDialog();
+    }
+
+    protected void failedRequest() {
+        hideCustomProgressDialog();
+    }
+
+    protected void refreshUI() {
+        
+    }
+
 }

@@ -1,0 +1,14 @@
+{
+    "iccode": "0510",
+    "loginname": "13939093625",
+    "sessionid": "48RTFBHV",
+    "answercode": "00",
+    "icobject": [
+        {
+            "pstartdate": "20151101",
+            "penddate": "20160131",
+            "needfare": "1800",
+            "paylinefare": "0"
+        }
+    ]
+}
