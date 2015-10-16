@@ -5,6 +5,7 @@ import android.view.View;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentTypeItem;
 import com.smona.app.propertypayment.common.ui.PaymentSimpleFeeActivity;
+import com.smona.app.propertypayment.common.util.PaymentConstants;
 
 public class GasActivity extends PaymentSimpleFeeActivity {
 
@@ -62,5 +63,10 @@ public class GasActivity extends PaymentSimpleFeeActivity {
     }
 
     protected void refreshUI() {
+    }
+
+    @Override
+    protected int getSource() {
+        return PaymentConstants.DATA_SOURCE_GAS;
     }
 }

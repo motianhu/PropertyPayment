@@ -11,6 +11,7 @@ import com.smona.app.propertypayment.common.data.PaymentTypeItem;
 import com.smona.app.propertypayment.common.ui.PaymentSimpleFeeActivity;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.LogUtil;
+import com.smona.app.propertypayment.common.util.PaymentConstants;
 import com.smona.app.propertypayment.power.process.PaymentPowerMessageProcessProxy;
 
 public class PowerActivity extends PaymentSimpleFeeActivity {
@@ -81,13 +82,6 @@ public class PowerActivity extends PaymentSimpleFeeActivity {
             } else {
 
             }
-        } else if (PaymentPowerMessageProcessProxy.MSG_POWER_DETAIL_RESPONSE
-                .equals(bean.iccode)) {
-            if (isRequestOk(bean)) {
-                requestRefreshUI();
-            } else {
-
-            }
         }
         hideCustomProgressDialog();
     }
@@ -98,6 +92,11 @@ public class PowerActivity extends PaymentSimpleFeeActivity {
 
     protected void refreshUI() {
         
+    }
+
+    @Override
+    protected int getSource() {
+        return PaymentConstants.DATA_SOURCE_POWER;
     }
 
 }

@@ -20,6 +20,6 @@ public class PaymentPowerLocalMessageProcess extends
         if (callback == null) {
             return;
         }
-        callback.onResult(true, geFileFromAssets(context, "property_detail.txt"));
+        callback.onResult(true, geFileFromAssets(context, "power_detail.txt"));
     }
 }

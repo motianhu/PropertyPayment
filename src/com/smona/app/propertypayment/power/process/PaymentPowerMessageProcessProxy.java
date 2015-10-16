@@ -12,9 +12,10 @@ public class PaymentPowerMessageProcessProxy extends
     
 
     public static final String MSG_POWER_USER_INFO = "1200";
+    public static final String MSG_POWER_DETAIL = "1700";
+    
     public static final String MSG_POWER_USER_INFO_RESPONSE = "1210";
-    public static final String MSG_POWER_DETAIL = "1300";
-    public static final String MSG_POWER_DETAIL_RESPONSE = "1310";
+    public static final String MSG_POWER_DETAIL_RESPONSE = "1710";
 
     public PaymentPowerMessageProcessProxy() {
         mLocal = new PaymentPowerLocalMessageProcess();

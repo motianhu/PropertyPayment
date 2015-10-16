@@ -27,20 +27,11 @@ public abstract class PaymentSimpleFeeActivity extends PaymentBaseActivity {
         setContentView(R.layout.payment_simple_fee);
         aquireDatas();
         initViews();
+        initGroupDatas();
         requestLoadData();
     }
     
     protected void aquireDatas() {
-    }
-    
-    private void initData() {
-        initContent();
-        initCompanys();
-        initGroupDatas();
-    }
-
-    private void initContent() {
-        mContent = new PaymentSimpleDetailInfo();
     }
 
     private void initGroupDatas() {
@@ -104,7 +95,7 @@ public abstract class PaymentSimpleFeeActivity extends PaymentBaseActivity {
         }
         switch (id) {
         case R.id.detail:
-            gotoSubActivity(PaymentSimpleFeeDetailListActivity.class);
+            clickDetail();
             break;
         case R.id.select_company:
             clickSelectCompany();
@@ -117,6 +108,12 @@ public abstract class PaymentSimpleFeeActivity extends PaymentBaseActivity {
             break;
         }
     }
+
+    private void clickDetail() {
+        gotoSubActivity(getSource(), PaymentSimpleFeeDetailListActivity.class);
+    }
+    
+    protected abstract int getSource();
 
     private void clickNextStep() {
         Object company = getTag(R.id.select_company);

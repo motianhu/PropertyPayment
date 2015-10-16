@@ -1,9 +1,11 @@
 package com.smona.app.propertypayment.common.ui;
 
 import java.util.ArrayList;
+
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
-import com.smona.app.propertypayment.common.data.PaymentSimpleListItem;
+import com.smona.app.propertypayment.power.bean.PaymentPowerDetailBean;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -41,27 +43,31 @@ public class PaymentSimpleFeeListAdapter extends PaymentBaseDataAdapter {
         parent = convertView.findViewById(R.id.housecode);
         initText(parent, R.id.name, R.string.payment_common_huhao);
 
-        PaymentSimpleListItem item;
-        if (info instanceof PaymentSimpleListItem) {
-            item = (PaymentSimpleListItem) info;
+        if (info instanceof PaymentPowerDetailBean) {
+            setPowerItemDetail(convertView, (PaymentPowerDetailBean) info);
         } else {
             return;
         }
+    }
 
-        parent = convertView.findViewById(R.id.company_name);
-        initText(parent, R.id.value, item.companyname);
+    private void setPowerItemDetail(View convertView,
+            PaymentPowerDetailBean item) {
+        View parent = convertView.findViewById(R.id.company_name);
+        initText(parent, R.id.value, item.org_name);
 
         parent = convertView.findViewById(R.id.pay_money);
-        initText(parent, R.id.value, item.money + "元");
+        initText(parent, R.id.value, item.payfare
+                + mContext.getResources()
+                        .getString(R.string.payment_common_rmb));
 
         parent = convertView.findViewById(R.id.pay_time);
-        initText(parent, R.id.value, item.paytime);
+        initText(parent, R.id.value, item.paydate);
 
         parent = convertView.findViewById(R.id.groupby);
-        initText(parent, R.id.value, item.groupname);
+        initText(parent, R.id.value, item.trans_name);
 
         parent = convertView.findViewById(R.id.housecode);
-        initText(parent, R.id.value, item.housecode);
+        initText(parent, R.id.value, item.trans_name);
     }
 
     private void initText(View parent, int childId, int textId) {

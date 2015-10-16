@@ -50,7 +50,7 @@ public class PaymentComplexFeeDetailListActivity extends
 
     @Override
     protected void initBody() {
-        setFetchListener(mAllDatas);
+        setFetchListener(mShowDatas);
     }
 
     protected void loadData() {
