@@ -8,7 +8,7 @@ import com.smona.app.propertypayment.process.PaymentRequestInfo;
 public class PaymentPropertyMessageProcessProxy extends
         PaymentMessageProcessProxy {
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     
     public static final String MSG_PROPERTY_FANGCHAN = "0200";
     public static final String MSG_PROPERTY_DISCOUNT = "0300";

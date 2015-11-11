@@ -8,7 +8,7 @@ import com.smona.app.propertypayment.process.PaymentRequestInfo;
 public class PaymentParkMessageProcessProxy extends
         PaymentMessageProcessProxy {
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     
     public static final String MSG_PARK_CHEWEI = "0700";
     public static final String MSG_PARK_DISCOUNT = "0800";
