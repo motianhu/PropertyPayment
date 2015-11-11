@@ -3,9 +3,9 @@ package com.smona.app.propertypayment.park.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
+import com.smona.app.propertypayment.common.data.submit.PaymentCommonSubmitBean;
 
-public class PaymentParkPaySubmitBean extends PaymentSubmitBean {
+public class PaymentParkPaySubmitBean extends PaymentCommonSubmitBean {
     public String parknum;
 
     public PaymentParkPaySubmitBean() {

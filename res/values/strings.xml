@@ -48,12 +48,12 @@
     <string name="payment_water_select_groupby">请选择分组</string>
 
     <!-- 电费 -->
-    <string name="payment_power_company">缴费单位</string>
-    <string name="payment_power_select_company">请选择缴费单位</string>
+    <string name="payment_power_city">所属地市</string>
+    <string name="payment_power_select_city">请选择所属地市</string>
+    <string name="payment_power_company">供电单位</string>
+    <string name="payment_power_select_company">请选择供电单位</string>
     <string name="payment_power_huhao">户号</string>
     <string name="payment_power_input_huhao">请输入户号</string>
-    <string name="payment_power_groupby">分组</string>
-    <string name="payment_power_select_groupby">请选择分组</string>
 
     <!-- 燃气费 -->
     <string name="payment_gas_company">缴费单位</string>

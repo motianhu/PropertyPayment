@@ -15,8 +15,8 @@ import com.smona.app.propertypayment.common.data.PaymentFeeDanInfo;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.data.PaymentPhonePriceInfo;
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
+import com.smona.app.propertypayment.common.ui.PaymentCommonConfirmActivity;
 import com.smona.app.propertypayment.common.ui.PaymentComplexFeeDetailListActivity;
-import com.smona.app.propertypayment.common.ui.PaymentConfirmActivity;
 import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
 
@@ -107,7 +107,7 @@ public class PhoneActivity extends PaymentBaseActivity {
         mFeeDan.companyname = "company 1";
         mFeeDan.money = 100;
 
-        gotoSubActivity(mFeeDan, PaymentConfirmActivity.class);
+        gotoSubActivity(mFeeDan, PaymentCommonConfirmActivity.class);
     }
 
     private void clickPaymoney() {

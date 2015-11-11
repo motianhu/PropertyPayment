@@ -61,6 +61,11 @@
             android:label="@string/payment_home_power"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".power.PaymentPowerConfirmActivity"
+            android:label="@string/payment_home_power"
+            android:screenOrientation="portrait" >
+        </activity>
 
         <!-- 燃气费 -->
         <activity
@@ -101,7 +106,7 @@
             android:label="@string/payment_home_park"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".common.ui.PaymentConfirmActivity"
+            android:name=".common.ui.PaymentCommonConfirmActivity"
             android:label="@string/payment_common_zhifu"
             android:screenOrientation="portrait" />
         <activity

@@ -1,0 +1,16 @@
+{
+    "iccode": "1410",
+    "loginname": "13939093625",
+    "sessionid": "48RTFBHV",
+    "answercode": "00",
+    "icobject": [
+        {
+            "citycode": "0311",
+            "cityname": "石家庄"
+        },
+        {
+            "citycode": "0312",
+            "cityname": "秦皇岛"
+        }
+    ]
+}

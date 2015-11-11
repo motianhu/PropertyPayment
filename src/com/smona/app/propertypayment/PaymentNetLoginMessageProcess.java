@@ -8,7 +8,8 @@ import com.smona.app.propertypayment.process.PaymentNetRequestMessageProcess;
 
 public class PaymentNetLoginMessageProcess extends
         PaymentNetRequestMessageProcess {
-    private static final String TAG = "PropertyNetLoginMessageProcess";
+    public static String TAG = PaymentNetLoginMessageProcess.class
+            .getSimpleName();;
 
     public void login(final IQuestCallback callback, String ip, String port,
             final String username, final String passwd) {

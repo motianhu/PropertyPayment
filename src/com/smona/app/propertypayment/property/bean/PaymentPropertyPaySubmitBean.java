@@ -3,9 +3,9 @@ package com.smona.app.propertypayment.property.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
+import com.smona.app.propertypayment.common.data.submit.PaymentCommonSubmitBean;
 
-public class PaymentPropertyPaySubmitBean extends PaymentSubmitBean {
+public class PaymentPropertyPaySubmitBean extends PaymentCommonSubmitBean {
     public String housingbantranscode;
 
     public PaymentPropertyPaySubmitBean() {

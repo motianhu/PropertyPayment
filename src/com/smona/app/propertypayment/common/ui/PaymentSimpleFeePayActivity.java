@@ -104,6 +104,6 @@ public class PaymentSimpleFeePayActivity extends PaymentBaseActivity {
             showMessage("金额必须大于0");
             return;
         }
-        gotoSubActivity(mContent, PaymentConfirmActivity.class);
+        gotoSubActivity(mContent, PaymentCommonConfirmActivity.class);
     }
 }

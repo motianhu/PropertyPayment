@@ -97,7 +97,7 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
     
     private void clickNextStep() {
         mItemInfo = createFeedan();
-        gotoSubActivity(mItemInfo, PaymentConfirmActivity.class);
+        gotoSubActivity(mItemInfo, PaymentCommonConfirmActivity.class);
     }
     
     
