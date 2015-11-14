@@ -5,9 +5,11 @@ import android.os.Parcelable;
 
 public class PaymentPowerSubmitBean extends PaymentSubmitBean {
     public String consno;
+    public String trans_name;
     public String org_no;
     public String org_name;
     public String postradeno;
+    public String exchg_atm;
     public String transfare;
     public String accountdate;
 
@@ -17,11 +19,15 @@ public class PaymentPowerSubmitBean extends PaymentSubmitBean {
     public PaymentPowerSubmitBean(Parcel in) {
         super(in);
         consno = in.readString();
+        trans_name = in.readString();
+
         org_no = in.readString();
         org_name = in.readString();
 
-        postradeno = in.readString();
+        exchg_atm = in.readString();
         transfare = in.readString();
+
+        postradeno = in.readString();
         accountdate = in.readString();
     }
 
@@ -34,11 +40,15 @@ public class PaymentPowerSubmitBean extends PaymentSubmitBean {
     public void writeToParcel(Parcel dest, int flags) {
         super.writeToParcel(dest, flags);
         dest.writeString(consno);
+        dest.writeString(trans_name);
+
         dest.writeString(org_no);
         dest.writeString(org_name);
 
-        dest.writeString(postradeno);
+        dest.writeString(exchg_atm);
         dest.writeString(transfare);
+
+        dest.writeString(postradeno);
         dest.writeString(accountdate);
     }
 
@@ -56,8 +66,9 @@ public class PaymentPowerSubmitBean extends PaymentSubmitBean {
 
     public String toString() {
         return "PaymentPowerSubmitBean[" + super.toString() + ", consno:"
-                + consno + ", org_no: " + org_no + ", org_name: " + org_name
-                + ", postradeno: " + postradeno + ", transfare: " + transfare
-                + ", accountdate: " + accountdate + "]";
+                + consno + ", trans_name: " + trans_name + ", org_no: "
+                + org_no + ", org_name: " + org_name + ", postradeno: "
+                + postradeno + ", exchg_atm:" + exchg_atm + ", transfare: "
+                + transfare + ", accountdate: " + accountdate + "]";
     }
 }

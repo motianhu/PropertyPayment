@@ -62,6 +62,11 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name=".power.PaymentPowerFeeActivity"
+            android:label="@string/payment_home_power"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name=".power.PaymentPowerConfirmActivity"
             android:label="@string/payment_home_power"
             android:screenOrientation="portrait" >

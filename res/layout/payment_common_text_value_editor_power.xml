@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/payment_commont_color_select_type_bg"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:textColor="@color/payment_color_common_title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/value"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:numeric="integer"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical|left"
+            android:textColor="@color/payment_color_common_title"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/value"
+            android:gravity="center_vertical|left"
+            android:text="@string/payment_common_rmb"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+</LinearLayout>

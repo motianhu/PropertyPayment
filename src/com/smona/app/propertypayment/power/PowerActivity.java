@@ -92,7 +92,6 @@ public class PowerActivity extends PaymentBaseActivity {
         Type type = new TypeToken<PaymentItemInfo>() {
         }.getType();
         PaymentItemInfo bean = JsonUtils.parseJson(content, type);
-        LogUtil.d(TAG, "content: " + content);
         if (PaymentPowerMessageProcessProxy.MSG_POWER_CITY_RESPONSE
                 .equals(bean.iccode)) {
             if (isRequestOk(bean)) {
@@ -257,7 +256,7 @@ public class PowerActivity extends PaymentBaseActivity {
 
     private void gotoNextStep(PaymentPowerQueryUserBean item) {
         PaymentSubmitBean fee = createFeedan(item);
-        gotoSubActivity(fee, PaymentPowerConfirmActivity.class);
+        gotoSubActivity(fee, PaymentPowerFeeActivity.class);
     }
 
     protected PaymentSubmitBean createFeedan(PaymentPowerQueryUserBean item) {
@@ -268,12 +267,14 @@ public class PowerActivity extends PaymentBaseActivity {
         PaymentPowerCompanyBean company = (PaymentPowerCompanyBean) getTag(
                 parent, R.id.select_company);
 
+        pay.consno = item.consno;
+        pay.trans_name = item.trans_name;
+
         pay.org_no = company.org_no;
         pay.org_name = company.org_name;
-
-        pay.consno = item.consno;
+        
+        pay.exchg_atm = item.exchg_atm;
         pay.postradeno = item.postradeno;
-        pay.transfare = item.exchg_atm;
         pay.accountdate = item.postradeno;
 
         return pay;

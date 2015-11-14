@@ -16,4 +16,7 @@
     <dimen name="payment_common_list_detail_height">30dp</dimen>
     <dimen name="payment_confirm_item_height">60dp</dimen>
 
+    <!-- power -->
+    <dimen name="payment_power_fee_text_view_width">50dp</dimen>
+    <dimen name="payment_power_fee_text_view_gap">10dp</dimen>
 </resources>

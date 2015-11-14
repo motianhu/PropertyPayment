@@ -53,6 +53,7 @@
     <string name="payment_power_company">供电单位</string>
     <string name="payment_power_select_company">请选择供电单位</string>
     <string name="payment_power_huhao">户号</string>
+    <string name="payment_power_qianfei">欠费金额</string>
     <string name="payment_power_input_huhao">请输入户号</string>
 
     <!-- 燃气费 -->

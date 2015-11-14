@@ -1,0 +1,59 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/payment_color_common_home_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/payment_common_header" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="20dp" >
+
+        <include
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/payment_common_select_type_height"
+            android:layout_marginTop="10dp"
+            layout="@layout/payment_common_text_value" />
+
+        <include
+            android:id="@+id/housecode"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/payment_common_select_type_height"
+            android:layout_marginTop="10dp"
+            layout="@layout/payment_common_text_value" />
+
+        <include
+            android:id="@+id/needchange"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/payment_common_select_type_height"
+            android:layout_marginTop="10dp"
+            layout="@layout/payment_common_text_value" />
+
+        <include
+            android:id="@+id/input_fee"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/payment_common_select_type_height"
+            android:layout_marginTop="10dp"
+            layout="@layout/payment_common_text_value_editor_power" />
+
+        <include
+            android:id="@+id/select_fee"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/payment_common_select_type_height"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            layout="@layout/payment_power_select_fee" />
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            layout="@layout/payment_common_next_step" />
+    </LinearLayout>
+
+</LinearLayout>

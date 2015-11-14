@@ -7,7 +7,7 @@ import com.smona.app.propertypayment.process.PaymentRequestInfo;
 
 public class PaymentPowerMessageProcessProxy extends PaymentMessageProcessProxy {
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     public static final String MSG_POWER_USER_INFO = "1200";
     public static final String MSG_POWER_CITY = "1400";
