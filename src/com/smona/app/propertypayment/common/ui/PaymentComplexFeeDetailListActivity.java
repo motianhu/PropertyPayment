@@ -10,18 +10,17 @@ import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.util.JsonUtils;
-import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
 import com.smona.app.propertypayment.park.bean.PaymentParkDetailsBean;
 import com.smona.app.propertypayment.park.process.PaymentParkMessageProcessProxy;
+import com.smona.app.propertypayment.power.bean.PaymentPowerDetailsBean;
+import com.smona.app.propertypayment.power.process.PaymentPowerMessageProcessProxy;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
 import com.smona.app.propertypayment.property.bean.PaymentPropertyDetailsBean;
 import com.smona.app.propertypayment.property.process.PaymentPropertyMessageProcessProxy;
 
 public class PaymentComplexFeeDetailListActivity extends
         PaymentFetchListActivity {
-
-    private static final String TAG = "PaymentComplexFeeDetailListActivity";
 
     protected ArrayList<PaymentItemInfo> mAllDatas = new ArrayList<PaymentItemInfo>();
     protected ArrayList<PaymentItemInfo> mShowDatas = new ArrayList<PaymentItemInfo>();
@@ -68,6 +67,10 @@ public class PaymentComplexFeeDetailListActivity extends
             mMessageProcess = new PaymentParkMessageProcessProxy();
             ((PaymentParkMessageProcessProxy) mMessageProcess).requestDetail(
                     this, request, this);
+        } else if (mSourceType == PaymentConstants.DATA_SOURCE_POWER) {
+            mMessageProcess = new PaymentPowerMessageProcessProxy();
+            ((PaymentPowerMessageProcessProxy) mMessageProcess).requestDetail(
+                    this, request, this);
         } else {
             hideCustomProgressDialog();
         }
@@ -77,7 +80,6 @@ public class PaymentComplexFeeDetailListActivity extends
         Type type = new TypeToken<PaymentItemInfo>() {
         }.getType();
         PaymentItemInfo bean = JsonUtils.parseJson(content, type);
-        LogUtil.d(TAG, "content: " + content);
         if (PaymentPropertyMessageProcessProxy.MSG_PROPERTY_DETAIL_RESPONSE
                 .equals(bean.iccode)) {
             if (isRequestOk(bean)) {
@@ -96,6 +98,18 @@ public class PaymentComplexFeeDetailListActivity extends
                 type = new TypeToken<PaymentParkDetailsBean>() {
                 }.getType();
                 PaymentParkDetailsBean detailsBean = JsonUtils.parseJson(
+                        content, type);
+                mAllDatas.addAll(detailsBean.icobject);
+                requestRefreshUI();
+            } else {
+
+            }
+        } else if (PaymentPowerMessageProcessProxy.MSG_POWER_DETAIL_RESPONSE
+                .equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentPowerDetailsBean>() {
+                }.getType();
+                PaymentPowerDetailsBean detailsBean = JsonUtils.parseJson(
                         content, type);
                 mAllDatas.addAll(detailsBean.icobject);
                 requestRefreshUI();
@@ -135,8 +149,6 @@ public class PaymentComplexFeeDetailListActivity extends
     public PaymentBaseDataAdapter createAdapter(ArrayList<PaymentItemInfo> data) {
         PaymentComplexFeeListAdapter adapter = new PaymentComplexFeeListAdapter(
                 this, data);
-        adapter.setSource(getIntent().getIntExtra(PaymentConstants.DATA_SOURCE,
-                -1));
         return adapter;
     }
 

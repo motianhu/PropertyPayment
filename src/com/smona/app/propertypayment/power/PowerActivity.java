@@ -3,6 +3,7 @@ package com.smona.app.propertypayment.power;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,9 +15,11 @@ import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.data.submit.PaymentPowerSubmitBean;
 import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
+import com.smona.app.propertypayment.common.ui.PaymentComplexFeeDetailListActivity;
 import com.smona.app.propertypayment.common.ui.PaymentTypeAdapter;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.LogUtil;
+import com.smona.app.propertypayment.common.util.PaymentConstants;
 import com.smona.app.propertypayment.power.bean.PaymentPowerCityBean;
 import com.smona.app.propertypayment.power.bean.PaymentPowerCityListBean;
 import com.smona.app.propertypayment.power.bean.PaymentPowerCompanyBean;
@@ -205,6 +208,7 @@ public class PowerActivity extends PaymentBaseActivity {
         }
         switch (id) {
         case R.id.detail:
+            clickDetail();
             break;
         case R.id.select_city:
             clickSelectCity();
@@ -267,7 +271,10 @@ public class PowerActivity extends PaymentBaseActivity {
         PaymentPowerCompanyBean company = (PaymentPowerCompanyBean) getTag(
                 parent, R.id.select_company);
 
-        pay.consno = item.consno;
+        parent = mRoot.findViewById(R.id.input_huhao);
+        String housecode = ((TextView) parent.findViewById(R.id.value))
+                .getText().toString();
+        pay.consno = housecode;
         pay.trans_name = item.trans_name;
 
         pay.org_no = company.org_no;
@@ -278,6 +285,20 @@ public class PowerActivity extends PaymentBaseActivity {
         pay.accountdate = item.postradeno;
 
         return pay;
+    }
+    
+    private void clickDetail() {
+        gotoSubActivity(getSource(),
+                PaymentComplexFeeDetailListActivity.class);
+    }
+    
+    protected int getSource() {
+        return PaymentConstants.DATA_SOURCE_POWER;
+    }
+    
+    protected Intent createIntent() {
+        Intent intent = new Intent();
+        return intent;
     }
 
 }

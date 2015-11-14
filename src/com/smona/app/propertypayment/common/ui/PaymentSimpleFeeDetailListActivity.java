@@ -73,7 +73,6 @@ public class PaymentSimpleFeeDetailListActivity extends
         Type type = new TypeToken<PaymentItemInfo>() {
         }.getType();
         PaymentItemInfo bean = JsonUtils.parseJson(content, type);
-        LogUtil.d(TAG, "content: " + content);
         if (PaymentPowerMessageProcessProxy.MSG_POWER_DETAIL_RESPONSE
                 .equals(bean.iccode)) {
             if (isRequestOk(bean)) {
