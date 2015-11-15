@@ -246,6 +246,10 @@ public class ParkActivity extends PaymentComplexFeectivity {
         View parent = mRoot.findViewById(R.id.select_info);
         PaymentParkCheweiBean chewei = (PaymentParkCheweiBean) getTag(parent,
                 R.id.select_info);
+        if(chewei == null) {
+            showMessage("必须选择车辆信息");
+            return null;
+        }
 
         pay.communitycode = chewei.communitycode;
         pay.storedfare = chewei.payaccount;

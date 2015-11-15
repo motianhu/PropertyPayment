@@ -248,6 +248,11 @@ public class PropertyActivity extends PaymentComplexFeectivity {
         PaymentPropertyFangchanBean fangchan = (PaymentPropertyFangchanBean) getTag(
                 parent, R.id.select_info);
 
+        if(fangchan == null) {
+            showMessage("必须选择房产信息");
+            return null;
+        }
+        
         pay.communitycode = fangchan.communitycode;
         pay.storedfare = fangchan.payaccount;
         pay.companyname = fangchan.propertyname;

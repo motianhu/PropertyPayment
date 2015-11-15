@@ -56,10 +56,11 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
             }
         });
     }
-    
+
     abstract protected void requestRelativeData(View root, PaymentItemInfo info);
+
     abstract protected void setupSelectedUI(View root, PaymentItemInfo info);
-    
+
     @Override
     protected void clickView(View v) {
         int id = v.getId();
@@ -84,21 +85,22 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
     }
 
     private void clickDetail() {
-        gotoSubActivity(getSource(),
-                PaymentComplexFeeDetailListActivity.class);
+        gotoSubActivity(getSource(), PaymentComplexFeeDetailListActivity.class);
     }
-    
+
     protected Intent createIntent() {
         Intent intent = new Intent();
         return intent;
     }
 
     protected abstract PaymentSubmitBean createFeedan();
-    
+
     private void clickNextStep() {
         mItemInfo = createFeedan();
+        if (mItemInfo == null) {
+            return;
+        }
         gotoSubActivity(mItemInfo, PaymentCommonConfirmActivity.class);
     }
-    
-    
+
 }
