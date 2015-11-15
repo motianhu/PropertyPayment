@@ -112,10 +112,12 @@ public class ParkActivity extends PaymentComplexFeectivity {
             if (isRequestOk(bean)) {
                 type = new TypeToken<PaymentParkCheweisBean>() {
                 }.getType();
-                mItemInfo = JsonUtils.parseJson(content, type);
+                PaymentParkCheweisBean cheweis = JsonUtils.parseJson(content,
+                        type);
                 mSelectInfos.clear();
-                mSelectInfos
-                        .addAll(((PaymentParkCheweisBean) mItemInfo).icobject);
+                if (cheweis.icobject != null) {
+                    mSelectInfos.addAll(cheweis.icobject);
+                }
             } else {
 
             }
@@ -127,7 +129,9 @@ public class ParkActivity extends PaymentComplexFeectivity {
                 mParkBean.mDiscountBean = JsonUtils.parseJson(content, type);
 
                 mZhekous.clear();
-                mZhekous.addAll(mParkBean.mDiscountBean.icobject);
+                if (mParkBean.mDiscountBean != null) {
+                    mZhekous.addAll(mParkBean.mDiscountBean.icobject);
+                }
             } else {
                 hideCustomProgressDialog();
             }

@@ -111,10 +111,12 @@ public class PropertyActivity extends PaymentComplexFeectivity {
             if (isRequestOk(bean)) {
                 type = new TypeToken<PaymentPropertyFangchansBean>() {
                 }.getType();
-                mItemInfo = JsonUtils.parseJson(content, type);
+                PaymentPropertyFangchansBean fangchans = JsonUtils.parseJson(
+                        content, type);
                 mSelectInfos.clear();
-                mSelectInfos
-                        .addAll(((PaymentPropertyFangchansBean) mItemInfo).icobject);
+                if (fangchans.icobject != null) {
+                    mSelectInfos.addAll(fangchans.icobject);
+                }
             } else {
 
             }
@@ -127,7 +129,9 @@ public class PropertyActivity extends PaymentComplexFeectivity {
                         .parseJson(content, type);
 
                 mZhekous.clear();
-                mZhekous.addAll(mPropertyBean.mDiscountBean.icobject);
+                if (mPropertyBean.mDiscountBean.icobject != null) {
+                    mZhekous.addAll(mPropertyBean.mDiscountBean.icobject);
+                }
             } else {
                 hideCustomProgressDialog();
             }

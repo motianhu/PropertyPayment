@@ -87,7 +87,9 @@ public class PaymentComplexFeeDetailListActivity extends
                 }.getType();
                 PaymentPropertyDetailsBean detailsBean = JsonUtils.parseJson(
                         content, type);
-                mAllDatas.addAll(detailsBean.icobject);
+                if (detailsBean.icobject != null) {
+                    mAllDatas.addAll(detailsBean.icobject);
+                }
                 requestRefreshUI();
             } else {
 
@@ -99,7 +101,9 @@ public class PaymentComplexFeeDetailListActivity extends
                 }.getType();
                 PaymentParkDetailsBean detailsBean = JsonUtils.parseJson(
                         content, type);
-                mAllDatas.addAll(detailsBean.icobject);
+                if (detailsBean.icobject != null) {
+                    mAllDatas.addAll(detailsBean.icobject);
+                }
                 requestRefreshUI();
             } else {
 
@@ -111,7 +115,9 @@ public class PaymentComplexFeeDetailListActivity extends
                 }.getType();
                 PaymentPowerDetailsBean detailsBean = JsonUtils.parseJson(
                         content, type);
-                mAllDatas.addAll(detailsBean.icobject);
+                if (detailsBean.icobject != null) {
+                    mAllDatas.addAll(detailsBean.icobject);
+                }
                 requestRefreshUI();
             } else {
 

@@ -20,8 +20,8 @@ import com.smona.app.propertypayment.process.PaymentRequestInfo;
 
 public class PaymentSimpleFeeDetailListActivity extends
         PaymentFetchListActivity {
-    
-    private static final String TAG = "PaymentSimpleFeeDetailListActivity"; 
+
+    private static final String TAG = "PaymentSimpleFeeDetailListActivity";
 
     protected ArrayList<PaymentItemInfo> mAllDatas = new ArrayList<PaymentItemInfo>();
     protected ArrayList<PaymentItemInfo> mShowDatas = new ArrayList<PaymentItemInfo>();
@@ -51,7 +51,7 @@ public class PaymentSimpleFeeDetailListActivity extends
     protected void initBody() {
         setFetchListener(mShowDatas);
     }
-    
+
     protected void loadData() {
         requestData();
     }
@@ -61,8 +61,8 @@ public class PaymentSimpleFeeDetailListActivity extends
         PaymentRequestInfo request = new PaymentRequestInfo();
         if (mSourceType == PaymentConstants.DATA_SOURCE_POWER) {
             mMessageProcess = new PaymentPowerMessageProcessProxy();
-            ((PaymentPowerMessageProcessProxy) mMessageProcess)
-                    .requestDetail(this, request, this);
+            ((PaymentPowerMessageProcessProxy) mMessageProcess).requestDetail(
+                    this, request, this);
         } else if (mSourceType == PaymentConstants.DATA_SOURCE_GAS) {
         } else {
             hideCustomProgressDialog();
@@ -80,7 +80,9 @@ public class PaymentSimpleFeeDetailListActivity extends
                 }.getType();
                 PaymentPowerDetailsBean detailsBean = JsonUtils.parseJson(
                         content, type);
-                mAllDatas.addAll(detailsBean.icobject);
+                if (detailsBean.icobject != null) {
+                    mAllDatas.addAll(detailsBean.icobject);
+                }
                 requestRefreshUI();
             } else {
 
@@ -92,7 +94,9 @@ public class PaymentSimpleFeeDetailListActivity extends
                 }.getType();
                 PaymentParkDetailsBean detailsBean = JsonUtils.parseJson(
                         content, type);
-                mAllDatas.addAll(detailsBean.icobject);
+                if (detailsBean.icobject != null) {
+                    mAllDatas.addAll(detailsBean.icobject);
+                }
                 requestRefreshUI();
             } else {
 
@@ -111,7 +115,6 @@ public class PaymentSimpleFeeDetailListActivity extends
     protected void failedRequest() {
         hideCustomProgressDialog();
     }
-
 
     @Override
     protected void clickView(View v) {

@@ -103,7 +103,9 @@ public class PowerActivity extends PaymentBaseActivity {
                 PaymentPowerCityListBean list = JsonUtils.parseJson(content,
                         type);
                 mCityList.clear();
-                mCityList.addAll(list.icobject);
+                if (list.icobject != null) {
+                    mCityList.addAll(list.icobject);
+                }
             } else {
 
             }
@@ -115,7 +117,9 @@ public class PowerActivity extends PaymentBaseActivity {
                 PaymentPowerCompanyListBean list = JsonUtils.parseJson(content,
                         type);
                 mCompanyList.clear();
-                mCompanyList.addAll(list.icobject);
+                if (list.icobject != null) {
+                    mCompanyList.addAll(list.icobject);
+                }
             } else {
 
             }
@@ -181,7 +185,13 @@ public class PowerActivity extends PaymentBaseActivity {
     protected void requestRelativeData(View root, PaymentItemInfo source) {
         // refresh ui
         PaymentPowerCityBean city = (PaymentPowerCityBean) source;
-        relativeDataForUI(R.id.select_city, source, city.cityname);
+        boolean noChange = relativeDataForUI(R.id.select_city, source,
+                city.cityname);
+        if (noChange) {
+            return;
+        }
+        
+        relativeDataForUI(R.id.select_company, null, null);
 
         // loading relative data;
         showCustomProgrssDialog();
@@ -192,11 +202,13 @@ public class PowerActivity extends PaymentBaseActivity {
                 this, request, this);
     }
 
-    private void relativeDataForUI(int resId, PaymentItemInfo source,
+    private boolean relativeDataForUI(int resId, PaymentItemInfo source,
             String name) {
         View parent = mRoot.findViewById(resId);
         initText(parent, R.id.select_type, name);
+        Object obj = getTag(resId);
         setTag(resId, source);
+        return obj == source;
     }
 
     @Override
@@ -279,23 +291,22 @@ public class PowerActivity extends PaymentBaseActivity {
 
         pay.org_no = company.org_no;
         pay.org_name = company.org_name;
-        
+
         pay.exchg_atm = item.exchg_atm;
         pay.postradeno = item.postradeno;
         pay.accountdate = item.postradeno;
 
         return pay;
     }
-    
+
     private void clickDetail() {
-        gotoSubActivity(getSource(),
-                PaymentComplexFeeDetailListActivity.class);
+        gotoSubActivity(getSource(), PaymentComplexFeeDetailListActivity.class);
     }
-    
+
     protected int getSource() {
         return PaymentConstants.DATA_SOURCE_POWER;
     }
-    
+
     protected Intent createIntent() {
         Intent intent = new Intent();
         return intent;
