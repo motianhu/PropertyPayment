@@ -11,6 +11,8 @@ import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
+import com.smona.app.propertypayment.nontax.bean.PaymentNonTaxDetailItemsBean;
+import com.smona.app.propertypayment.nontax.process.PaymentNonTaxMessageProcessProxy;
 import com.smona.app.propertypayment.park.bean.PaymentParkDetailsBean;
 import com.smona.app.propertypayment.park.process.PaymentParkMessageProcessProxy;
 import com.smona.app.propertypayment.power.bean.PaymentPowerDetailsBean;
@@ -71,6 +73,10 @@ public class PaymentComplexFeeDetailListActivity extends
             mMessageProcess = new PaymentPowerMessageProcessProxy();
             ((PaymentPowerMessageProcessProxy) mMessageProcess).requestDetail(
                     this, request, this);
+        } else if (mSourceType == PaymentConstants.DATA_SOURCE_NONTAX) {
+            mMessageProcess = new PaymentNonTaxMessageProcessProxy();
+            ((PaymentNonTaxMessageProcessProxy) mMessageProcess).requestDetail(
+                    this, request, this);
         } else {
             hideCustomProgressDialog();
         }
@@ -122,6 +128,20 @@ public class PaymentComplexFeeDetailListActivity extends
             } else {
 
             }
+        } else if (PaymentNonTaxMessageProcessProxy.MSG_NONTAX_DETAIL_RESPONSE
+                .equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentNonTaxDetailItemsBean>() {
+                }.getType();
+                PaymentNonTaxDetailItemsBean detailsBean = JsonUtils.parseJson(
+                        content, type);
+                if (detailsBean.icobject != null) {
+                    mAllDatas.addAll(detailsBean.icobject);
+                }
+                requestRefreshUI();
+            } else {
+
+            }
         }
         hideCustomProgressDialog();
     }
@@ -153,8 +173,12 @@ public class PaymentComplexFeeDetailListActivity extends
 
     @Override
     public PaymentBaseDataAdapter createAdapter(ArrayList<PaymentItemInfo> data) {
-        PaymentComplexFeeListAdapter adapter = new PaymentComplexFeeListAdapter(
-                this, data);
+        PaymentBaseDataAdapter adapter;
+        if (mSourceType == PaymentConstants.DATA_SOURCE_NONTAX) {
+            adapter = new PaymentComplexFeeListSixAdapter(this, data);
+        } else {
+            adapter = new PaymentComplexFeeListAdapter(this, data);
+        }
         return adapter;
     }
 

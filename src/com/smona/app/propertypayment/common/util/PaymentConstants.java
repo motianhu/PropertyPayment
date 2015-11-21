@@ -17,4 +17,5 @@ public class PaymentConstants {
     public static final int DATA_SOURCE_WATER = 4;
     public static final int DATA_SOURCE_GAS = 5;
     public static final int DATA_SOURCE_POWER = 6;
+    public static final int DATA_SOURCE_NONTAX = 7;
 }

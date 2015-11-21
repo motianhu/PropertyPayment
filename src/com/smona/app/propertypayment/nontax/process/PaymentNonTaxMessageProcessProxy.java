@@ -11,8 +11,10 @@ public class PaymentNonTaxMessageProcessProxy extends
     private static final boolean DEBUG = true;
 
     public static final String MSG_NONTAX_LIST = "0700";
+    public static final String MSG_NONTAX_DETAIL = "0800";
     
-    public static final String MSG_NONTAX_LISTRESPONSE = "0710";
+    public static final String MSG_NONTAX_LIST_RESPONSE = "0710";
+    public static final String MSG_NONTAX_DETAIL_RESPONSE = "0810";
 
     public PaymentNonTaxMessageProcessProxy() {
         mLocal = new PaymentNonTaxLocalMessageProcess();
@@ -27,6 +29,17 @@ public class PaymentNonTaxMessageProcessProxy extends
                     callback);
         } else {
             ((PaymentNonTaxNetRequestMessageProcess) mNetRequest).requestList(
+                    request, callback);
+        }
+    }
+    
+    public void requestDetail(Context context, PaymentRequestInfo request,
+            IQuestCallback callback) {
+        if (DEBUG) {
+            ((PaymentNonTaxLocalMessageProcess) mLocal).requestDetail(context,
+                    callback);
+        } else {
+            ((PaymentNonTaxNetRequestMessageProcess) mNetRequest).requestDetail(
                     request, callback);
         }
     }

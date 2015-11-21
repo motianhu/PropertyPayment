@@ -10,14 +10,14 @@
         android:weightSum="2" >
 
         <include
-            android:id="@+id/company_name"
+            android:id="@+id/kemu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             layout="@layout/payment_common_list_item_text_value" />
 
         <include
-            android:id="@+id/pay_money"
+            android:id="@+id/leibie"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -31,6 +31,27 @@
         android:weightSum="2" >
 
         <include
+            android:id="@+id/jine"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            layout="@layout/payment_common_list_item_text_value" />
+
+        <include
+            android:id="@+id/bank"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            layout="@layout/payment_common_list_item_text_value" />
+    </LinearLayout>
+    
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/payment_common_list_detail_height"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+
+        <include
             android:id="@+id/pay_time"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -38,11 +59,12 @@
             layout="@layout/payment_common_list_item_text_value" />
 
         <include
-            android:id="@+id/objinfo"
+            android:id="@+id/status"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             layout="@layout/payment_common_list_item_text_value" />
     </LinearLayout>
+    
 
 </LinearLayout>

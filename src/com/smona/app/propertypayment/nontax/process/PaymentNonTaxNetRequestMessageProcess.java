@@ -12,4 +12,10 @@ public class PaymentNonTaxNetRequestMessageProcess extends
         requestCommon(PaymentNonTaxMessageProcessProxy.MSG_NONTAX_LIST,
                 request, callback);
     }
+
+    public void requestDetail(PaymentRequestInfo request,
+            IQuestCallback callback) {
+        requestCommon(PaymentNonTaxMessageProcessProxy.MSG_NONTAX_DETAIL,
+                request, callback);
+    }
 }

@@ -11,9 +11,11 @@ import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.ui.PaymentBaseDataAdapter;
+import com.smona.app.propertypayment.common.ui.PaymentComplexFeeDetailListActivity;
 import com.smona.app.propertypayment.common.ui.PaymentFetchListActivity;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.LogUtil;
+import com.smona.app.propertypayment.common.util.PaymentConstants;
 import com.smona.app.propertypayment.nontax.bean.PaymentNonTaxItemBean;
 import com.smona.app.propertypayment.nontax.bean.PaymentNonTaxItemsBean;
 import com.smona.app.propertypayment.nontax.process.PaymentNonTaxMessageProcessProxy;
@@ -23,7 +25,6 @@ public class NonTaxActivity extends PaymentFetchListActivity {
 
     protected ArrayList<PaymentItemInfo> mAllDatas = new ArrayList<PaymentItemInfo>();
     protected ArrayList<PaymentItemInfo> mShowDatas = new ArrayList<PaymentItemInfo>();
-    protected ArrayList<PaymentItemInfo> mSelectDatas = new ArrayList<PaymentItemInfo>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,7 +83,7 @@ public class NonTaxActivity extends PaymentFetchListActivity {
         Type type = new TypeToken<PaymentItemInfo>() {
         }.getType();
         PaymentItemInfo bean = JsonUtils.parseJson(content, type);
-        if (PaymentNonTaxMessageProcessProxy.MSG_NONTAX_LISTRESPONSE
+        if (PaymentNonTaxMessageProcessProxy.MSG_NONTAX_LIST_RESPONSE
                 .equals(bean.iccode)) {
             if (isRequestOk(bean)) {
                 type = new TypeToken<PaymentNonTaxItemsBean>() {
@@ -120,6 +121,9 @@ public class NonTaxActivity extends PaymentFetchListActivity {
             return;
         }
         switch (id) {
+        case R.id.detail:
+            clickDetail();
+            break;
         case R.id.select:
             clickSelectAll();
             break;
@@ -137,6 +141,14 @@ public class NonTaxActivity extends PaymentFetchListActivity {
     @Override
     protected void loadMore() {
 
+    }
+
+    private void clickDetail() {
+        gotoSubActivity(getSource(), PaymentComplexFeeDetailListActivity.class);
+    }
+
+    private int getSource() {
+        return PaymentConstants.DATA_SOURCE_NONTAX;
     }
 
     private void clickSelectAll() {
