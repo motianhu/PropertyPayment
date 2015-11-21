@@ -36,6 +36,7 @@
     <string name="payment_home_phone">手机费</string>
     <string name="payment_home_park">停车费</string>
     <string name="payment_home_property">物业费</string>
+    <string name="payment_home_nontax">非税缴费</string>
     <string name="payment_home_wo_will_hint">我要缴费</string>
     <string name="payment_home_wo_will">立即缴费</string>
 
@@ -92,4 +93,11 @@
     <string name="payment_phone_pay">手机充值</string>
     <string name="payment_phone_contants">联系人</string>
 
+    <!-- 非税缴费 -->
+    <string name="payment_nontax_kemu">科目</string>
+    <string name="payment_nontax_leibie">类别</string>
+    <string name="payment_nontax_jine">金额</string>
+    <string name="payment_nontax_bank">缴费银行</string>
+    <string name="payment_nontax_status">状态</string>
+    <string name="payment_nontax_select_all">全选</string>
 </resources>

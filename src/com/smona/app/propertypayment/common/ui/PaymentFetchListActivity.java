@@ -15,7 +15,7 @@ public abstract class PaymentFetchListActivity extends PaymentBaseActivity
     private boolean mIsDataOver = false;
 
     protected XListView mList;
-    private PaymentBaseDataAdapter mAdapter;
+    protected PaymentBaseDataAdapter mAdapter;
 
     @Override
     public void onRefresh() {

@@ -10,7 +10,6 @@ import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.util.JsonUtils;
-import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
 import com.smona.app.propertypayment.park.bean.PaymentParkDetailsBean;
 import com.smona.app.propertypayment.park.process.PaymentParkMessageProcessProxy;
@@ -20,8 +19,6 @@ import com.smona.app.propertypayment.process.PaymentRequestInfo;
 
 public class PaymentSimpleFeeDetailListActivity extends
         PaymentFetchListActivity {
-
-    private static final String TAG = "PaymentSimpleFeeDetailListActivity";
 
     protected ArrayList<PaymentItemInfo> mAllDatas = new ArrayList<PaymentItemInfo>();
     protected ArrayList<PaymentItemInfo> mShowDatas = new ArrayList<PaymentItemInfo>();

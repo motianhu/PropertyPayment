@@ -2,6 +2,7 @@ package com.smona.app.propertypayment;
 
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
 import com.smona.app.propertypayment.gas.GasActivity;
+import com.smona.app.propertypayment.nontax.NonTaxActivity;
 import com.smona.app.propertypayment.park.ParkActivity;
 import com.smona.app.propertypayment.phone.PhoneActivity;
 import com.smona.app.propertypayment.power.PowerActivity;
@@ -18,7 +19,7 @@ public class PayHomeActivity extends PaymentBaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pay_home);
+        setContentView(R.layout.payment_home);
         initViews();
     }
 
@@ -52,6 +53,11 @@ public class PayHomeActivity extends PaymentBaseActivity {
         initView(R.id.property);
         initImageAndTextHint(R.id.property, R.drawable.home_property,
                 R.string.payment_home_property,
+                R.string.payment_home_wo_will_hint);
+
+        initView(R.id.nontax);
+        initImageAndTextHint(R.id.nontax, R.drawable.home_property,
+                R.string.payment_home_nontax,
                 R.string.payment_home_wo_will_hint);
     }
 
@@ -102,6 +108,9 @@ public class PayHomeActivity extends PaymentBaseActivity {
             break;
         case R.id.park:
             gotoSubActivity(ParkActivity.class);
+            break;
+        case R.id.nontax:
+            gotoSubActivity(NonTaxActivity.class);
             break;
         }
     }

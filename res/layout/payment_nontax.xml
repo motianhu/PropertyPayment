@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/payment_color_common_home_bg"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/payment_common_header" />
+
+    <LinearLayout
+        android:id="@+id/btn_set"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:paddingBottom="20dp" >
+
+        <include
+            android:id="@+id/select_all"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/payment_common_select_type_height"
+            android:layout_marginTop="10dp"
+            layout="@layout/payment_common_select_all" />
+
+        <include
+            android:id="@+id/jiaofei"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            layout="@layout/payment_common_next_step" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_set"
+        android:layout_below="@+id/header"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/desc_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            android:weightSum="5" >
+
+            <TextView
+                android:id="@+id/kemu"
+                style="@style/Payment_NonTax_Title" />
+
+            <TextView
+                android:id="@+id/leibie"
+                style="@style/Payment_NonTax_Title" />
+
+            <TextView
+                android:id="@+id/jine"
+                style="@style/Payment_NonTax_Title" />
+
+            <TextView
+                android:id="@+id/bank"
+                style="@style/Payment_NonTax_Title" />
+
+            <TextView
+                android:id="@+id/status"
+                style="@style/Payment_NonTax_Title" />
+        </LinearLayout>
+
+        <include
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/payment_commont_list_content" />
+    </LinearLayout>
+
+</RelativeLayout>

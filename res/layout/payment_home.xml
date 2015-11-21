@@ -98,6 +98,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/payment_color_common_home_bg_content" />
+
+            <include
+                android:id="@+id/nontax"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/payment_home_item_height"
+                android:layout_marginBottom="@dimen/payment_home_margin_top"
+                android:layout_marginTop="@dimen/payment_home_margin_top"
+                layout="@layout/payment_home_item" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/payment_color_common_home_bg_content" />
         </LinearLayout>
     </ScrollView>
 

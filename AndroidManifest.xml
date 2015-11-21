@@ -100,6 +100,12 @@
             android:name=".park.ParkActivity"
             android:label="@string/payment_home_park"
             android:screenOrientation="portrait" />
+        
+        <!-- 非税缴费 -->
+        <activity
+            android:name=".nontax.NonTaxActivity"
+            android:label="@string/payment_home_nontax"
+            android:screenOrientation="portrait" />
 
         <!-- 公用 -->
         <activity

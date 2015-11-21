@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/desc_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:orientation="horizontal"
+    android:weightSum="5" >
+
+    <TextView
+        android:id="@+id/kemu"
+        style="@style/Payment_NonTax_Item_Title" />
+
+    <TextView
+        android:id="@+id/leibie"
+        style="@style/Payment_NonTax_Item_Title" />
+
+    <TextView
+        android:id="@+id/jine"
+        style="@style/Payment_NonTax_Item_Title" />
+
+    <TextView
+        android:id="@+id/bank"
+        style="@style/Payment_NonTax_Item_Title" />
+
+    <CheckBox
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
