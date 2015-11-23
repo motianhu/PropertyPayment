@@ -7,8 +7,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 
 import com.smona.app.propertypayment.R;
@@ -51,16 +49,7 @@ public class PaymentNonTaxAdapter extends PaymentBaseDataAdapter {
         TextView bank = (TextView) convertView.findViewById(R.id.bank);
         bank.setText(item.bank);
 
-        CheckBox box = (CheckBox) convertView.findViewById(R.id.status);
-        box.setChecked(item.isSelected);
-        box.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView,
-                    boolean isChecked) {
-                item.isSelected = isChecked;
-            }
-
-        });
+        View box = convertView.findViewById(R.id.status);
+        box.setSelected(item.isSelected);
     }
 }

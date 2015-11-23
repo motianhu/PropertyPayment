@@ -56,7 +56,7 @@ public class PayHomeActivity extends PaymentBaseActivity {
                 R.string.payment_home_wo_will_hint);
 
         initView(R.id.nontax);
-        initImageAndTextHint(R.id.nontax, R.drawable.home_property,
+        initImageAndTextHint(R.id.nontax, R.drawable.home_nontax,
                 R.string.payment_home_nontax,
                 R.string.payment_home_wo_will_hint);
     }

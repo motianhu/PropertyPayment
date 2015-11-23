@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/payment_checkbox_enable" android:state_selected="true"/>
+    <item android:drawable="@drawable/payment_checkbox_disable" android:state_selected="false"/>
+
+</selector>

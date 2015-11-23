@@ -8,4 +8,10 @@ public class PaymentNonTaxItemBean extends PaymentItemInfo {
     public String jine;
     public String bank;
     public boolean isSelected;
+
+    public String toString() {
+        return "PaymentNonTaxItemBean[kemu:" + kemu + ",leibie:" + leibie
+                + ",jine" + jine + ",bank:" + bank + ",isSelected:"
+                + isSelected + "]";
+    }
 }

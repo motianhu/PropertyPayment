@@ -3,6 +3,7 @@ package com.smona.app.propertypayment.common.ui;
 import java.util.ArrayList;
 
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
+import com.smona.app.propertypayment.common.util.LogUtil;
 
 import android.content.Context;
 import android.content.Intent;
@@ -38,6 +39,7 @@ public abstract class PaymentBaseDataAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         PaymentItemInfo info = mContent.get(position);
+        LogUtil.d("motianhu", "convertView: " + convertView + ", position: " + position);
         if (convertView == null) {
             convertView = createContentView(mContext);
             convertView.setTag(info);

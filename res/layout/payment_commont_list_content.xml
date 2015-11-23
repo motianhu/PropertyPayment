@@ -3,7 +3,7 @@
     android:background="@color/payment_commont_color_select_type_bg"
     android:layout_height="match_parent" >
 
-    <com.smona.app.propertypayment.source.xlistview.XListView
+    <ListView
         android:id="@+id/list_content"
         android:layout_width="match_parent"
         android:dividerHeight="1dp"

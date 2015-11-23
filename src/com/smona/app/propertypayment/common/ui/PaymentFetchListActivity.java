@@ -2,9 +2,11 @@ package com.smona.app.propertypayment.common.ui;
 
 import java.util.ArrayList;
 
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
-import com.smona.app.propertypayment.source.xlistview.XListView;
 import com.smona.app.propertypayment.source.xlistview.XListView.IXListViewListener;
 
 public abstract class PaymentFetchListActivity extends PaymentBaseActivity
@@ -14,18 +16,16 @@ public abstract class PaymentFetchListActivity extends PaymentBaseActivity
     private int mCurrPage = 1;
     private boolean mIsDataOver = false;
 
-    protected XListView mList;
+    protected ListView mList;
     protected PaymentBaseDataAdapter mAdapter;
 
     @Override
     public void onRefresh() {
-        stopRefresh();
     }
 
     @Override
     public void onLoadMore() {
         if (mIsDataOver) {
-            stopRefresh();
             showMessage("数据到达终点");
             return;
         }
@@ -44,12 +44,13 @@ public abstract class PaymentFetchListActivity extends PaymentBaseActivity
     }
 
     protected void setFetchListener(ArrayList<PaymentItemInfo> data) {
-        mList = (XListView) mRoot.findViewById(R.id.list_content);
+        mList = (ListView) mRoot.findViewById(R.id.list_content);
         mAdapter = createAdapter(data);
         mList.setAdapter(mAdapter);
-        mList.setPullRefreshEnable(false);
-        mList.setPullLoadEnable(true);
-        mList.setXListViewListener(this);
+    }
+
+    protected void setOnItemClickListener(OnItemClickListener listener) {
+        mList.setOnItemClickListener(listener);
     }
 
     public abstract PaymentBaseDataAdapter createAdapter(
@@ -59,15 +60,9 @@ public abstract class PaymentFetchListActivity extends PaymentBaseActivity
         mAdapter.notifyDataSetChanged();
     }
 
-    private void stopRefresh() {
-        mList.stopLoadMore();
-        mList.stopRefresh();
-    }
-
     protected void finishDialogAndRefresh() {
         runOnUiThread(new Runnable() {
             public void run() {
-                stopRefresh();
                 hideCustomProgressDialog();
             }
         });

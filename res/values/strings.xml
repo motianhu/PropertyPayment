@@ -100,6 +100,7 @@
     <string name="payment_nontax_bank">缴费银行</string>
     <string name="payment_nontax_status">状态</string>
     <string name="payment_nontax_select_all">全选</string>
+    <string name="payment_nontax_unselect_all">取消全选</string>
     
     <string name="payment_nontax_kemu_detail">科&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;目</string>
     <string name="payment_nontax_leibie_detail">类&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;别</string>

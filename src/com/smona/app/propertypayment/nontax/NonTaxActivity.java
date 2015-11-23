@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 
 import com.google.gson.reflect.TypeToken;
@@ -65,6 +67,7 @@ public class NonTaxActivity extends PaymentFetchListActivity {
         initView(R.id.next_step);
 
         setFetchListener(mShowDatas);
+        setOnItemClickListener(mOnItemClick);
     }
 
     protected void loadData() {
@@ -125,7 +128,7 @@ public class NonTaxActivity extends PaymentFetchListActivity {
             clickDetail();
             break;
         case R.id.select:
-            clickSelectAll();
+            clickAll();
             break;
         case R.id.next_step:
             clickJiaofei();
@@ -151,10 +154,64 @@ public class NonTaxActivity extends PaymentFetchListActivity {
         return PaymentConstants.DATA_SOURCE_NONTAX;
     }
 
+    private void clickAll() {
+        if (btnIsSelectAll()) {
+            clickSelectAll();
+            initSelectAllText(false);
+        } else {
+            clickUnSelectAll();
+            initSelectAllText(true);
+        }
+    }
+
+    public void changeState() {
+        if (btnIsSelectAll()) {
+            if (isSelectAll()) {
+                initSelectAllText(false);
+            }
+        } else {
+            if (!isSelectAll()) {
+                initSelectAllText(true);
+            }
+        }
+    }
+
+    private boolean btnIsSelectAll() {
+        View parent = mRoot.findViewById(R.id.select_all);
+        String content = getTextContent(parent, R.id.select);
+        return getResources().getString(R.string.payment_nontax_select_all)
+                .equalsIgnoreCase(content);
+    }
+
+    private void initSelectAllText(boolean selectAll) {
+        View parent = mRoot.findViewById(R.id.select_all);
+        initText(parent, R.id.select,
+                selectAll ? R.string.payment_nontax_select_all
+                        : R.string.payment_nontax_unselect_all);
+    }
+
+    private boolean isSelectAll() {
+        for (PaymentItemInfo info : mShowDatas) {
+            PaymentNonTaxItemBean item = (PaymentNonTaxItemBean) info;
+            if (!item.isSelected) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private void clickSelectAll() {
         for (PaymentItemInfo info : mShowDatas) {
             PaymentNonTaxItemBean item = (PaymentNonTaxItemBean) info;
             item.isSelected = true;
+        }
+        notifyDataSetChanged();
+    }
+
+    private void clickUnSelectAll() {
+        for (PaymentItemInfo info : mShowDatas) {
+            PaymentNonTaxItemBean item = (PaymentNonTaxItemBean) info;
+            item.isSelected = false;
         }
         notifyDataSetChanged();
     }
@@ -167,4 +224,17 @@ public class NonTaxActivity extends PaymentFetchListActivity {
         }
         Toast.makeText(this, "goto pay: " + size, Toast.LENGTH_SHORT).show();
     }
+
+    private OnItemClickListener mOnItemClick = new OnItemClickListener() {
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position,
+                long id) {
+            PaymentNonTaxItemBean item = (PaymentNonTaxItemBean)mShowDatas.get(position);
+            item.isSelected = !item.isSelected;
+            notifyDataSetChanged();
+            changeState();
+        }
+
+    };
 }
