@@ -92,7 +92,7 @@ public class PaymentHeatFeeActivity extends PaymentFetchListActivity {
         Type type = new TypeToken<PaymentItemInfo>() {
         }.getType();
         PaymentItemInfo bean = JsonUtils.parseJson(content, type);
-        if (PaymentHeatMessageProcessProxy.MSG_POWER_QIANFEI_DETAIL_RESPONSE
+        if (PaymentHeatMessageProcessProxy.MSG_HEAT_QIANFEI_DETAIL_RESPONSE
                 .equals(bean.iccode)) {
             if (isRequestOk(bean)) {
                 type = new TypeToken<PaymentHeatDetailItemsBean>() {

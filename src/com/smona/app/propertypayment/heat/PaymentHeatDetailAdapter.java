@@ -24,7 +24,7 @@ public class PaymentHeatDetailAdapter extends PaymentBaseDataAdapter {
     @Override
     public View createContentView(Context context) {
         return LayoutInflater.from(context).inflate(
-                R.layout.payment_nontax_list_item, null);
+                R.layout.payment_heat_detail_list_item, null);
     }
 
     @Override

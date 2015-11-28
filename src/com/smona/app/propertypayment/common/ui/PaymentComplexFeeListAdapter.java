@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
+import com.smona.app.propertypayment.heat.bean.PaymentHeatDetailBean;
 import com.smona.app.propertypayment.park.bean.PaymentParkDetailBean;
 import com.smona.app.propertypayment.power.bean.PaymentPowerDetailBean;
 import com.smona.app.propertypayment.property.bean.PaymentPropertyDetailBean;
@@ -37,6 +38,8 @@ public class PaymentComplexFeeListAdapter extends PaymentBaseDataAdapter {
             setupParkDetailViews(convertView, ((PaymentParkDetailBean) info));
         } else if (info instanceof PaymentPowerDetailBean) {
             setupPowerDetailViews(convertView, ((PaymentPowerDetailBean) info));
+        } else if (info instanceof PaymentHeatDetailBean) {
+            setupHeatDetailViews(convertView, ((PaymentHeatDetailBean) info));
         } else {
             setupPhoneDetailViews(convertView, null);
         }
@@ -102,6 +105,25 @@ public class PaymentComplexFeeListAdapter extends PaymentBaseDataAdapter {
 
         parent = convertView.findViewById(R.id.objinfo);
         initText(parent, R.id.name, R.string.payment_power_jiaofei_result);
+        initText(parent, R.id.value, item.paydscrp);
+    }
+    
+    private void setupHeatDetailViews(View convertView,
+            PaymentHeatDetailBean item) {
+        View parent = convertView.findViewById(R.id.company_name);
+        initText(parent, R.id.name, R.string.payment_heat_detail_username);
+        initText(parent, R.id.value, item.trans_name);
+
+        parent = convertView.findViewById(R.id.pay_money);
+        initText(parent, R.id.name, R.string.payment_heat_detail_total_zhinajin);
+        initText(parent, R.id.value, item.payfare);
+
+        parent = convertView.findViewById(R.id.pay_time);
+        initText(parent, R.id.name, R.string.payment_heat_detail_total_qianfei);
+        initText(parent, R.id.value, item.accountdate);
+
+        parent = convertView.findViewById(R.id.objinfo);
+        initText(parent, R.id.name, R.string.payment_heat_detail_totoal_year);
         initText(parent, R.id.value, item.paydscrp);
     }
 

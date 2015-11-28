@@ -9,30 +9,30 @@ public class PaymentHeatNetRequestMessageProcess extends
             .getSimpleName();
 
     public void requestCity(IQuestCallback callback) {
-        requestCommon(PaymentHeatMessageProcessProxy.MSG_POWER_CITY, callback);
+        requestCommon(PaymentHeatMessageProcessProxy.MSG_HEAT_CITY, callback);
     }
 
     public void requestCompany(PaymentRequestInfo request,
             IQuestCallback callback) {
-        requestCommon(PaymentHeatMessageProcessProxy.MSG_POWER_COMPANY,
+        requestCommon(PaymentHeatMessageProcessProxy.MSG_HEAT_COMPANY,
                 request, callback);
     }
 
     public void requestUserInfo(PaymentRequestInfo request,
             IQuestCallback callback) {
-        requestCommon(PaymentHeatMessageProcessProxy.MSG_POWER_USER_INFO,
+        requestCommon(PaymentHeatMessageProcessProxy.MSG_HEAT_USER_INFO,
                 request, callback);
     }
 
     public void requestPowerDetail(PaymentRequestInfo request,
             IQuestCallback callback) {
-        requestCommon(PaymentHeatMessageProcessProxy.MSG_POWER_DETAIL,
+        requestCommon(PaymentHeatMessageProcessProxy.MSG_HEAT_DETAIL,
                 request, callback);
     }
     
     public void requestQianfeiList(PaymentRequestInfo request,
             IQuestCallback callback) {
-        requestCommon(PaymentHeatMessageProcessProxy.MSG_POWER_QIANFEI_DETAIL,
+        requestCommon(PaymentHeatMessageProcessProxy.MSG_HEAT_QIANFEI_DETAIL,
                 request, callback);
     }
 }

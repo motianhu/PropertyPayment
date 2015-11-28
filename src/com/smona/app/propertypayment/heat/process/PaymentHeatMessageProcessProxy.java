@@ -9,19 +9,19 @@ public class PaymentHeatMessageProcessProxy extends PaymentMessageProcessProxy {
 
     private static final boolean DEBUG = false;
 
-    public static final String MSG_POWER_USER_INFO = "1200";
-    public static final String MSG_POWER_SUBMIT = "1300";
-    public static final String MSG_POWER_CITY = "1400";
-    public static final String MSG_POWER_COMPANY = "1800";
-    public static final String MSG_POWER_DETAIL = "1700";
-    public static final String MSG_POWER_QIANFEI_DETAIL = "1900";
+    public static final String MSG_HEAT_USER_INFO = "1200";
+    public static final String MSG_HEAT_SUBMIT = "1300";
+    public static final String MSG_HEAT_CITY = "1400";
+    public static final String MSG_HEAT_COMPANY = "1800";
+    public static final String MSG_HEAT_DETAIL = "2100";
+    public static final String MSG_HEAT_QIANFEI_DETAIL = "1900";
 
-    public static final String MSG_POWER_USER_INFO_RESPONSE = "1210";
-    public static final String MSG_POWER_SUBMIT_RESPONSE = "1310";
-    public static final String MSG_POWER_CITY_RESPONSE = "1410";
-    public static final String MSG_POWER_DETAIL_RESPONSE = "1710";
-    public static final String MSG_POWER_COMPANY_RESPONSE = "1810";
-    public static final String MSG_POWER_QIANFEI_DETAIL_RESPONSE = "1910";
+    public static final String MSG_HEAT_USER_INFO_RESPONSE = "1210";
+    public static final String MSG_HEAT_SUBMIT_RESPONSE = "1310";
+    public static final String MSG_HEAT_CITY_RESPONSE = "1410";
+    public static final String MSG_HEAT_DETAIL_RESPONSE = "2110";
+    public static final String MSG_HEAT_COMPANY_RESPONSE = "1810";
+    public static final String MSG_HEAT_QIANFEI_DETAIL_RESPONSE = "1910";
 
     public PaymentHeatMessageProcessProxy() {
         mLocal = new PaymentHeatLocalMessageProcess();

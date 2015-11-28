@@ -94,7 +94,7 @@ public class HeatActivity extends PaymentBaseActivity {
         Type type = new TypeToken<PaymentItemInfo>() {
         }.getType();
         PaymentItemInfo bean = JsonUtils.parseJson(content, type);
-        if (PaymentHeatMessageProcessProxy.MSG_POWER_CITY_RESPONSE
+        if (PaymentHeatMessageProcessProxy.MSG_HEAT_CITY_RESPONSE
                 .equals(bean.iccode)) {
             if (isRequestOk(bean)) {
                 type = new TypeToken<PaymentHeatCityListBean>() {
@@ -108,7 +108,7 @@ public class HeatActivity extends PaymentBaseActivity {
             } else {
 
             }
-        } else if (PaymentHeatMessageProcessProxy.MSG_POWER_COMPANY_RESPONSE
+        } else if (PaymentHeatMessageProcessProxy.MSG_HEAT_COMPANY_RESPONSE
                 .equals(bean.iccode)) {
             if (isRequestOk(bean)) {
                 type = new TypeToken<PaymentHeatCompanyListBean>() {
@@ -122,7 +122,7 @@ public class HeatActivity extends PaymentBaseActivity {
             } else {
 
             }
-        } else if (PaymentHeatMessageProcessProxy.MSG_POWER_USER_INFO_RESPONSE
+        } else if (PaymentHeatMessageProcessProxy.MSG_HEAT_USER_INFO_RESPONSE
                 .equals(bean.iccode)) {
             if (isRequestOk(bean)) {
                 type = new TypeToken<PaymentHeatQueryUserBean>() {

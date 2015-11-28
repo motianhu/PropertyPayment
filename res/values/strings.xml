@@ -115,4 +115,8 @@
     <string name="payment_heat_danjia">单价</string>
     <string name="payment_heat_zhinajin">滞纳金(元)</string>
     <string name="payment_heat_yingjiao">应缴金额(元)</string>
+    <string name="payment_heat_detail_username">用户姓名</string>
+    <string name="payment_heat_detail_total_zhinajin">总滞纳金(元)</string>
+    <string name="payment_heat_detail_total_qianfei">总欠费(元)</string>
+    <string name="payment_heat_detail_totoal_year">总缴费年数</string>
 </resources>

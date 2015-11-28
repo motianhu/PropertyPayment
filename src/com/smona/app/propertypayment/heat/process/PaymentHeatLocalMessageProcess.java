@@ -39,7 +39,7 @@ public class PaymentHeatLocalMessageProcess extends
         if (callback == null) {
             return;
         }
-        callback.onResult(true, geFileFromAssets(context, "power_detail.txt"));
+        callback.onResult(true, geFileFromAssets(context, "heat_detail.txt"));
     }
     
     public void requestQianfeiList(Context context,

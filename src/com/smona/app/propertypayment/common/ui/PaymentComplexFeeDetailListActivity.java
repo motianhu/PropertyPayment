@@ -11,6 +11,8 @@ import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
+import com.smona.app.propertypayment.heat.bean.PaymentHeatDetailsBean;
+import com.smona.app.propertypayment.heat.process.PaymentHeatMessageProcessProxy;
 import com.smona.app.propertypayment.nontax.bean.PaymentNonTaxDetailItemsBean;
 import com.smona.app.propertypayment.nontax.process.PaymentNonTaxMessageProcessProxy;
 import com.smona.app.propertypayment.park.bean.PaymentParkDetailsBean;
@@ -77,6 +79,10 @@ public class PaymentComplexFeeDetailListActivity extends
             mMessageProcess = new PaymentNonTaxMessageProcessProxy();
             ((PaymentNonTaxMessageProcessProxy) mMessageProcess).requestDetail(
                     this, request, this);
+        } else if (mSourceType == PaymentConstants.DATA_SOURCE_HEAT) {
+            mMessageProcess = new PaymentHeatMessageProcessProxy();
+            ((PaymentHeatMessageProcessProxy) mMessageProcess).requestDetail(
+                    this, request, this);
         } else {
             hideCustomProgressDialog();
         }
@@ -134,6 +140,20 @@ public class PaymentComplexFeeDetailListActivity extends
                 type = new TypeToken<PaymentNonTaxDetailItemsBean>() {
                 }.getType();
                 PaymentNonTaxDetailItemsBean detailsBean = JsonUtils.parseJson(
+                        content, type);
+                if (detailsBean.icobject != null) {
+                    mAllDatas.addAll(detailsBean.icobject);
+                }
+                requestRefreshUI();
+            } else {
+
+            }
+        } else if (PaymentHeatMessageProcessProxy.MSG_HEAT_DETAIL_RESPONSE
+                .equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentHeatDetailsBean>() {
+                }.getType();
+                PaymentHeatDetailsBean detailsBean = JsonUtils.parseJson(
                         content, type);
                 if (detailsBean.icobject != null) {
                     mAllDatas.addAll(detailsBean.icobject);

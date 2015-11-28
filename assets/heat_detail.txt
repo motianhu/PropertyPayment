@@ -1,0 +1,38 @@
+{
+    "iccode": "2110",
+    "loginname": "13939093625",
+    "sessionid": "48RTFBHV",
+    "answercode": "00",
+    "icobject": [
+        {
+            "trans_name": "用户A",
+            "accountdate": "1333",
+            "payfare": "1800",
+            "paydscrp": "1"
+        },
+        {
+            "trans_name": "用户A",
+            "accountdate": "1333",
+            "payfare": "1800",
+            "paydscrp": "1"
+        },
+        {
+            "trans_name": "用户A",
+            "accountdate": "1333",
+            "payfare": "1800",
+            "paydscrp": "1"
+        },
+        {
+            "trans_name": "用户A",
+            "accountdate": "1333",
+            "payfare": "1800",
+            "paydscrp": "1"
+        },
+        {
+            "trans_name": "用户A",
+            "accountdate": "1333",
+            "payfare": "1800",
+            "paydscrp": "1"
+        }
+    ]
+}

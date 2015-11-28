@@ -5,29 +5,22 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:orientation="horizontal"
-    android:weightSum="5" >
+    android:weightSum="4" >
 
     <TextView
-        android:id="@+id/kemu"
-        style="@style/Payment_NonTax_Item_Title" />
+        android:id="@+id/qianfei"
+        style="@style/Payment_Heat_Item_Title" />
 
     <TextView
-        android:id="@+id/leibie"
-        style="@style/Payment_NonTax_Item_Title" />
+        android:id="@+id/danjia"
+        style="@style/Payment_Heat_Item_Title" />
 
     <TextView
-        android:id="@+id/jine"
-        style="@style/Payment_NonTax_Item_Title" />
+        android:id="@+id/zhinajin"
+        style="@style/Payment_Heat_Item_Title" />
 
     <TextView
-        android:id="@+id/bank"
-        style="@style/Payment_NonTax_Item_Title" />
-
-    <ImageView
-        android:id="@+id/status"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:src="@drawable/payment_checkbox" />
+        android:id="@+id/yingjiao"
+        style="@style/Payment_Heat_Item_Title" />
 
 </LinearLayout>
