@@ -37,6 +37,7 @@
     <string name="payment_home_park">停车费</string>
     <string name="payment_home_property">物业费</string>
     <string name="payment_home_nontax">非税缴费</string>
+    <string name="payment_home_heat">热力缴费</string>
     <string name="payment_home_wo_will_hint">我要缴费</string>
     <string name="payment_home_wo_will">立即缴费</string>
 
@@ -106,4 +107,12 @@
     <string name="payment_nontax_leibie_detail">类&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;别</string>
     <string name="payment_nontax_jine_detail">金&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;额</string>
     <string name="payment_nontax_status_detail">状&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;态</string>
+    
+    <!-- 热力缴费 -->
+    <string name="payment_heat_company">供热单位</string>
+    <string name="payment_heat_select_company">请选择供热单位</string>
+    <string name="payment_heat_qianfei_time">欠费时间</string>
+    <string name="payment_heat_danjia">单价</string>
+    <string name="payment_heat_zhinajin">滞纳金(元)</string>
+    <string name="payment_heat_yingjiao">应缴金额(元)</string>
 </resources>

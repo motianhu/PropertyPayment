@@ -1,0 +1,38 @@
+{
+    "iccode": "1910",
+    "loginname": "13939093625",
+    "sessionid": "48RTFBHV",
+    "answercode": "00",
+    "icobject": [
+        {
+            "qianfei": "2013",
+            "danjia": "2",
+            "zhinajin": "560",
+            "yingjiao": "760"
+        },
+        {
+            "qianfei": "2013",
+            "danjia": "3",
+            "zhinajin": "3000",
+            "yingjiao": "760"
+        },
+        {
+            "qianfei": "2014",
+            "danjia": "4",
+            "zhinajin": "200",
+            "yingjiao": "760"
+        },
+        {
+            "qianfei": "2014",
+            "danjia": "5",
+            "zhinajin": "200",
+            "yingjiao": "300"
+        },
+        {
+            "qianfei": "2014",
+            "danjia": "5",
+            "zhinajin": "200",
+            "yingjiao": "300"
+        }
+    ]
+}

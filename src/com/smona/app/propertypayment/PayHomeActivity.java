@@ -2,6 +2,7 @@ package com.smona.app.propertypayment;
 
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
 import com.smona.app.propertypayment.gas.GasActivity;
+import com.smona.app.propertypayment.heat.HeatActivity;
 import com.smona.app.propertypayment.nontax.NonTaxActivity;
 import com.smona.app.propertypayment.park.ParkActivity;
 import com.smona.app.propertypayment.phone.PhoneActivity;
@@ -59,6 +60,11 @@ public class PayHomeActivity extends PaymentBaseActivity {
         initImageAndTextHint(R.id.nontax, R.drawable.home_nontax,
                 R.string.payment_home_nontax,
                 R.string.payment_home_wo_will_hint);
+        
+        initView(R.id.heat);
+        initImageAndTextHint(R.id.heat, R.drawable.home_nontax,
+                R.string.payment_home_heat,
+                R.string.payment_home_wo_will_hint);
     }
 
     private void initImageAndTextHint(int parentResId, int imageResId,
@@ -111,6 +117,9 @@ public class PayHomeActivity extends PaymentBaseActivity {
             break;
         case R.id.nontax:
             gotoSubActivity(NonTaxActivity.class);
+            break;
+        case R.id.heat:
+            gotoSubActivity(HeatActivity.class);
             break;
         }
     }

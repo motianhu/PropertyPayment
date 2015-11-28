@@ -106,6 +106,21 @@
             android:name=".nontax.NonTaxActivity"
             android:label="@string/payment_home_nontax"
             android:screenOrientation="portrait" />
+        
+        <!-- 热力缴费 -->
+        <activity
+            android:name=".heat.HeatActivity"
+            android:label="@string/payment_home_heat"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".heat.PaymentHeatFeeActivity"
+            android:label="@string/payment_home_heat"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".heat.PaymentHeatConfirmActivity"
+            android:label="@string/payment_home_heat"
+            android:screenOrientation="portrait" >
+        </activity>
 
         <!-- 公用 -->
         <activity

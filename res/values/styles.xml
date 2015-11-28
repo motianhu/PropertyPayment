@@ -50,5 +50,27 @@
         <item name="android:textColor">@color/payment_color_common_title</item>
         <item name="android:textSize">12sp</item>
     </style>
+        
+    <style name="Payment_Heat_Title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/payment_color_common_title</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    
+    <style name="Payment_Heat_Item_Title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/payment_color_common_title</item>
+        <item name="android:textSize">10sp</item>
+    </style>
 
 </resources>
