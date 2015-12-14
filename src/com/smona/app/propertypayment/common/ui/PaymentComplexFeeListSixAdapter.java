@@ -38,7 +38,7 @@ public class PaymentComplexFeeListSixAdapter extends PaymentBaseDataAdapter {
             PaymentNonTaxDetailItemBean item) {
         View parent = convertView.findViewById(R.id.kemu);
         initText(parent, R.id.name, R.string.payment_nontax_kemu_detail);
-        initText(parent, R.id.value, item.kemu);
+        initText(parent, R.id.value, item.stpaymentname);
 
         parent = convertView.findViewById(R.id.leibie);
         initText(parent, R.id.name, R.string.payment_nontax_leibie_detail);
@@ -50,13 +50,13 @@ public class PaymentComplexFeeListSixAdapter extends PaymentBaseDataAdapter {
 
         parent = convertView.findViewById(R.id.jine);
         initText(parent, R.id.name, R.string.payment_nontax_jine_detail);
-        initText(parent, R.id.value, item.jine
+        initText(parent, R.id.value, item.payfare
                 + mContext.getResources()
                         .getString(R.string.payment_common_rmb));
 
         parent = convertView.findViewById(R.id.pay_time);
         initText(parent, R.id.name, R.string.payment_common_pay_time);
-        initText(parent, R.id.value, item.time);
+        initText(parent, R.id.value, item.paydate);
 
         parent = convertView.findViewById(R.id.status);
         initText(parent, R.id.name, R.string.payment_nontax_status_detail);

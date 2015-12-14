@@ -6,6 +6,8 @@ import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentTypeItem;
 import com.smona.app.propertypayment.common.ui.PaymentSimpleFeeActivity;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
+import com.smona.app.propertypayment.property.bean.PaymentPropertyBean;
+import com.smona.app.propertypayment.property.process.PaymentPropertyMessageProcessProxy;
 
 public class WaterActivity extends PaymentSimpleFeeActivity {
 
@@ -50,9 +52,17 @@ public class WaterActivity extends PaymentSimpleFeeActivity {
         }
 
     }
+    
+    protected void loadData() {
+        requestData();
+    }
 
     protected void requestData() {
         showCustomProgrssDialog();
+        
+        mMessageProcess = new PaymentPropertyMessageProcessProxy();
+        ((PaymentPropertyMessageProcessProxy) mMessageProcess).requestFangchan(
+                this, this);
     }
 
     protected void saveData(String content) {

@@ -1,10 +1,10 @@
-package com.smona.app.propertypayment.power.process;
+package com.smona.app.propertypayment.common.simple.process;
 
 import com.smona.app.propertypayment.process.PaymentLocalMessageProcess;
 
 import android.content.Context;
 
-public class PaymentPowerLocalMessageProcess extends
+public class PaymentSimpleLocalMessageProcess extends
         PaymentLocalMessageProcess {
     
     public void requestCity(Context context,

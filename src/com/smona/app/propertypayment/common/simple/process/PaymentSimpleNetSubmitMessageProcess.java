@@ -1,11 +1,11 @@
-package com.smona.app.propertypayment.power.process;
+package com.smona.app.propertypayment.common.simple.process;
 
 import com.smona.app.propertypayment.process.PaymentNetSubmitMessageProcess;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
 
 import android.content.Context;
 
-public class PaymentPowerNetSubmitMessageProcess extends
+public class PaymentSimpleNetSubmitMessageProcess extends
         PaymentNetSubmitMessageProcess {
     private static final String MSG_WUYEBAOXIU_SUBMIT = "3300";
     private static final String MSG_WUYEBAOXIU_PINGJIA_SUBMIT = "3600";

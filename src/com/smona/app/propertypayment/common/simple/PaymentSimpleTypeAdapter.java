@@ -1,4 +1,4 @@
-package com.smona.app.propertypayment.power;
+package com.smona.app.propertypayment.common.simple;
 
 import java.util.ArrayList;
 
@@ -12,9 +12,9 @@ import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
-public class PaymentPowerTypeAdapter extends PaymentTypeAdapter {
+public class PaymentSimpleTypeAdapter extends PaymentTypeAdapter {
 
-    public PaymentPowerTypeAdapter(Context context,
+    public PaymentSimpleTypeAdapter(Context context,
             ArrayList<PaymentItemInfo> content) {
         super(context, content);
     }

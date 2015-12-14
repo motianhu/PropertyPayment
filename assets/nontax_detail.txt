@@ -5,75 +5,75 @@
     "answercode": "00",
     "icobject": [
         {
-            "kemu": "203",
+            "stpaymentname": "203",
             "leibie": "学杂费",
-            "jine": "560",
+            "payfare": "560",
             "bank": "农业银行",
-            "time": "2015-11-10",
+            "paydate": "2015-11-10",
             "status": "已缴费"
         },
         {
-            "kemu": "204",
+            "stpaymentname": "204",
             "leibie": "学费",
-            "jine": "3000",
+            "payfare": "3000",
             "bank": "农业银行",
-            "time": "2015-11-10",
+            "paydate": "2015-11-10",
             "status": "已缴费"
         },
         {
-            "kemu": "205",
+            "stpaymentname": "205",
             "leibie": "网费",
-            "jine": "200",
+            "payfare": "200",
             "bank": "农业银行",
-            "time": "2015-11-10",
+            "paydate": "2015-11-10",
             "status": "已缴费"
         },
         {
-            "kemu": "206",
+            "stpaymentname": "206",
             "leibie": "网费1",
-            "jine": "200",
+            "payfare": "200",
             "bank": "建设银行",
-            "time": "2015-11-10",
+            "paydate": "2015-11-10",
             "status": "已缴费"
         },
         {
-            "kemu": "207",
+            "stpaymentname": "207",
             "leibie": "网费2",
-            "jine": "200",
+            "payfare": "200",
             "bank": "建设银行",
-            "time": "2015-11-10",
+            "paydate": "2015-11-10",
             "status": "已缴费"
         },
         {
-            "kemu": "208",
+            "stpaymentname": "208",
             "leibie": "网费3",
-            "jine": "200",
+            "payfare": "200",
             "bank": "建设银行",
-            "time": "2015-11-10",
+            "paydate": "2015-11-10",
             "status": "已缴费"
         },
         {
-            "kemu": "209",
+            "stpaymentname": "209",
             "leibie": "网费4",
-            "jine": "200",
+            "payfare": "200",
             "bank": "工商银行",
-            "time": "2015-11-10",
+            "paydate": "2015-11-10",
             "status": "已缴费"
         },
         {
-            "kemu": "210",
+            "stpaymentname": "210",
             "leibie": "网费5",
-            "jine": "200",
+            "payfare": "200",
             "bank": "工商银行",
-            "time": "2015-11-10",
+            "paydate": "2015-11-10",
             "status": "已缴费"
         },
         {
-            "kemu": "211",
+            "stpaymentname": "211",
             "leibie": "网费6",
-            "jine": "200",
+            "payfare": "200",
             "bank": "工商银行",
-            "time": "2015-11-10",
+            "paydate": "2015-11-10",
             "status": "已缴费"
         }
     ]

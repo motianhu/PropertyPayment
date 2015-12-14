@@ -1,4 +1,4 @@
-package com.smona.app.propertypayment.heat;
+package com.smona.app.propertypayment.common.simple;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -12,29 +12,26 @@ import android.widget.TextView;
 import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
-import com.smona.app.propertypayment.common.data.submit.PaymentHeatSubmitBean;
 import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
+import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCityListBean;
+import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCompanyBean;
+import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCityBean;
+import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeConstants;
+import com.smona.app.propertypayment.common.simple.process.PaymentSimpleMessageProcessProxy;
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
 import com.smona.app.propertypayment.common.ui.PaymentComplexFeeDetailListActivity;
 import com.smona.app.propertypayment.common.ui.PaymentTypeAdapter;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
-import com.smona.app.propertypayment.heat.bean.PaymentHeatCityBean;
-import com.smona.app.propertypayment.heat.bean.PaymentHeatCityListBean;
-import com.smona.app.propertypayment.heat.bean.PaymentHeatCompanyBean;
-import com.smona.app.propertypayment.heat.bean.PaymentHeatCompanyListBean;
-import com.smona.app.propertypayment.heat.bean.PaymentHeatQueryUserBean;
-import com.smona.app.propertypayment.heat.bean.PaymentHeatRequestCompanyBean;
-import com.smona.app.propertypayment.heat.bean.PaymentHeatRequestUserQueryBean;
-import com.smona.app.propertypayment.heat.process.PaymentHeatMessageProcessProxy;
+import com.smona.app.propertypayment.power.bean.PaymentPowerCompanyBean;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
 
-public class HeatActivity extends PaymentBaseActivity {
+public abstract class PaymentSimpleActivity extends PaymentBaseActivity {
     private static final String TAG = "PowerActivity";
 
-    private ArrayList<PaymentItemInfo> mCityList = new ArrayList<PaymentItemInfo>();
-    private ArrayList<PaymentItemInfo> mCompanyList = new ArrayList<PaymentItemInfo>();
+    protected ArrayList<PaymentItemInfo> mCityList = new ArrayList<PaymentItemInfo>();
+    protected ArrayList<PaymentItemInfo> mCompanyList = new ArrayList<PaymentItemInfo>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,24 +47,23 @@ public class HeatActivity extends PaymentBaseActivity {
     }
 
     protected void initHeader() {
-        initText(R.id.title, R.string.payment_home_heat);
+        initTitle();
         initView(R.id.back);
         initText(R.id.detail, R.string.payment_common_query);
         initView(R.id.detail);
     }
 
+    protected abstract void initTitle();
+
     @Override
     protected void initBody() {
         View parent = mRoot.findViewById(R.id.select_city);
-        initTextHint(parent, R.id.select_type, R.string.payment_heat_company);
+        initTextHint(parent, R.id.select_type,
+                R.string.payment_power_select_city);
         initText(parent, R.id.select_type_value, R.string.payment_power_city);
         initView(R.id.select_city);
 
-        parent = mRoot.findViewById(R.id.select_company);
-        initTextHint(parent, R.id.select_type,
-                R.string.payment_heat_select_company);
-        initText(parent, R.id.select_type_value, R.string.payment_heat_company);
-        initView(R.id.select_company);
+        initOriNo();
 
         parent = mRoot.findViewById(R.id.input_huhao);
         initTextHint(parent, R.id.value, R.string.payment_power_input_huhao);
@@ -78,28 +74,25 @@ public class HeatActivity extends PaymentBaseActivity {
         initView(R.id.next_step);
     }
 
+    protected abstract void initOriNo();
+
     protected void loadData() {
+        showCustomProgrssDialog();
         requestData();
     }
 
-    protected void requestData() {
-        showCustomProgrssDialog();
-
-        mMessageProcess = new PaymentHeatMessageProcessProxy();
-        ((PaymentHeatMessageProcessProxy) mMessageProcess).requestCity(this,
-                this);
-    }
+    protected abstract void requestData();
 
     protected void saveData(String content) {
         Type type = new TypeToken<PaymentItemInfo>() {
         }.getType();
         PaymentItemInfo bean = JsonUtils.parseJson(content, type);
-        if (PaymentHeatMessageProcessProxy.MSG_HEAT_CITY_RESPONSE
+        if (PaymentSimpleCodeConstants.MSG_POWER_CITY_RESPONSE
                 .equals(bean.iccode)) {
             if (isRequestOk(bean)) {
-                type = new TypeToken<PaymentHeatCityListBean>() {
+                type = new TypeToken<PaymentSimpleCityListBean>() {
                 }.getType();
-                PaymentHeatCityListBean list = JsonUtils.parseJson(content,
+                PaymentSimpleCityListBean list = JsonUtils.parseJson(content,
                         type);
                 mCityList.clear();
                 if (list.icobject != null) {
@@ -108,38 +101,14 @@ public class HeatActivity extends PaymentBaseActivity {
             } else {
 
             }
-        } else if (PaymentHeatMessageProcessProxy.MSG_HEAT_COMPANY_RESPONSE
-                .equals(bean.iccode)) {
-            if (isRequestOk(bean)) {
-                type = new TypeToken<PaymentHeatCompanyListBean>() {
-                }.getType();
-                PaymentHeatCompanyListBean list = JsonUtils.parseJson(content,
-                        type);
-                mCompanyList.clear();
-                if (list.icobject != null) {
-                    mCompanyList.addAll(list.icobject);
-                }
-            } else {
-
-            }
-        } else if (PaymentHeatMessageProcessProxy.MSG_HEAT_USER_INFO_RESPONSE
-                .equals(bean.iccode)) {
-            if (isRequestOk(bean)) {
-                type = new TypeToken<PaymentHeatQueryUserBean>() {
-                }.getType();
-                PaymentHeatQueryUserBean item = JsonUtils.parseJson(content,
-                        type);
-                if ("0000".equals(item.return_code)) {
-                    gotoNextStep(item);
-                } else {
-
-                }
-            } else {
-
-            }
+        } else {
+            parseData(content);
         }
+        
         hideCustomProgressDialog();
     }
+    
+    protected abstract void parseData(String content);
 
     protected void failedRequest() {
         hideCustomProgressDialog();
@@ -151,7 +120,7 @@ public class HeatActivity extends PaymentBaseActivity {
 
     protected PaymentTypeAdapter createTypeAdapter(
             ArrayList<PaymentItemInfo> datas) {
-        return new PaymentHeatTypeAdapter(this, datas);
+        return new PaymentSimpleTypeAdapter(this, datas);
     }
 
     protected void clickSelectCity() {
@@ -176,14 +145,14 @@ public class HeatActivity extends PaymentBaseActivity {
                 PaymentItemInfo info = datas.get(which);
                 LogUtil.d(TAG, "clickSelectCompany: " + info);
                 relativeDataForUI(R.id.select_company, info,
-                        ((PaymentHeatCompanyBean) info).org_name);
+                        ((PaymentPowerCompanyBean) info).org_name);
             }
         });
     }
 
     protected void requestRelativeData(View root, PaymentItemInfo source) {
         // refresh ui
-        PaymentHeatCityBean city = (PaymentHeatCityBean) source;
+        PaymentSimpleCityBean city = (PaymentSimpleCityBean) source;
         boolean noChange = relativeDataForUI(R.id.select_city, source,
                 city.cityname);
         if (noChange) {
@@ -195,11 +164,13 @@ public class HeatActivity extends PaymentBaseActivity {
         // loading relative data;
         showCustomProgrssDialog();
 
-        PaymentRequestInfo request = new PaymentHeatRequestCompanyBean();
-        ((PaymentHeatRequestCompanyBean) request).citycode = city.citycode;
-        ((PaymentHeatMessageProcessProxy) mMessageProcess).requestCompany(this,
-                request, this);
+        PaymentRequestInfo request = new PaymentSimpleCompanyBean();
+        ((PaymentSimpleCompanyBean) request).citycode = city.citycode;
+        ((PaymentSimpleMessageProcessProxy) mMessageProcess).requestCompany(getCompanyRequestCode(),
+                this, request, this);
     }
+    
+    protected abstract String getCompanyRequestCode();
 
     private boolean relativeDataForUI(int resId, PaymentItemInfo source,
             String name) {
@@ -236,13 +207,13 @@ public class HeatActivity extends PaymentBaseActivity {
 
     private void clickNextStep() {
         Object city = getTag(R.id.select_city);
-        if (!(city instanceof PaymentHeatCityBean)) {
+        if (!(city instanceof PaymentSimpleCityBean)) {
             showMessage("请选择所属地市");
             return;
         }
 
         Object company = getTag(R.id.select_company);
-        if (!(company instanceof PaymentHeatCompanyBean)) {
+        if (!(company instanceof PaymentPowerCompanyBean)) {
             showMessage("请选择供电单位");
             return;
         }
@@ -255,55 +226,20 @@ public class HeatActivity extends PaymentBaseActivity {
             return;
         }
 
-        verdifyData("", ((PaymentHeatCompanyBean) company).org_no, housecode);
-    }
-
-    private void verdifyData(String cityCode, String org_no, String consno) {
-        // loading relative data;
         showCustomProgrssDialog();
-
-        PaymentRequestInfo request = new PaymentHeatRequestUserQueryBean();
-        ((PaymentHeatRequestUserQueryBean) request).org_no = org_no;
-        ((PaymentHeatRequestUserQueryBean) request).consno = consno;
-        ((PaymentHeatMessageProcessProxy) mMessageProcess).requestUserInfo(
-                this, request, this);
+        verdifyData("", ((PaymentPowerCompanyBean) company).org_no, housecode);
     }
 
-    private void gotoNextStep(PaymentHeatQueryUserBean item) {
-        PaymentSubmitBean fee = createFeedan(item);
-        gotoSubActivity(fee, PaymentHeatFeeActivity.class);
-    }
+    protected abstract void verdifyData(String cityCode, String org_no, String consno);
 
-    protected PaymentSubmitBean createFeedan(PaymentHeatQueryUserBean item) {
-
-        PaymentHeatSubmitBean pay = new PaymentHeatSubmitBean();
-
-        View parent = mRoot.findViewById(R.id.select_company);
-        PaymentHeatCompanyBean company = (PaymentHeatCompanyBean) getTag(
-                parent, R.id.select_company);
-
-        parent = mRoot.findViewById(R.id.input_huhao);
-        String housecode = ((TextView) parent.findViewById(R.id.value))
-                .getText().toString();
-        pay.consno = housecode;
-        pay.trans_name = item.trans_name;
-
-        pay.org_no = company.org_no;
-        pay.org_name = company.org_name;
-
-        pay.exchg_atm = item.exchg_atm;
-        pay.postradeno = item.postradeno;
-        pay.accountdate = item.postradeno;
-
-        return pay;
-    }
+    protected abstract PaymentSubmitBean createFeedan(PaymentItemInfo item);
 
     private void clickDetail() {
         gotoSubActivity(getSource(), PaymentComplexFeeDetailListActivity.class);
     }
 
     protected int getSource() {
-        return PaymentConstants.DATA_SOURCE_HEAT;
+        return PaymentConstants.DATA_SOURCE_POWER;
     }
 
     protected Intent createIntent() {

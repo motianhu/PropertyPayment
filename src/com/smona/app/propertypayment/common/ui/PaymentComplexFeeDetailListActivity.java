@@ -9,6 +9,8 @@ import android.view.View;
 import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
+import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeConstants;
+import com.smona.app.propertypayment.common.simple.process.PaymentSimpleMessageProcessProxy;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
 import com.smona.app.propertypayment.heat.bean.PaymentHeatDetailsBean;
@@ -18,7 +20,6 @@ import com.smona.app.propertypayment.nontax.process.PaymentNonTaxMessageProcessP
 import com.smona.app.propertypayment.park.bean.PaymentParkDetailsBean;
 import com.smona.app.propertypayment.park.process.PaymentParkMessageProcessProxy;
 import com.smona.app.propertypayment.power.bean.PaymentPowerDetailsBean;
-import com.smona.app.propertypayment.power.process.PaymentPowerMessageProcessProxy;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
 import com.smona.app.propertypayment.property.bean.PaymentPropertyDetailsBean;
 import com.smona.app.propertypayment.property.process.PaymentPropertyMessageProcessProxy;
@@ -72,8 +73,8 @@ public class PaymentComplexFeeDetailListActivity extends
             ((PaymentParkMessageProcessProxy) mMessageProcess).requestDetail(
                     this, request, this);
         } else if (mSourceType == PaymentConstants.DATA_SOURCE_POWER) {
-            mMessageProcess = new PaymentPowerMessageProcessProxy();
-            ((PaymentPowerMessageProcessProxy) mMessageProcess).requestDetail(
+            mMessageProcess = new PaymentSimpleMessageProcessProxy();
+            ((PaymentSimpleMessageProcessProxy) mMessageProcess).requestDetail(
                     this, request, this);
         } else if (mSourceType == PaymentConstants.DATA_SOURCE_NONTAX) {
             mMessageProcess = new PaymentNonTaxMessageProcessProxy();
@@ -120,7 +121,7 @@ public class PaymentComplexFeeDetailListActivity extends
             } else {
 
             }
-        } else if (PaymentPowerMessageProcessProxy.MSG_POWER_DETAIL_RESPONSE
+        } else if (PaymentSimpleCodeConstants.MSG_POWER_DETAIL_RESPONSE
                 .equals(bean.iccode)) {
             if (isRequestOk(bean)) {
                 type = new TypeToken<PaymentPowerDetailsBean>() {

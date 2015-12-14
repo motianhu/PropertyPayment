@@ -1,8 +1,8 @@
-package com.smona.app.propertypayment.power.bean;
+package com.smona.app.propertypayment.common.simple.process;
 
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 
-public class PaymentPowerCityBean extends PaymentItemInfo {
+public class PaymentSimpleCityBean extends PaymentItemInfo {
     public String citycode;
     public String cityname;
 }
