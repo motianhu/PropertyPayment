@@ -13,9 +13,12 @@ import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
-import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCityListBean;
-import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCompanyBean;
-import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCityBean;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleCityBean;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleCityListBean;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleCompanyBean;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleQueryCompanyBean;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleQueryUserBean;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleRequestUserQueryBean;
 import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeConstants;
 import com.smona.app.propertypayment.common.simple.process.PaymentSimpleMessageProcessProxy;
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
@@ -24,11 +27,11 @@ import com.smona.app.propertypayment.common.ui.PaymentTypeAdapter;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
-import com.smona.app.propertypayment.power.bean.PaymentPowerCompanyBean;
+import com.smona.app.propertypayment.power.PaymentPowerFeeActivity;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
 
 public abstract class PaymentSimpleActivity extends PaymentBaseActivity {
-    private static final String TAG = "PowerActivity";
+    protected static String TAG = "PaymentSimpleActivity";
 
     protected ArrayList<PaymentItemInfo> mCityList = new ArrayList<PaymentItemInfo>();
     protected ArrayList<PaymentItemInfo> mCompanyList = new ArrayList<PaymentItemInfo>();
@@ -77,18 +80,21 @@ public abstract class PaymentSimpleActivity extends PaymentBaseActivity {
     protected abstract void initOriNo();
 
     protected void loadData() {
-        showCustomProgrssDialog();
         requestData();
     }
 
-    protected abstract void requestData();
+    private void requestData() {
+        showCustomProgrssDialog();
+        mMessageProcess = new PaymentSimpleMessageProcessProxy();
+        ((PaymentSimpleMessageProcessProxy) mMessageProcess).requestCity(
+                PaymentSimpleCodeConstants.MSG_CITY, this, this);
+    }
 
     protected void saveData(String content) {
         Type type = new TypeToken<PaymentItemInfo>() {
         }.getType();
         PaymentItemInfo bean = JsonUtils.parseJson(content, type);
-        if (PaymentSimpleCodeConstants.MSG_POWER_CITY_RESPONSE
-                .equals(bean.iccode)) {
+        if (PaymentSimpleCodeConstants.MSG_CITY_RESPONSE.equals(bean.iccode)) {
             if (isRequestOk(bean)) {
                 type = new TypeToken<PaymentSimpleCityListBean>() {
                 }.getType();
@@ -104,10 +110,10 @@ public abstract class PaymentSimpleActivity extends PaymentBaseActivity {
         } else {
             parseData(content);
         }
-        
+
         hideCustomProgressDialog();
     }
-    
+
     protected abstract void parseData(String content);
 
     protected void failedRequest() {
@@ -145,7 +151,7 @@ public abstract class PaymentSimpleActivity extends PaymentBaseActivity {
                 PaymentItemInfo info = datas.get(which);
                 LogUtil.d(TAG, "clickSelectCompany: " + info);
                 relativeDataForUI(R.id.select_company, info,
-                        ((PaymentPowerCompanyBean) info).org_name);
+                        ((PaymentSimpleCompanyBean) info).org_name);
             }
         });
     }
@@ -164,12 +170,12 @@ public abstract class PaymentSimpleActivity extends PaymentBaseActivity {
         // loading relative data;
         showCustomProgrssDialog();
 
-        PaymentRequestInfo request = new PaymentSimpleCompanyBean();
-        ((PaymentSimpleCompanyBean) request).citycode = city.citycode;
-        ((PaymentSimpleMessageProcessProxy) mMessageProcess).requestCompany(getCompanyRequestCode(),
-                this, request, this);
+        PaymentRequestInfo request = new PaymentSimpleQueryCompanyBean();
+        ((PaymentSimpleQueryCompanyBean) request).citycode = city.citycode;
+        ((PaymentSimpleMessageProcessProxy) mMessageProcess).requestCompany(
+                getCompanyRequestCode(), this, request, this);
     }
-    
+
     protected abstract String getCompanyRequestCode();
 
     private boolean relativeDataForUI(int resId, PaymentItemInfo source,
@@ -213,7 +219,7 @@ public abstract class PaymentSimpleActivity extends PaymentBaseActivity {
         }
 
         Object company = getTag(R.id.select_company);
-        if (!(company instanceof PaymentPowerCompanyBean)) {
+        if (!(company instanceof PaymentSimpleCompanyBean)) {
             showMessage("请选择供电单位");
             return;
         }
@@ -227,10 +233,18 @@ public abstract class PaymentSimpleActivity extends PaymentBaseActivity {
         }
 
         showCustomProgrssDialog();
-        verdifyData("", ((PaymentPowerCompanyBean) company).org_no, housecode);
+        verdifyData("", ((PaymentSimpleCompanyBean) company).org_no, housecode);
     }
 
-    protected abstract void verdifyData(String cityCode, String org_no, String consno);
+    protected void verdifyData(String cityCode, String org_no, String consno) {
+        PaymentRequestInfo request = new PaymentSimpleRequestUserQueryBean();
+        ((PaymentSimpleRequestUserQueryBean) request).org_no = org_no;
+        ((PaymentSimpleRequestUserQueryBean) request).consno = consno;
+        ((PaymentSimpleMessageProcessProxy) mMessageProcess).requestUserInfo(
+                getVerdifyRequestCode(), this, request, this);
+    }
+
+    protected abstract String getVerdifyRequestCode();
 
     protected abstract PaymentSubmitBean createFeedan(PaymentItemInfo item);
 
@@ -245,6 +259,11 @@ public abstract class PaymentSimpleActivity extends PaymentBaseActivity {
     protected Intent createIntent() {
         Intent intent = new Intent();
         return intent;
+    }
+
+    protected void gotoNextStep(PaymentSimpleQueryUserBean item) {
+        PaymentSubmitBean fee = createFeedan(item);
+        gotoSubActivity(fee, PaymentPowerFeeActivity.class);
     }
 
 }

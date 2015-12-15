@@ -17,15 +17,13 @@ public class PaymentSimpleNetRequestMessageProcess extends
         requestCommon(requestCode, request, callback);
     }
 
-    public void requestUserInfo(PaymentRequestInfo request,
+    public void requestUserInfo(String rquestCode, PaymentRequestInfo request,
             IQuestCallback callback) {
-        requestCommon(PaymentSimpleCodeConstants.MSG_POWER_USER_INFO, request,
-                callback);
+        requestCommon(rquestCode, request, callback);
     }
 
-    public void requestPowerDetail(PaymentRequestInfo request,
+    public void requestFeeDetail(String rquestCode, PaymentRequestInfo request,
             IQuestCallback callback) {
-        requestCommon(PaymentSimpleCodeConstants.MSG_POWER_DETAIL, request,
-                callback);
+        requestCommon(rquestCode, request, callback);
     }
 }

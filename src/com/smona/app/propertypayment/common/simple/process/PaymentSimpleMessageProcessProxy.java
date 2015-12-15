@@ -5,7 +5,8 @@ import android.content.Context;
 import com.smona.app.propertypayment.process.PaymentMessageProcessProxy;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
 
-public class PaymentSimpleMessageProcessProxy extends PaymentMessageProcessProxy {
+public class PaymentSimpleMessageProcessProxy extends
+        PaymentMessageProcessProxy {
 
     private static final boolean DEBUG = false;
 
@@ -15,18 +16,19 @@ public class PaymentSimpleMessageProcessProxy extends PaymentMessageProcessProxy
         mNetSubmit = new PaymentSimpleNetSubmitMessageProcess();
     }
 
-    public void requestCity(String requestCode, Context context, IQuestCallback callback) {
+    public void requestCity(String requestCode, Context context,
+            IQuestCallback callback) {
         if (DEBUG) {
             ((PaymentSimpleLocalMessageProcess) mLocal).requestCity(context,
                     callback);
         } else {
-            ((PaymentSimpleNetRequestMessageProcess) mNetRequest)
-                    .requestCity(requestCode, callback);
+            ((PaymentSimpleNetRequestMessageProcess) mNetRequest).requestCity(
+                    requestCode, callback);
         }
     }
 
-    public void requestCompany(String rquestCode, Context context, PaymentRequestInfo request,
-            IQuestCallback callback) {
+    public void requestCompany(String rquestCode, Context context,
+            PaymentRequestInfo request, IQuestCallback callback) {
         if (DEBUG) {
             ((PaymentSimpleLocalMessageProcess) mLocal).requestCompany(context,
                     callback);
@@ -36,26 +38,26 @@ public class PaymentSimpleMessageProcessProxy extends PaymentMessageProcessProxy
         }
     }
 
-    public void requestUserInfo(Context context, PaymentRequestInfo request,
-            IQuestCallback callback) {
+    public void requestUserInfo(String rquestCode, Context context,
+            PaymentRequestInfo request, IQuestCallback callback) {
         if (DEBUG) {
-            ((PaymentSimpleLocalMessageProcess) mLocal).requestUserInfo(context,
-                    callback);
+            ((PaymentSimpleLocalMessageProcess) mLocal).requestUserInfo(
+                    context, callback);
         } else {
             ((PaymentSimpleNetRequestMessageProcess) mNetRequest)
-                    .requestUserInfo(request, callback);
+                    .requestUserInfo(rquestCode, request, callback);
         }
     }
 
-    public void requestDetail(Context context, PaymentRequestInfo request,
-            IQuestCallback callback) {
+    public void requestDetail(String rquestCode, Context context,
+            PaymentRequestInfo request, IQuestCallback callback) {
         boolean result = DEBUG || true;
         if (result) {
             ((PaymentSimpleLocalMessageProcess) mLocal).requestPowerDetail(
                     context, callback);
         } else {
             ((PaymentSimpleNetRequestMessageProcess) mNetRequest)
-                    .requestPowerDetail(request, callback);
+                    .requestFeeDetail(rquestCode, request, callback);
         }
     }
 }

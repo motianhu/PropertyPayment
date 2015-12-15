@@ -1,79 +1,89 @@
 package com.smona.app.propertypayment.water;
 
+import java.lang.reflect.Type;
+
 import android.view.View;
 
+import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
-import com.smona.app.propertypayment.common.data.PaymentTypeItem;
-import com.smona.app.propertypayment.common.ui.PaymentSimpleFeeActivity;
+import com.smona.app.propertypayment.common.data.PaymentItemInfo;
+import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
+import com.smona.app.propertypayment.common.simple.PaymentSimpleActivity;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleCompanyListBean;
+import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeConstants;
+import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
-import com.smona.app.propertypayment.property.bean.PaymentPropertyBean;
-import com.smona.app.propertypayment.property.process.PaymentPropertyMessageProcessProxy;
+import com.smona.app.propertypayment.water.bean.PaymentWaterQueryUserBean;
 
-public class WaterActivity extends PaymentSimpleFeeActivity {
+public class WaterActivity extends PaymentSimpleActivity {
+    protected static String TAG = "WaterActivity";
 
     @Override
-    protected void initHeader() {
+    protected void initTitle() {
         initText(R.id.title, R.string.payment_home_water);
-        initView(R.id.back);
-        initText(R.id.detail, R.string.payment_common_query);
-        initView(R.id.detail);
     }
 
     @Override
-    protected void initBody() {
-        View parent = mRoot.findViewById(R.id.select_company);
+    protected void initOriNo() {
+        View parent = mRoot.findViewById(R.id.select_city);
+        parent = mRoot.findViewById(R.id.select_company);
         initTextHint(parent, R.id.select_type,
                 R.string.payment_water_select_company);
         initText(parent, R.id.select_type_value, R.string.payment_water_company);
         initView(R.id.select_company);
-
-        parent = mRoot.findViewById(R.id.input_huhao);
-        initTextHint(parent, R.id.value, R.string.payment_water_input_huhao);
-        initText(parent, R.id.name, R.string.payment_water_huhao);
-        initView(R.id.input_huhao);
-
-        parent = mRoot.findViewById(R.id.select_groupby);
-        initTextHint(parent, R.id.select_type,
-                R.string.payment_water_select_groupby);
-        initText(parent, R.id.select_type_value, R.string.payment_water_groupby);
-        initView(R.id.select_groupby);
-
-        initText(R.id.next_step, R.string.payment_common_next_step);
-        initView(R.id.next_step);
     }
 
     @Override
-    protected void initCompanys() {
-        for (int i = 0; i < 5; i++) {
-            PaymentTypeItem type = new PaymentTypeItem();
-            type.type_id = i + "";
-            type.type_name = "Company " + i;
-            mPayCompanys.add(type);
+    protected void parseData(String content) {
+        Type type = new TypeToken<PaymentItemInfo>() {
+        }.getType();
+        PaymentItemInfo bean = JsonUtils.parseJson(content, type);
+        if (PaymentSimpleCodeConstants.MSG_WATER_COMPANY_RESPONSE
+                .equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentSimpleCompanyListBean>() {
+                }.getType();
+                PaymentSimpleCompanyListBean list = JsonUtils.parseJson(
+                        content, type);
+                mCompanyList.clear();
+                if (list.icobject != null) {
+                    mCompanyList.addAll(list.icobject);
+                }
+            } else {
+
+            }
+        } else if (PaymentSimpleCodeConstants.MSG_WATER_USER_INFO_RESPONSE
+                .equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentWaterQueryUserBean>() {
+                }.getType();
+                PaymentWaterQueryUserBean item = JsonUtils.parseJson(content,
+                        type);
+                if ("0000".equals(item.return_code)) {
+                    gotoNextStep(item);
+                } else {
+
+                }
+            } else {
+
+            }
         }
 
     }
-    
-    protected void loadData() {
-        requestData();
+
+    @Override
+    protected String getCompanyRequestCode() {
+        return PaymentSimpleCodeConstants.MSG_WATER_COMPANY;
     }
 
-    protected void requestData() {
-        showCustomProgrssDialog();
-        
-        mMessageProcess = new PaymentPropertyMessageProcessProxy();
-        ((PaymentPropertyMessageProcessProxy) mMessageProcess).requestFangchan(
-                this, this);
+    @Override
+    protected String getVerdifyRequestCode() {
+        return PaymentSimpleCodeConstants.MSG_WATER_USER_INFO;
     }
 
-    protected void saveData(String content) {
-
-    }
-
-    protected void failedRequest() {
-        hideCustomProgressDialog();
-    }
-
-    protected void refreshUI() {
+    @Override
+    protected PaymentSubmitBean createFeedan(PaymentItemInfo item) {
+        return null;
     }
 
     @Override

@@ -60,7 +60,8 @@ public class PaymentSimpleFeeDetailListActivity extends
         if (mSourceType == PaymentConstants.DATA_SOURCE_POWER) {
             mMessageProcess = new PaymentSimpleMessageProcessProxy();
             ((PaymentSimpleMessageProcessProxy) mMessageProcess).requestDetail(
-                    this, request, this);
+                    PaymentSimpleCodeConstants.MSG_POWER_DETAIL, this, request,
+                    this);
         } else if (mSourceType == PaymentConstants.DATA_SOURCE_GAS) {
         } else {
             hideCustomProgressDialog();

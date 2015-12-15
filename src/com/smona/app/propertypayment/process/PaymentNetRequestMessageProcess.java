@@ -21,7 +21,8 @@ public class PaymentNetRequestMessageProcess extends PaymentMessageProcess {
                 message.setLoginname(ConfigsInfo.username);
                 String msg = new Gson().toJson(message);
                 String result = new DoHttp().sendMsg(MSG_CODE, msg);
-                LogUtil.d(TAG, "requestCommon result " + result);
+                LogUtil.d(TAG, "requestCommon request[code:" + MSG_CODE
+                        + ";result:" + result + "]");
                 if (result.equals("0") || result.equals("1")
                         || result.equals("2") || result.equals("3")
                         || result.equals("4") || result.equals("5")
@@ -44,7 +45,8 @@ public class PaymentNetRequestMessageProcess extends PaymentMessageProcess {
 
                 String msg = new Gson().toJson(request);
                 String result = new DoHttp().sendMsg(MSG_CODE, msg);
-                LogUtil.d(TAG, "requestCommon request result:  " + result);
+                LogUtil.d(TAG, "requestCommon request[request:" + request
+                        + ";result:" + result + "]");
                 if (result.equals("0") || result.equals("1")
                         || result.equals("2") || result.equals("3")
                         || result.equals("4") || result.equals("5")

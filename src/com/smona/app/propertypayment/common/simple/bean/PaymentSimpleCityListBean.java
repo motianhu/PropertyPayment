@@ -1,4 +1,4 @@
-package com.smona.app.propertypayment.common.simple.process;
+package com.smona.app.propertypayment.common.simple.bean;
 
 import java.util.List;
 

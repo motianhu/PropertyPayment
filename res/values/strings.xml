@@ -42,8 +42,8 @@
     <string name="payment_home_wo_will">立即缴费</string>
 
     <!-- 水费 -->
-    <string name="payment_water_company">缴费单位</string>
-    <string name="payment_water_select_company">请选择缴费单位</string>
+    <string name="payment_water_select_company">请选择供水公司</string>
+    <string name="payment_water_company">供水公司</string>
     <string name="payment_water_huhao">户号</string>
     <string name="payment_water_input_huhao">请输入户号</string>
     <string name="payment_water_groupby">分组</string>

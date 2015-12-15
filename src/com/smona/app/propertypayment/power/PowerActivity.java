@@ -12,17 +12,16 @@ import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.data.submit.PaymentPowerSubmitBean;
 import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
 import com.smona.app.propertypayment.common.simple.PaymentSimpleActivity;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleCompanyBean;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleCompanyListBean;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleQueryUserBean;
 import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeConstants;
-import com.smona.app.propertypayment.common.simple.process.PaymentSimpleMessageProcessProxy;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
-import com.smona.app.propertypayment.power.bean.PaymentPowerCompanyBean;
-import com.smona.app.propertypayment.power.bean.PaymentPowerCompanyListBean;
-import com.smona.app.propertypayment.power.bean.PaymentPowerRequestUserQueryBean;
 import com.smona.app.propertypayment.power.bean.PaymentPowerQueryUserBean;
-import com.smona.app.propertypayment.process.PaymentRequestInfo;
 
 public class PowerActivity extends PaymentSimpleActivity {
+    protected static final String TAG = "PowerActivity";
 
     @Override
     protected void initTitle() {
@@ -47,10 +46,10 @@ public class PowerActivity extends PaymentSimpleActivity {
         if (PaymentSimpleCodeConstants.MSG_POWER_COMPANY_RESPONSE
                 .equals(bean.iccode)) {
             if (isRequestOk(bean)) {
-                type = new TypeToken<PaymentPowerCompanyListBean>() {
+                type = new TypeToken<PaymentSimpleCompanyListBean>() {
                 }.getType();
-                PaymentPowerCompanyListBean list = JsonUtils.parseJson(content,
-                        type);
+                PaymentSimpleCompanyListBean list = JsonUtils.parseJson(
+                        content, type);
                 mCompanyList.clear();
                 if (list.icobject != null) {
                     mCompanyList.addAll(list.icobject);
@@ -82,21 +81,17 @@ public class PowerActivity extends PaymentSimpleActivity {
     }
 
     @Override
-    protected void verdifyData(String cityCode, String org_no, String consno) {
-        PaymentRequestInfo request = new PaymentPowerRequestUserQueryBean();
-        ((PaymentPowerRequestUserQueryBean) request).org_no = org_no;
-        ((PaymentPowerRequestUserQueryBean) request).consno = consno;
-        ((PaymentSimpleMessageProcessProxy) mMessageProcess).requestUserInfo(
-                this, request, this);
+    protected String getVerdifyRequestCode() {
+        return PaymentSimpleCodeConstants.MSG_POWER_USER_INFO;
     }
 
     @Override
     protected PaymentSubmitBean createFeedan(PaymentItemInfo content) {
-        PaymentPowerSubmitBean item = (PaymentPowerSubmitBean) content;
+        PaymentSimpleQueryUserBean item = (PaymentSimpleQueryUserBean) content;
         PaymentPowerSubmitBean pay = new PaymentPowerSubmitBean();
 
         View parent = mRoot.findViewById(R.id.select_company);
-        PaymentPowerCompanyBean company = (PaymentPowerCompanyBean) getTag(
+        PaymentSimpleCompanyBean company = (PaymentSimpleCompanyBean) getTag(
                 parent, R.id.select_company);
 
         parent = mRoot.findViewById(R.id.input_huhao);
@@ -115,24 +110,12 @@ public class PowerActivity extends PaymentSimpleActivity {
         return pay;
     }
 
-    @Override
-    protected void requestData() {
-        mMessageProcess = new PaymentSimpleMessageProcessProxy();
-        ((PaymentSimpleMessageProcessProxy) mMessageProcess).requestCity(
-                PaymentSimpleCodeConstants.MSG_CITY, this, this);
-    }
-
-    private void gotoNextStep(PaymentPowerQueryUserBean item) {
-        PaymentSubmitBean fee = createFeedan(item);
-        gotoSubActivity(fee, PaymentPowerFeeActivity.class);
-    }
-
     protected PaymentSubmitBean createFeedan(PaymentPowerQueryUserBean item) {
 
         PaymentPowerSubmitBean pay = new PaymentPowerSubmitBean();
 
         View parent = mRoot.findViewById(R.id.select_company);
-        PaymentPowerCompanyBean company = (PaymentPowerCompanyBean) getTag(
+        PaymentSimpleCompanyBean company = (PaymentSimpleCompanyBean) getTag(
                 parent, R.id.select_company);
 
         parent = mRoot.findViewById(R.id.input_huhao);
