@@ -36,17 +36,17 @@ public class PaymentNonTaxAdapter extends PaymentBaseDataAdapter {
 
         final PaymentNonTaxItemBean item = (PaymentNonTaxItemBean) info;
 
-        TextView kemu = (TextView) convertView.findViewById(R.id.kemu);
-        kemu.setText(item.kemu);
+        TextView accode = (TextView) convertView.findViewById(R.id.kemu);
+        accode.setText(item.accode);
 
-        TextView leibie = (TextView) convertView.findViewById(R.id.leibie);
-        leibie.setText(item.leibie);
+        TextView paymentname = (TextView) convertView.findViewById(R.id.leibie);
+        paymentname.setText(item.paymentname);
 
-        TextView jine = (TextView) convertView.findViewById(R.id.jine);
-        jine.setText(item.kemu);
+        TextView exchg_atm = (TextView) convertView.findViewById(R.id.jine);
+        exchg_atm.setText(item.exchg_atm);
 
         TextView bank = (TextView) convertView.findViewById(R.id.bank);
-        bank.setText(item.bank);
+        bank.setText(item.payment_addr);
 
         View box = convertView.findViewById(R.id.status);
         box.setSelected(item.isSelected);

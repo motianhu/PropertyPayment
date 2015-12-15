@@ -1,98 +1,98 @@
 {
-    "iccode": "0710",
+    "iccode": "2510",
     "loginname": "13939093625",
     "sessionid": "48RTFBHV",
     "answercode": "00",
     "icobject": [
         {
-            "kemu": "203",
-            "leibie": "学杂费",
-            "jine": "560元",
-            "bank": "农业银行"
+            "accode": "203",
+            "paymentname": "学杂费",
+            "exchg_atm": "560元",
+            "payment_addr": "农业银行"
         },
         {
-            "kemu": "204",
-            "leibie": "学费",
-            "jine": "3000元",
-            "bank": "农业银行"
+            "accode": "204",
+            "paymentname": "学费",
+            "exchg_atm": "3000元",
+            "payment_addr": "农业银行"
         },
         {
-            "kemu": "205",
-            "leibie": "网费",
-            "jine": "200元",
-            "bank": "农业银行"
+            "accode": "205",
+            "paymentname": "网费",
+            "exchg_atm": "200元",
+            "payment_addr": "农业银行"
         },
         {
-            "kemu": "206",
-            "leibie": "网费1",
-            "jine": "200元",
-            "bank": "建设银行"
+            "accode": "206",
+            "paymentname": "网费1",
+            "exchg_atm": "200元",
+            "payment_addr": "建设银行"
         },
         {
-            "kemu": "207",
-            "leibie": "网费2",
-            "jine": "200元",
-            "bank": "建设银行"
+            "accode": "207",
+            "paymentname": "网费2",
+            "exchg_atm": "200元",
+            "payment_addr": "建设银行"
         },
         {
-            "kemu": "208",
-            "leibie": "网费3",
-            "jine": "200元",
-            "bank": "建设银行"
+            "accode": "208",
+            "paymentname": "网费3",
+            "exchg_atm": "200元",
+            "payment_addr": "建设银行"
         },
         {
-            "kemu": "209",
-            "leibie": "网费4",
-            "jine": "200元",
-            "bank": "工商银行"
+            "accode": "209",
+            "paymentname": "网费4",
+            "exchg_atm": "200元",
+            "payment_addr": "工商银行"
         },
         {
-            "kemu": "210",
-            "leibie": "网费5",
-            "jine": "200元",
-            "bank": "工商银行"
+            "accode": "210",
+            "paymentname": "网费5",
+            "exchg_atm": "200元",
+            "payment_addr": "工商银行"
         },
         {
-            "kemu": "211",
-            "leibie": "网费6",
-            "jine": "200元",
-            "bank": "工商银行"
+            "accode": "211",
+            "paymentname": "网费6",
+            "exchg_atm": "200元",
+            "payment_addr": "工商银行"
         },
         {
-            "kemu": "216",
-            "leibie": "网费1",
-            "jine": "200元",
-            "bank": "建设银行"
+            "accode": "216",
+            "paymentname": "网费1",
+            "exchg_atm": "200元",
+            "payment_addr": "建设银行"
         },
         {
-            "kemu": "217",
-            "leibie": "网费2",
-            "jine": "200元",
-            "bank": "建设银行"
+            "accode": "217",
+            "paymentname": "网费2",
+            "exchg_atm": "200元",
+            "payment_addr": "建设银行"
         },
         {
-            "kemu": "218",
-            "leibie": "网费3",
-            "jine": "200元",
-            "bank": "建设银行"
+            "accode": "218",
+            "paymentname": "网费3",
+            "exchg_atm": "200元",
+            "payment_addr": "建设银行"
         },
         {
-            "kemu": "219",
-            "leibie": "网费4",
-            "jine": "200元",
-            "bank": "工商银行"
+            "accode": "219",
+            "paymentname": "网费4",
+            "exchg_atm": "200元",
+            "payment_addr": "工商银行"
         },
         {
-            "kemu": "220",
-            "leibie": "网费5",
-            "jine": "200元",
-            "bank": "工商银行"
+            "accode": "220",
+            "paymentname": "网费5",
+            "exchg_atm": "200元",
+            "payment_addr": "工商银行"
         },
         {
-            "kemu": "231",
-            "leibie": "网费6",
-            "jine": "200元",
-            "bank": "工商银行"
+            "accode": "231",
+            "paymentname": "网费6",
+            "exchg_atm": "200元",
+            "payment_addr": "工商银行"
         }
     ]
 }

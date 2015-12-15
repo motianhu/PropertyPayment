@@ -10,11 +10,11 @@ public class PaymentNonTaxMessageProcessProxy extends
 
     private static final boolean DEBUG = true;
 
-    public static final String MSG_NONTAX_LIST = "0700";
-    public static final String MSG_NONTAX_DETAIL = "0800";
+    public static final String MSG_NONTAX_LIST = "2500";
+    public static final String MSG_NONTAX_DETAIL = "2700";
     
-    public static final String MSG_NONTAX_LIST_RESPONSE = "0710";
-    public static final String MSG_NONTAX_DETAIL_RESPONSE = "0810";
+    public static final String MSG_NONTAX_LIST_RESPONSE = "2510";
+    public static final String MSG_NONTAX_DETAIL_RESPONSE = "2710";
 
     public PaymentNonTaxMessageProcessProxy() {
         mLocal = new PaymentNonTaxLocalMessageProcess();
