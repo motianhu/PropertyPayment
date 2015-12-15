@@ -4,21 +4,18 @@ import java.lang.reflect.Type;
 
 import android.content.Intent;
 import android.view.View;
-import android.widget.TextView;
 
 import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
-import com.smona.app.propertypayment.common.data.submit.PaymentPowerSubmitBean;
-import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
 import com.smona.app.propertypayment.common.simple.PaymentSimpleActivity;
-import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleCompanyBean;
 import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleCompanyListBean;
-import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleQueryUserBean;
 import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeConstants;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
-import com.smona.app.propertypayment.power.bean.PaymentPowerQueryUserBean;
+import com.smona.app.propertypayment.power.bean.PaymentPowerQueryFeeInfoBean;
+import com.smona.app.propertypayment.power.bean.PaymentPowerUserInfoBean;
+import com.smona.app.propertypayment.process.PaymentRequestInfo;
 
 public class PowerActivity extends PaymentSimpleActivity {
     protected static final String TAG = "PowerActivity";
@@ -60,9 +57,9 @@ public class PowerActivity extends PaymentSimpleActivity {
         } else if (PaymentSimpleCodeConstants.MSG_POWER_USER_INFO_RESPONSE
                 .equals(bean.iccode)) {
             if (isRequestOk(bean)) {
-                type = new TypeToken<PaymentPowerQueryUserBean>() {
+                type = new TypeToken<PaymentPowerUserInfoBean>() {
                 }.getType();
-                PaymentPowerQueryUserBean item = JsonUtils.parseJson(content,
+                PaymentPowerUserInfoBean item = JsonUtils.parseJson(content,
                         type);
                 if ("0000".equals(item.return_code)) {
                     gotoNextStep(item);
@@ -75,6 +72,13 @@ public class PowerActivity extends PaymentSimpleActivity {
         }
     }
 
+    protected PaymentRequestInfo createQueryFeeInfo(String org_no, String consno) {
+        PaymentPowerQueryFeeInfoBean request = new PaymentPowerQueryFeeInfoBean();
+        request.consno = consno;
+        request.org_no = org_no;
+        return request;
+    }
+
     @Override
     protected String getCompanyRequestCode() {
         return PaymentSimpleCodeConstants.MSG_POWER_COMPANY;
@@ -85,55 +89,6 @@ public class PowerActivity extends PaymentSimpleActivity {
         return PaymentSimpleCodeConstants.MSG_POWER_USER_INFO;
     }
 
-    @Override
-    protected PaymentSubmitBean createFeedan(PaymentItemInfo content) {
-        PaymentSimpleQueryUserBean item = (PaymentSimpleQueryUserBean) content;
-        PaymentPowerSubmitBean pay = new PaymentPowerSubmitBean();
-
-        View parent = mRoot.findViewById(R.id.select_company);
-        PaymentSimpleCompanyBean company = (PaymentSimpleCompanyBean) getTag(
-                parent, R.id.select_company);
-
-        parent = mRoot.findViewById(R.id.input_huhao);
-        String housecode = ((TextView) parent.findViewById(R.id.value))
-                .getText().toString();
-        pay.consno = housecode;
-        pay.trans_name = item.trans_name;
-
-        pay.org_no = company.org_no;
-        pay.org_name = company.org_name;
-
-        pay.exchg_atm = item.exchg_atm;
-        pay.postradeno = item.postradeno;
-        pay.accountdate = item.postradeno;
-
-        return pay;
-    }
-
-    protected PaymentSubmitBean createFeedan(PaymentPowerQueryUserBean item) {
-
-        PaymentPowerSubmitBean pay = new PaymentPowerSubmitBean();
-
-        View parent = mRoot.findViewById(R.id.select_company);
-        PaymentSimpleCompanyBean company = (PaymentSimpleCompanyBean) getTag(
-                parent, R.id.select_company);
-
-        parent = mRoot.findViewById(R.id.input_huhao);
-        String housecode = ((TextView) parent.findViewById(R.id.value))
-                .getText().toString();
-        pay.consno = housecode;
-        pay.trans_name = item.trans_name;
-
-        pay.org_no = company.org_no;
-        pay.org_name = company.org_name;
-
-        pay.exchg_atm = item.exchg_atm;
-        pay.postradeno = item.postradeno;
-        pay.accountdate = item.postradeno;
-
-        return pay;
-    }
-
     protected int getSource() {
         return PaymentConstants.DATA_SOURCE_POWER;
     }
@@ -141,5 +96,10 @@ public class PowerActivity extends PaymentSimpleActivity {
     protected Intent createIntent() {
         Intent intent = new Intent();
         return intent;
+    }
+    
+    @Override
+    protected Class<?> getSubActivityClass() {
+        return PaymentPowerFeeActivity.class;
     }
 }

@@ -7,13 +7,15 @@ import android.view.View;
 import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
-import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
 import com.smona.app.propertypayment.common.simple.PaymentSimpleActivity;
 import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleCompanyListBean;
 import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeConstants;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
-import com.smona.app.propertypayment.water.bean.PaymentWaterQueryUserBean;
+import com.smona.app.propertypayment.power.PaymentPowerFeeActivity;
+import com.smona.app.propertypayment.process.PaymentRequestInfo;
+import com.smona.app.propertypayment.water.bean.PaymentWaterFeeInfoBean;
+import com.smona.app.propertypayment.water.bean.PaymentWaterQueryFeeInfoBean;
 
 public class WaterActivity extends PaymentSimpleActivity {
     protected static String TAG = "WaterActivity";
@@ -55,9 +57,9 @@ public class WaterActivity extends PaymentSimpleActivity {
         } else if (PaymentSimpleCodeConstants.MSG_WATER_USER_INFO_RESPONSE
                 .equals(bean.iccode)) {
             if (isRequestOk(bean)) {
-                type = new TypeToken<PaymentWaterQueryUserBean>() {
+                type = new TypeToken<PaymentWaterFeeInfoBean>() {
                 }.getType();
-                PaymentWaterQueryUserBean item = JsonUtils.parseJson(content,
+                PaymentWaterFeeInfoBean item = JsonUtils.parseJson(content,
                         type);
                 if ("0000".equals(item.return_code)) {
                     gotoNextStep(item);
@@ -71,6 +73,13 @@ public class WaterActivity extends PaymentSimpleActivity {
 
     }
 
+    protected PaymentRequestInfo createQueryFeeInfo(String org_no, String consno) {
+        PaymentWaterQueryFeeInfoBean request = new PaymentWaterQueryFeeInfoBean();
+        request.consno = consno;
+        request.org_no = org_no;
+        return request;
+    }
+
     @Override
     protected String getCompanyRequestCode() {
         return PaymentSimpleCodeConstants.MSG_WATER_COMPANY;
@@ -82,12 +91,12 @@ public class WaterActivity extends PaymentSimpleActivity {
     }
 
     @Override
-    protected PaymentSubmitBean createFeedan(PaymentItemInfo item) {
-        return null;
-    }
-
-    @Override
     protected int getSource() {
         return PaymentConstants.DATA_SOURCE_WATER;
+    }
+    
+    @Override
+    protected Class<?> getSubActivityClass() {
+        return PaymentPowerFeeActivity.class;
     }
 }

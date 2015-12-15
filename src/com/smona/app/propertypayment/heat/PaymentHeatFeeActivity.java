@@ -9,7 +9,7 @@ import android.view.View;
 import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
-import com.smona.app.propertypayment.common.data.submit.PaymentHeatSubmitBean;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleSubmitBean;
 import com.smona.app.propertypayment.common.ui.PaymentBaseDataAdapter;
 import com.smona.app.propertypayment.common.ui.PaymentFetchListActivity;
 import com.smona.app.propertypayment.common.util.JsonUtils;
@@ -24,7 +24,7 @@ public class PaymentHeatFeeActivity extends PaymentFetchListActivity {
     private static final String TAG = PaymentHeatFeeActivity.class
             .getSimpleName();
 
-    protected PaymentHeatSubmitBean mFeeDan;
+    protected PaymentSimpleSubmitBean mFeeDan;
     
     protected ArrayList<PaymentItemInfo> mAllDatas = new ArrayList<PaymentItemInfo>();
     protected ArrayList<PaymentItemInfo> mShowDatas = new ArrayList<PaymentItemInfo>();
@@ -39,7 +39,7 @@ public class PaymentHeatFeeActivity extends PaymentFetchListActivity {
     }
 
     private void acquireItemInfo() {
-        mFeeDan = (PaymentHeatSubmitBean) getIntent().getParcelableExtra(
+        mFeeDan = (PaymentSimpleSubmitBean) getIntent().getParcelableExtra(
                 PaymentConstants.DATA_ITEM_INFO);
         LogUtil.d(TAG, "acquireItemInfo mItem: " + mFeeDan);
     }

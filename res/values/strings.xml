@@ -61,8 +61,8 @@
     <string name="payment_power_input_huhao">请输入户号</string>
 
     <!-- 燃气费 -->
-    <string name="payment_gas_company">缴费单位</string>
-    <string name="payment_gas_select_company">请选择缴费单位</string>
+    <string name="payment_gas_company">燃气公司</string>
+    <string name="payment_gas_select_company">请选择燃气公司</string>
     <string name="payment_gas_huhao">户号</string>
     <string name="payment_gas_input_huhao">请输入户号</string>
     <string name="payment_gas_groupby">分组</string>

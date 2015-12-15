@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.smona.app.propertypayment.R;
-import com.smona.app.propertypayment.common.data.submit.PaymentHeatSubmitBean;
 import com.smona.app.propertypayment.common.ui.PaymentConfirmActivity;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleSubmitBean;
 
 public class PaymentHeatConfirmActivity extends PaymentConfirmActivity {
 
@@ -18,11 +18,11 @@ public class PaymentHeatConfirmActivity extends PaymentConfirmActivity {
         View view = mRoot.findViewById(R.id.jiaofei_company);
         initText(view, R.id.name, R.string.payment_common_jiaofei_company);
         initText(view, R.id.value,
-                ((PaymentHeatSubmitBean) mParam).org_name);
+                ((PaymentSimpleSubmitBean) mParam).org_name);
 
         view = mRoot.findViewById(R.id.jiaofei_money);
         initText(view, R.id.name, R.string.payment_common_yingjiao_money);
-        initText(view, R.id.value, ((PaymentHeatSubmitBean) mParam).transfare
+        initText(view, R.id.value, ((PaymentSimpleSubmitBean) mParam).transfare
                 + "元");
 
         ViewGroup zhifu = (ViewGroup) mRoot.findViewById(R.id.zhifu_channel);

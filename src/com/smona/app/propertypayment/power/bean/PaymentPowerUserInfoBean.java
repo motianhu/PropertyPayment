@@ -1,16 +1,10 @@
-package com.smona.app.propertypayment.heat.bean;
+package com.smona.app.propertypayment.power.bean;
 
-import com.smona.app.propertypayment.common.data.PaymentItemInfo;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleFeeInfoBean;
 
-public class PaymentHeatQueryUserBean extends PaymentItemInfo {
-    public String consno;
-    public String trans_name;
+public class PaymentPowerUserInfoBean extends PaymentSimpleFeeInfoBean {
     public String elec_addr;
-    public String exchg_atm;
-    public String postradeno;
-    public String return_code;
-    public String return_msg;
-    
+
     public String toString() {
         return "PaymentPowerQueryInfoBean[" + ", consno=" + consno
                 + ", trans_name=" + trans_name + ", elec_addr=" + elec_addr

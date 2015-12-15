@@ -1,8 +1,8 @@
-package com.smona.app.propertypayment.water.bean;
+package com.smona.app.propertypayment.gas.bean;
 
-import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleQueryUserBean;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleFeeInfoBean;
 
-public class PaymentWaterQueryUserBean extends PaymentSimpleQueryUserBean {
+public class PaymentGasFeeInfoBean extends PaymentSimpleFeeInfoBean {
     public String water_addr;
 
     public String toString() {

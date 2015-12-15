@@ -17,8 +17,8 @@ import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleCityBean;
 import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleCityListBean;
 import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleCompanyBean;
 import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleQueryCompanyBean;
-import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleQueryUserBean;
-import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleRequestUserQueryBean;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleFeeInfoBean;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleSubmitBean;
 import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeConstants;
 import com.smona.app.propertypayment.common.simple.process.PaymentSimpleMessageProcessProxy;
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
@@ -237,33 +237,53 @@ public abstract class PaymentSimpleActivity extends PaymentBaseActivity {
     }
 
     protected void verdifyData(String cityCode, String org_no, String consno) {
-        PaymentRequestInfo request = new PaymentSimpleRequestUserQueryBean();
-        ((PaymentSimpleRequestUserQueryBean) request).org_no = org_no;
-        ((PaymentSimpleRequestUserQueryBean) request).consno = consno;
+        PaymentRequestInfo request = createQueryFeeInfo(org_no, consno);
         ((PaymentSimpleMessageProcessProxy) mMessageProcess).requestUserInfo(
                 getVerdifyRequestCode(), this, request, this);
     }
 
-    protected abstract String getVerdifyRequestCode();
+    protected abstract PaymentRequestInfo createQueryFeeInfo(String org_no, String consno);
 
-    protected abstract PaymentSubmitBean createFeedan(PaymentItemInfo item);
+    protected abstract String getVerdifyRequestCode();
 
     private void clickDetail() {
         gotoSubActivity(getSource(), PaymentComplexFeeDetailListActivity.class);
     }
 
-    protected int getSource() {
-        return PaymentConstants.DATA_SOURCE_POWER;
-    }
+    protected abstract int getSource();
 
     protected Intent createIntent() {
         Intent intent = new Intent();
         return intent;
     }
 
-    protected void gotoNextStep(PaymentSimpleQueryUserBean item) {
+    protected void gotoNextStep(PaymentSimpleFeeInfoBean item) {
         PaymentSubmitBean fee = createFeedan(item);
-        gotoSubActivity(fee, PaymentPowerFeeActivity.class);
+        gotoSubActivity(fee, getSubActivityClass());
     }
+    
+    protected abstract Class<?> getSubActivityClass();
 
+    protected PaymentSubmitBean createFeedan(PaymentSimpleFeeInfoBean item) {
+        PaymentSimpleSubmitBean pay = new PaymentSimpleSubmitBean();
+
+        View parent = mRoot.findViewById(R.id.select_company);
+        PaymentSimpleCompanyBean company = (PaymentSimpleCompanyBean) getTag(
+                parent, R.id.select_company);
+
+        parent = mRoot.findViewById(R.id.input_huhao);
+        String housecode = ((TextView) parent.findViewById(R.id.value))
+                .getText().toString();
+        pay.consno = housecode;
+        pay.trans_name = item.trans_name;
+
+        pay.org_no = company.org_no;
+        pay.org_name = company.org_name;
+
+        pay.exchg_atm = item.exchg_atm;
+        pay.postradeno = item.postradeno;
+        pay.accountdate = item.postradeno;
+
+        return pay;
+    }
 }

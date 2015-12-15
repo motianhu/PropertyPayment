@@ -1,9 +1,11 @@
-package com.smona.app.propertypayment.common.data.submit;
+package com.smona.app.propertypayment.common.simple.bean;
+
+import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class PaymentPowerSubmitBean extends PaymentSubmitBean {
+public class PaymentSimpleSubmitBean extends PaymentSubmitBean {
     public String consno;
     public String trans_name;
     public String org_no;
@@ -13,10 +15,10 @@ public class PaymentPowerSubmitBean extends PaymentSubmitBean {
     public String transfare;
     public String accountdate;
 
-    public PaymentPowerSubmitBean() {
+    public PaymentSimpleSubmitBean() {
     }
 
-    public PaymentPowerSubmitBean(Parcel in) {
+    public PaymentSimpleSubmitBean(Parcel in) {
         super(in);
         consno = in.readString();
         trans_name = in.readString();
@@ -52,20 +54,20 @@ public class PaymentPowerSubmitBean extends PaymentSubmitBean {
         dest.writeString(accountdate);
     }
 
-    public static final Parcelable.Creator<PaymentPowerSubmitBean> CREATOR = new Creator<PaymentPowerSubmitBean>() {
+    public static final Parcelable.Creator<PaymentSimpleSubmitBean> CREATOR = new Creator<PaymentSimpleSubmitBean>() {
         @Override
-        public PaymentPowerSubmitBean[] newArray(int size) {
-            return new PaymentPowerSubmitBean[size];
+        public PaymentSimpleSubmitBean[] newArray(int size) {
+            return new PaymentSimpleSubmitBean[size];
         }
 
         @Override
-        public PaymentPowerSubmitBean createFromParcel(Parcel in) {
-            return new PaymentPowerSubmitBean(in);
+        public PaymentSimpleSubmitBean createFromParcel(Parcel in) {
+            return new PaymentSimpleSubmitBean(in);
         }
     };
 
     public String toString() {
-        return "PaymentPowerSubmitBean[" + super.toString() + ", consno:"
+        return "PaymentSimpleSubmitBean[" + super.toString() + ", consno:"
                 + consno + ", trans_name: " + trans_name + ", org_no: "
                 + org_no + ", org_name: " + org_name + ", postradeno: "
                 + postradeno + ", exchg_atm:" + exchg_atm + ", transfare: "
