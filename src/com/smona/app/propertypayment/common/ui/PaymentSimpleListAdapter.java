@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
+import com.smona.app.propertypayment.gas.bean.PaymentGasDetailBean;
 import com.smona.app.propertypayment.heat.bean.PaymentHeatDetailBean;
 import com.smona.app.propertypayment.park.bean.PaymentParkDetailBean;
 import com.smona.app.propertypayment.power.bean.PaymentPowerDetailBean;
 import com.smona.app.propertypayment.property.bean.PaymentPropertyDetailBean;
+import com.smona.app.propertypayment.water.bean.PaymentWaterDetailBean;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -40,6 +42,10 @@ public class PaymentSimpleListAdapter extends PaymentBaseDataAdapter {
             setupPowerDetailViews(convertView, ((PaymentPowerDetailBean) info));
         } else if (info instanceof PaymentHeatDetailBean) {
             setupHeatDetailViews(convertView, ((PaymentHeatDetailBean) info));
+        } else if (info instanceof PaymentWaterDetailBean) {
+            setupWaterDetailViews(convertView, ((PaymentWaterDetailBean) info));
+        } else if (info instanceof PaymentGasDetailBean) {
+            setupGasDetailViews(convertView, ((PaymentGasDetailBean) info));
         } else {
             setupPhoneDetailViews(convertView, null);
         }
@@ -100,12 +106,12 @@ public class PaymentSimpleListAdapter extends PaymentBaseDataAdapter {
                         .getString(R.string.payment_common_rmb));
 
         parent = convertView.findViewById(R.id.pay_time);
-        initText(parent, R.id.name, R.string.payment_power_account_date);
-        initText(parent, R.id.value, item.accountdate);
+        initText(parent, R.id.name, R.string.payment_common_date);
+        initText(parent, R.id.value, item.paydate);
 
         parent = convertView.findViewById(R.id.objinfo);
-        initText(parent, R.id.name, R.string.payment_power_jiaofei_result);
-        initText(parent, R.id.value, item.paydscrp);
+        initText(parent, R.id.name, R.string.payment_common_status);
+        initText(parent, R.id.value, item.paystatus);
     }
     
     private void setupHeatDetailViews(View convertView,
@@ -115,16 +121,54 @@ public class PaymentSimpleListAdapter extends PaymentBaseDataAdapter {
         initText(parent, R.id.value, item.trans_name);
 
         parent = convertView.findViewById(R.id.pay_money);
-        initText(parent, R.id.name, R.string.payment_heat_detail_total_zhinajin);
+        initText(parent, R.id.name, R.string.payment_common_pay_jine);
         initText(parent, R.id.value, item.payfare);
 
         parent = convertView.findViewById(R.id.pay_time);
-        initText(parent, R.id.name, R.string.payment_heat_detail_total_qianfei);
+        initText(parent, R.id.name, R.string.payment_common_date);
         initText(parent, R.id.value, item.paydate);
 
         parent = convertView.findViewById(R.id.objinfo);
-        initText(parent, R.id.name, R.string.payment_heat_detail_totoal_year);
-        initText(parent, R.id.value, item.allyear);
+        initText(parent, R.id.name, R.string.payment_common_status);
+        initText(parent, R.id.value, item.paystatus);
+    }
+    
+    private void setupWaterDetailViews(View convertView,
+            PaymentWaterDetailBean item) {
+        View parent = convertView.findViewById(R.id.company_name);
+        initText(parent, R.id.name, R.string.payment_heat_detail_username);
+        initText(parent, R.id.value, item.trans_name);
+
+        parent = convertView.findViewById(R.id.pay_money);
+        initText(parent, R.id.name, R.string.payment_common_pay_jine);
+        initText(parent, R.id.value, item.payfare);
+
+        parent = convertView.findViewById(R.id.pay_time);
+        initText(parent, R.id.name, R.string.payment_common_date);
+        initText(parent, R.id.value, item.paydate);
+
+        parent = convertView.findViewById(R.id.objinfo);
+        initText(parent, R.id.name, R.string.payment_common_status);
+        initText(parent, R.id.value, item.paystatus);
+    }
+    
+    private void setupGasDetailViews(View convertView,
+            PaymentGasDetailBean item) {
+        View parent = convertView.findViewById(R.id.company_name);
+        initText(parent, R.id.name, R.string.payment_heat_detail_username);
+        initText(parent, R.id.value, item.trans_name);
+
+        parent = convertView.findViewById(R.id.pay_money);
+        initText(parent, R.id.name, R.string.payment_common_pay_jine);
+        initText(parent, R.id.value, item.payfare);
+
+        parent = convertView.findViewById(R.id.pay_time);
+        initText(parent, R.id.name, R.string.payment_common_date);
+        initText(parent, R.id.value, item.paydate);
+
+        parent = convertView.findViewById(R.id.objinfo);
+        initText(parent, R.id.name, R.string.payment_common_status);
+        initText(parent, R.id.value, item.paystatus);
     }
 
     private void setupPhoneDetailViews(View convertView,

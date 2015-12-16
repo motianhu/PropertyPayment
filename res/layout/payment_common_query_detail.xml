@@ -5,6 +5,7 @@
     <EditText
         android:id="@+id/huhao"
         android:layout_width="150dp"
+        android:hint="@string/payment_common_input_huhao_query"
         android:layout_height="match_parent"
         android:layout_centerInParent="true" />
 

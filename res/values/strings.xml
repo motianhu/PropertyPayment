@@ -29,6 +29,9 @@
     <string name="payment_common_discount_zhekou">折</string>
     <string name="payment_common_rmb">"元"</string>
     <string name="payment_common_huhao_query">"查询"</string>
+    <string name="payment_common_input_huhao_query">"请输入户号查询"</string>
+    <string name="payment_common_status">状&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;态</string>
+    <string name="payment_common_date">缴费日期</string>
 
     <!-- 首页 -->
     <string name="payment_home_water">水费</string>
@@ -100,13 +103,14 @@
     <string name="payment_nontax_leibie">类别</string>
     <string name="payment_nontax_jine">金额</string>
     <string name="payment_nontax_bank">缴费银行</string>
+    <string name="payment_nontax_postno">交易号</string>
     <string name="payment_nontax_status">状态</string>
     <string name="payment_nontax_select_all">全选</string>
     <string name="payment_nontax_unselect_all">取消全选</string>
     
-    <string name="payment_nontax_kemu_detail">科&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;目</string>
-    <string name="payment_nontax_leibie_detail">类&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;别</string>
-    <string name="payment_nontax_jine_detail">金&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;额</string>
+    <string name="payment_nontax_kemu_detail">缴费项目</string>
+    <string name="payment_nontax_leibie_detail">姓&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;名</string>
+    <string name="payment_nontax_jine_detail">缴费金额</string>
     <string name="payment_nontax_status_detail">状&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;态</string>
     
     <!-- 热力缴费 -->

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
-import com.smona.app.propertypayment.nontax.bean.PaymentNonTaxDetailItemBean;
+import com.smona.app.propertypayment.nontax.bean.PaymentNonTaxDetailBean;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -28,25 +28,25 @@ public class PaymentSimpleListSixAdapter extends PaymentBaseDataAdapter {
 
     @Override
     public void initConvertView(View convertView, final PaymentItemInfo info) {
-        if (info instanceof PaymentNonTaxDetailItemBean) {
+        if (info instanceof PaymentNonTaxDetailBean) {
             setupPropertyDetailViews(convertView,
-                    ((PaymentNonTaxDetailItemBean) info));
+                    ((PaymentNonTaxDetailBean) info));
         }
     }
 
     private void setupPropertyDetailViews(View convertView,
-            PaymentNonTaxDetailItemBean item) {
+            PaymentNonTaxDetailBean item) {
         View parent = convertView.findViewById(R.id.kemu);
         initText(parent, R.id.name, R.string.payment_nontax_kemu_detail);
-        initText(parent, R.id.value, item.stpaymentname);
+        initText(parent, R.id.value, item.paymentname);
 
         parent = convertView.findViewById(R.id.leibie);
         initText(parent, R.id.name, R.string.payment_nontax_leibie_detail);
-        initText(parent, R.id.value, item.leibie);
+        initText(parent, R.id.value, item.username);
 
         parent = convertView.findViewById(R.id.bank);
-        initText(parent, R.id.name, R.string.payment_nontax_bank);
-        initText(parent, R.id.value, item.bank);
+        initText(parent, R.id.name, R.string.payment_nontax_postno);
+        initText(parent, R.id.value, item.exchg_atm);
 
         parent = convertView.findViewById(R.id.jine);
         initText(parent, R.id.name, R.string.payment_nontax_jine_detail);
@@ -60,7 +60,7 @@ public class PaymentSimpleListSixAdapter extends PaymentBaseDataAdapter {
 
         parent = convertView.findViewById(R.id.status);
         initText(parent, R.id.name, R.string.payment_nontax_status_detail);
-        initText(parent, R.id.value, item.status);
+        initText(parent, R.id.value, item.paystatus);
     }
 
     private void initText(View parent, int childId, int textId) {

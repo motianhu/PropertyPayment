@@ -16,8 +16,10 @@ import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeCons
 import com.smona.app.propertypayment.common.simple.process.PaymentSimpleMessageProcessProxy;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
+import com.smona.app.propertypayment.gas.bean.PaymentGasDetailsBean;
 import com.smona.app.propertypayment.heat.bean.PaymentHeatDetailsBean;
 import com.smona.app.propertypayment.power.bean.PaymentPowerDetailsBean;
+import com.smona.app.propertypayment.water.bean.PaymentWaterDetailsBean;
 
 public class PaymentComplexDetailListActivity extends PaymentFetchListActivity {
 
@@ -98,6 +100,7 @@ public class PaymentComplexDetailListActivity extends PaymentFetchListActivity {
                 PaymentHeatDetailsBean detailsBean = JsonUtils.parseJson(
                         content, type);
                 if (detailsBean.icobject != null) {
+                    mAllDatas.clear();
                     mAllDatas.addAll(detailsBean.icobject);
                 }
                 requestRefreshUI();
@@ -107,11 +110,12 @@ public class PaymentComplexDetailListActivity extends PaymentFetchListActivity {
         } else if (PaymentSimpleCodeConstants.MSG_WATER_DETAIL_RESPONSE
                 .equals(bean.iccode)) {
             if (isRequestOk(bean)) {
-                type = new TypeToken<PaymentHeatDetailsBean>() {
+                type = new TypeToken<PaymentWaterDetailsBean>() {
                 }.getType();
-                PaymentHeatDetailsBean detailsBean = JsonUtils.parseJson(
+                PaymentWaterDetailsBean detailsBean = JsonUtils.parseJson(
                         content, type);
                 if (detailsBean.icobject != null) {
+                    mAllDatas.clear();
                     mAllDatas.addAll(detailsBean.icobject);
                 }
                 requestRefreshUI();
@@ -121,11 +125,12 @@ public class PaymentComplexDetailListActivity extends PaymentFetchListActivity {
         } else if (PaymentSimpleCodeConstants.MSG_GAS_DETAIL_RESPONSE
                 .equals(bean.iccode)) {
             if (isRequestOk(bean)) {
-                type = new TypeToken<PaymentHeatDetailsBean>() {
+                type = new TypeToken<PaymentGasDetailsBean>() {
                 }.getType();
-                PaymentHeatDetailsBean detailsBean = JsonUtils.parseJson(
+                PaymentGasDetailsBean detailsBean = JsonUtils.parseJson(
                         content, type);
                 if (detailsBean.icobject != null) {
+                    mAllDatas.clear();
                     mAllDatas.addAll(detailsBean.icobject);
                 }
                 requestRefreshUI();
@@ -159,7 +164,7 @@ public class PaymentComplexDetailListActivity extends PaymentFetchListActivity {
                 showMessage(R.string.payment_water_input_huhao);
                 return;
             }
-            mQueryDetailInfo.con_so = text.getText().toString();
+            mQueryDetailInfo.cons_no = text.getText().toString();
             requestLoadData();
         }
         

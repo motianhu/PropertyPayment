@@ -11,6 +11,9 @@ import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
+import com.smona.app.propertypayment.nontax.bean.PaymentNonTaxDetailsBean;
+import com.smona.app.propertypayment.nontax.bean.PaymentQueryNonTaxInfo;
+import com.smona.app.propertypayment.nontax.process.PaymentNonTaxMessageProcessProxy;
 import com.smona.app.propertypayment.park.bean.PaymentParkDetailsBean;
 import com.smona.app.propertypayment.park.process.PaymentParkMessageProcessProxy;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
@@ -64,6 +67,12 @@ public class PaymentSimpleDetailListActivity extends PaymentFetchListActivity {
             mMessageProcess = new PaymentParkMessageProcessProxy();
             ((PaymentParkMessageProcessProxy) mMessageProcess).requestDetail(
                     this, request, this);
+        } else if (mSourceType == PaymentConstants.DATA_SOURCE_NONTAX) {
+            PaymentQueryNonTaxInfo nontaxinfo = new PaymentQueryNonTaxInfo();
+            nontaxinfo.logintype = "2";
+            mMessageProcess = new PaymentNonTaxMessageProcessProxy();
+            ((PaymentNonTaxMessageProcessProxy) mMessageProcess).requestDetail(
+                    this, nontaxinfo, this);
         } else {
             hideCustomProgressDialog();
         }
@@ -93,6 +102,20 @@ public class PaymentSimpleDetailListActivity extends PaymentFetchListActivity {
                 type = new TypeToken<PaymentParkDetailsBean>() {
                 }.getType();
                 PaymentParkDetailsBean detailsBean = JsonUtils.parseJson(
+                        content, type);
+                if (detailsBean.icobject != null) {
+                    mAllDatas.addAll(detailsBean.icobject);
+                }
+                requestRefreshUI();
+            } else {
+
+            }
+        }  else if (PaymentNonTaxMessageProcessProxy.MSG_NONTAX_DETAIL_RESPONSE
+                .equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentNonTaxDetailsBean>() {
+                }.getType();
+                PaymentNonTaxDetailsBean detailsBean = JsonUtils.parseJson(
                         content, type);
                 if (detailsBean.icobject != null) {
                     mAllDatas.addAll(detailsBean.icobject);
