@@ -85,7 +85,7 @@ public abstract class PaymentComplexFeectivity extends PaymentBaseActivity {
     }
 
     private void clickDetail() {
-        gotoSubActivity(getSource(), PaymentComplexFeeDetailListActivity.class);
+        gotoSubActivity(getSource(), PaymentSimpleDetailListActivity.class);
     }
 
     protected Intent createIntent() {

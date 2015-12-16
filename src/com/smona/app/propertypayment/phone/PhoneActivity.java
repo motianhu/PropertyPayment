@@ -2,10 +2,7 @@ package com.smona.app.propertypayment.phone;
 
 import java.util.ArrayList;
 
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
@@ -16,7 +13,7 @@ import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.data.PaymentPhonePriceInfo;
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
 import com.smona.app.propertypayment.common.ui.PaymentCommonConfirmActivity;
-import com.smona.app.propertypayment.common.ui.PaymentComplexFeeDetailListActivity;
+import com.smona.app.propertypayment.common.ui.PaymentSimpleDetailListActivity;
 import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
 
@@ -86,7 +83,7 @@ public class PhoneActivity extends PaymentBaseActivity {
             break;
         case R.id.detail:
             gotoSubActivity(PaymentConstants.DATA_SOURCE_PHONE,
-                    PaymentComplexFeeDetailListActivity.class);
+                    PaymentSimpleDetailListActivity.class);
             break;
         case R.id.input_phone:
             gotoSubActivity(PhoneHistoryListActivity.class);
@@ -143,7 +140,7 @@ public class PhoneActivity extends PaymentBaseActivity {
         }
     }
 
-    private void getPhoneAndName(Intent data) {
+/*    private void getPhoneAndName(Intent data) {
         ContentResolver reContentResolverol = getContentResolver();
         Uri contactData = data.getData();
         Cursor cursor = managedQuery(contactData, null, null, null, null);
@@ -188,5 +185,5 @@ public class PhoneActivity extends PaymentBaseActivity {
         }
         cursor.close();
     }
-
+*/
 }

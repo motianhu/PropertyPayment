@@ -7,4 +7,12 @@
 
     <include layout="@layout/payment_common_header" />
 
+    <include layout="@layout/payment_common_query_detail" />
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        layout="@layout/payment_commont_list_content" />
+
 </LinearLayout>

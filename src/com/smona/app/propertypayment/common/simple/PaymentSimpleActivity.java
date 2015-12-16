@@ -22,7 +22,8 @@ import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleSubmitBean;
 import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeConstants;
 import com.smona.app.propertypayment.common.simple.process.PaymentSimpleMessageProcessProxy;
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
-import com.smona.app.propertypayment.common.ui.PaymentComplexFeeDetailListActivity;
+import com.smona.app.propertypayment.common.ui.PaymentComplexDetailListActivity;
+import com.smona.app.propertypayment.common.ui.PaymentSimpleDetailListActivity;
 import com.smona.app.propertypayment.common.ui.PaymentTypeAdapter;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.LogUtil;
@@ -245,7 +246,7 @@ public abstract class PaymentSimpleActivity extends PaymentBaseActivity {
     protected abstract String getVerdifyRequestCode();
 
     private void clickDetail() {
-        gotoSubActivity(getSource(), PaymentComplexFeeDetailListActivity.class);
+        gotoSubActivity(getSource(), PaymentComplexDetailListActivity.class);
     }
 
     protected abstract int getSource();

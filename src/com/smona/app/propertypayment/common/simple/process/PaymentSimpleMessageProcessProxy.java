@@ -51,7 +51,7 @@ public class PaymentSimpleMessageProcessProxy extends
 
     public void requestDetail(String rquestCode, Context context,
             PaymentRequestInfo request, IQuestCallback callback) {
-        boolean result = DEBUG || true;
+        boolean result = DEBUG;
         if (result) {
             ((PaymentSimpleLocalMessageProcess) mLocal).requestPowerDetail(
                     context, callback);

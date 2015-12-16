@@ -119,7 +119,7 @@
 
         <!-- 公用 -->
         <activity
-            android:name=".common.ui.PaymentSimpleFeeDetailListActivity"
+            android:name=".common.ui.PaymentSimpleDetailListActivity"
             android:label="@string/payment_home_park"
             android:screenOrientation="portrait" />
         <activity
@@ -131,7 +131,7 @@
             android:label="@string/payment_common_zhifu"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".common.ui.PaymentComplexFeeDetailListActivity"
+            android:name=".common.ui.PaymentComplexDetailListActivity"
             android:label="@string/payment_home_park"
             android:screenOrientation="portrait" />
         <activity

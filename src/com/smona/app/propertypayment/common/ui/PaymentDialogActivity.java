@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.Gravity;
 
+@SuppressLint("Registered")
 public class PaymentDialogActivity extends Activity {
 
     private static final int DIALOG_SHOW = 0;

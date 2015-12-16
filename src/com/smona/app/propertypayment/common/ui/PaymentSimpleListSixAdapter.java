@@ -12,9 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-public class PaymentComplexFeeListSixAdapter extends PaymentBaseDataAdapter {
+public class PaymentSimpleListSixAdapter extends PaymentBaseDataAdapter {
 
-    public PaymentComplexFeeListSixAdapter(Context context,
+    public PaymentSimpleListSixAdapter(Context context,
             ArrayList<PaymentItemInfo> content) {
         super(context, content);
     }

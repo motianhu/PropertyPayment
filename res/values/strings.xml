@@ -28,6 +28,7 @@
     <string name="payment_common_phone_info">手机号码</string>
     <string name="payment_common_discount_zhekou">折</string>
     <string name="payment_common_rmb">"元"</string>
+    <string name="payment_common_huhao_query">"查询"</string>
 
     <!-- 首页 -->
     <string name="payment_home_water">水费</string>

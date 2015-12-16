@@ -13,7 +13,7 @@ import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.ui.PaymentBaseDataAdapter;
-import com.smona.app.propertypayment.common.ui.PaymentComplexFeeDetailListActivity;
+import com.smona.app.propertypayment.common.ui.PaymentSimpleDetailListActivity;
 import com.smona.app.propertypayment.common.ui.PaymentFetchListActivity;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.LogUtil;
@@ -148,7 +148,7 @@ public class NonTaxActivity extends PaymentFetchListActivity {
     }
 
     private void clickDetail() {
-        gotoSubActivity(getSource(), PaymentComplexFeeDetailListActivity.class);
+        gotoSubActivity(getSource(), PaymentSimpleDetailListActivity.class);
     }
 
     private int getSource() {

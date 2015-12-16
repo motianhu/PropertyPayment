@@ -9,23 +9,15 @@ import android.view.View;
 import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
-import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeConstants;
-import com.smona.app.propertypayment.common.simple.process.PaymentSimpleMessageProcessProxy;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
-import com.smona.app.propertypayment.heat.bean.PaymentHeatDetailsBean;
-import com.smona.app.propertypayment.heat.process.PaymentHeatMessageProcessProxy;
-import com.smona.app.propertypayment.nontax.bean.PaymentNonTaxDetailItemsBean;
-import com.smona.app.propertypayment.nontax.process.PaymentNonTaxMessageProcessProxy;
 import com.smona.app.propertypayment.park.bean.PaymentParkDetailsBean;
 import com.smona.app.propertypayment.park.process.PaymentParkMessageProcessProxy;
-import com.smona.app.propertypayment.power.bean.PaymentPowerDetailsBean;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
 import com.smona.app.propertypayment.property.bean.PaymentPropertyDetailsBean;
 import com.smona.app.propertypayment.property.process.PaymentPropertyMessageProcessProxy;
 
-public class PaymentComplexFeeDetailListActivity extends
-        PaymentFetchListActivity {
+public class PaymentSimpleDetailListActivity extends PaymentFetchListActivity {
 
     protected ArrayList<PaymentItemInfo> mAllDatas = new ArrayList<PaymentItemInfo>();
     protected ArrayList<PaymentItemInfo> mShowDatas = new ArrayList<PaymentItemInfo>();
@@ -35,7 +27,7 @@ public class PaymentComplexFeeDetailListActivity extends
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.payment_simple_fee_detail_list);
+        setContentView(R.layout.payment_detail_list);
         acquireItemInfo();
         initViews();
         requestLoadData();
@@ -72,19 +64,6 @@ public class PaymentComplexFeeDetailListActivity extends
             mMessageProcess = new PaymentParkMessageProcessProxy();
             ((PaymentParkMessageProcessProxy) mMessageProcess).requestDetail(
                     this, request, this);
-        } else if (mSourceType == PaymentConstants.DATA_SOURCE_POWER) {
-            mMessageProcess = new PaymentSimpleMessageProcessProxy();
-            ((PaymentSimpleMessageProcessProxy) mMessageProcess).requestDetail(
-                    PaymentSimpleCodeConstants.MSG_POWER_DETAIL, this, request,
-                    this);
-        } else if (mSourceType == PaymentConstants.DATA_SOURCE_NONTAX) {
-            mMessageProcess = new PaymentNonTaxMessageProcessProxy();
-            ((PaymentNonTaxMessageProcessProxy) mMessageProcess).requestDetail(
-                    this, request, this);
-        } else if (mSourceType == PaymentConstants.DATA_SOURCE_HEAT) {
-            mMessageProcess = new PaymentHeatMessageProcessProxy();
-            ((PaymentHeatMessageProcessProxy) mMessageProcess).requestDetail(
-                    this, request, this);
         } else {
             hideCustomProgressDialog();
         }
@@ -114,48 +93,6 @@ public class PaymentComplexFeeDetailListActivity extends
                 type = new TypeToken<PaymentParkDetailsBean>() {
                 }.getType();
                 PaymentParkDetailsBean detailsBean = JsonUtils.parseJson(
-                        content, type);
-                if (detailsBean.icobject != null) {
-                    mAllDatas.addAll(detailsBean.icobject);
-                }
-                requestRefreshUI();
-            } else {
-
-            }
-        } else if (PaymentSimpleCodeConstants.MSG_POWER_DETAIL_RESPONSE
-                .equals(bean.iccode)) {
-            if (isRequestOk(bean)) {
-                type = new TypeToken<PaymentPowerDetailsBean>() {
-                }.getType();
-                PaymentPowerDetailsBean detailsBean = JsonUtils.parseJson(
-                        content, type);
-                if (detailsBean.icobject != null) {
-                    mAllDatas.addAll(detailsBean.icobject);
-                }
-                requestRefreshUI();
-            } else {
-
-            }
-        } else if (PaymentNonTaxMessageProcessProxy.MSG_NONTAX_DETAIL_RESPONSE
-                .equals(bean.iccode)) {
-            if (isRequestOk(bean)) {
-                type = new TypeToken<PaymentNonTaxDetailItemsBean>() {
-                }.getType();
-                PaymentNonTaxDetailItemsBean detailsBean = JsonUtils.parseJson(
-                        content, type);
-                if (detailsBean.icobject != null) {
-                    mAllDatas.addAll(detailsBean.icobject);
-                }
-                requestRefreshUI();
-            } else {
-
-            }
-        } else if (PaymentHeatMessageProcessProxy.MSG_HEAT_DETAIL_RESPONSE
-                .equals(bean.iccode)) {
-            if (isRequestOk(bean)) {
-                type = new TypeToken<PaymentHeatDetailsBean>() {
-                }.getType();
-                PaymentHeatDetailsBean detailsBean = JsonUtils.parseJson(
                         content, type);
                 if (detailsBean.icobject != null) {
                     mAllDatas.addAll(detailsBean.icobject);
@@ -197,9 +134,9 @@ public class PaymentComplexFeeDetailListActivity extends
     public PaymentBaseDataAdapter createAdapter(ArrayList<PaymentItemInfo> data) {
         PaymentBaseDataAdapter adapter;
         if (mSourceType == PaymentConstants.DATA_SOURCE_NONTAX) {
-            adapter = new PaymentComplexFeeListSixAdapter(this, data);
+            adapter = new PaymentSimpleListSixAdapter(this, data);
         } else {
-            adapter = new PaymentComplexFeeListAdapter(this, data);
+            adapter = new PaymentSimpleListAdapter(this, data);
         }
         return adapter;
     }

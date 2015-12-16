@@ -4,39 +4,41 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleQueryDetailBean;
 import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeConstants;
 import com.smona.app.propertypayment.common.simple.process.PaymentSimpleMessageProcessProxy;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
-import com.smona.app.propertypayment.park.bean.PaymentParkDetailsBean;
-import com.smona.app.propertypayment.park.process.PaymentParkMessageProcessProxy;
+import com.smona.app.propertypayment.heat.bean.PaymentHeatDetailsBean;
 import com.smona.app.propertypayment.power.bean.PaymentPowerDetailsBean;
-import com.smona.app.propertypayment.process.PaymentRequestInfo;
 
-public class PaymentSimpleFeeDetailListActivity extends
-        PaymentFetchListActivity {
+public class PaymentComplexDetailListActivity extends PaymentFetchListActivity {
 
     protected ArrayList<PaymentItemInfo> mAllDatas = new ArrayList<PaymentItemInfo>();
     protected ArrayList<PaymentItemInfo> mShowDatas = new ArrayList<PaymentItemInfo>();
 
     private int mSourceType;
+    private PaymentSimpleQueryDetailBean mQueryDetailInfo;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.payment_simple_fee_detail_list);
+        setContentView(R.layout.payment_complex_detail_list);
         acquireItemInfo();
         initViews();
-        requestLoadData();
     }
 
     private void acquireItemInfo() {
-        mSourceType = getIntent().getIntExtra(PaymentConstants.DATA_SOURCE, -1);
+        mSourceType = this.getIntent().getIntExtra(
+                PaymentConstants.DATA_SOURCE, -1);
+        mQueryDetailInfo = new PaymentSimpleQueryDetailBean();
     }
 
     @Override
@@ -47,6 +49,7 @@ public class PaymentSimpleFeeDetailListActivity extends
 
     @Override
     protected void initBody() {
+        initView(R.id.query);
         setFetchListener(mShowDatas);
     }
 
@@ -56,16 +59,17 @@ public class PaymentSimpleFeeDetailListActivity extends
 
     protected void requestData() {
         showCustomProgrssDialog();
-        PaymentRequestInfo request = new PaymentRequestInfo();
-        if (mSourceType == PaymentConstants.DATA_SOURCE_POWER) {
-            mMessageProcess = new PaymentSimpleMessageProcessProxy();
-            ((PaymentSimpleMessageProcessProxy) mMessageProcess).requestDetail(
-                    PaymentSimpleCodeConstants.MSG_POWER_DETAIL, this, request,
-                    this);
+        String queryCode = PaymentSimpleCodeConstants.MSG_POWER_DETAIL;
+        if (mSourceType == PaymentConstants.DATA_SOURCE_HEAT) {
+            queryCode = PaymentSimpleCodeConstants.MSG_HEAT_DETAIL;
+        } else if (mSourceType == PaymentConstants.DATA_SOURCE_WATER) {
+            queryCode = PaymentSimpleCodeConstants.MSG_WATER_DETAIL;
         } else if (mSourceType == PaymentConstants.DATA_SOURCE_GAS) {
-        } else {
-            hideCustomProgressDialog();
+            queryCode = PaymentSimpleCodeConstants.MSG_GAS_DETAIL;
         }
+        mMessageProcess = new PaymentSimpleMessageProcessProxy();
+        ((PaymentSimpleMessageProcessProxy) mMessageProcess).requestDetail(
+                queryCode, this, mQueryDetailInfo, this);
     }
 
     protected void saveData(String content) {
@@ -86,12 +90,40 @@ public class PaymentSimpleFeeDetailListActivity extends
             } else {
 
             }
-        } else if (PaymentParkMessageProcessProxy.MSG_PARK_DETAIL_RESPONSE
+        } else if (PaymentSimpleCodeConstants.MSG_HEAT_DETAIL_RESPONSE
                 .equals(bean.iccode)) {
             if (isRequestOk(bean)) {
-                type = new TypeToken<PaymentParkDetailsBean>() {
+                type = new TypeToken<PaymentHeatDetailsBean>() {
                 }.getType();
-                PaymentParkDetailsBean detailsBean = JsonUtils.parseJson(
+                PaymentHeatDetailsBean detailsBean = JsonUtils.parseJson(
+                        content, type);
+                if (detailsBean.icobject != null) {
+                    mAllDatas.addAll(detailsBean.icobject);
+                }
+                requestRefreshUI();
+            } else {
+
+            }
+        } else if (PaymentSimpleCodeConstants.MSG_WATER_DETAIL_RESPONSE
+                .equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentHeatDetailsBean>() {
+                }.getType();
+                PaymentHeatDetailsBean detailsBean = JsonUtils.parseJson(
+                        content, type);
+                if (detailsBean.icobject != null) {
+                    mAllDatas.addAll(detailsBean.icobject);
+                }
+                requestRefreshUI();
+            } else {
+
+            }
+        } else if (PaymentSimpleCodeConstants.MSG_GAS_DETAIL_RESPONSE
+                .equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                type = new TypeToken<PaymentHeatDetailsBean>() {
+                }.getType();
+                PaymentHeatDetailsBean detailsBean = JsonUtils.parseJson(
                         content, type);
                 if (detailsBean.icobject != null) {
                     mAllDatas.addAll(detailsBean.icobject);
@@ -121,7 +153,16 @@ public class PaymentSimpleFeeDetailListActivity extends
         if (R.id.back == id) {
             finish();
             return;
+        } else if(R.id.query == id) {
+            TextView text = (TextView)findViewById(R.id.huhao);
+            if(TextUtils.isEmpty(text.getText())) {
+                showMessage(R.string.payment_water_input_huhao);
+                return;
+            }
+            mQueryDetailInfo.con_so = text.getText().toString();
+            requestLoadData();
         }
+        
     }
 
     @Override
@@ -131,7 +172,13 @@ public class PaymentSimpleFeeDetailListActivity extends
 
     @Override
     public PaymentBaseDataAdapter createAdapter(ArrayList<PaymentItemInfo> data) {
-        return new PaymentSimpleFeeListAdapter(this, data);
+        PaymentBaseDataAdapter adapter;
+        if (mSourceType == PaymentConstants.DATA_SOURCE_NONTAX) {
+            adapter = new PaymentSimpleListSixAdapter(this, data);
+        } else {
+            adapter = new PaymentSimpleListAdapter(this, data);
+        }
+        return adapter;
     }
 
 }

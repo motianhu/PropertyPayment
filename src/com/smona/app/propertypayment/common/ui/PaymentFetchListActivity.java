@@ -7,37 +7,16 @@ import android.widget.ListView;
 
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
-import com.smona.app.propertypayment.source.xlistview.XListView.IXListViewListener;
 
-public abstract class PaymentFetchListActivity extends PaymentBaseActivity
-        implements IXListViewListener {
+public abstract class PaymentFetchListActivity extends PaymentBaseActivity {
 
     protected static final int PAGE_SIZE = 10;
     private int mCurrPage = 1;
-    private boolean mIsDataOver = false;
 
     protected ListView mList;
     protected PaymentBaseDataAdapter mAdapter;
 
-    @Override
-    public void onRefresh() {
-    }
-
-    @Override
-    public void onLoadMore() {
-        if (mIsDataOver) {
-            showMessage("数据到达终点");
-            return;
-        }
-        loadMore();
-    }
-
     protected abstract void loadMore();
-
-    protected void setDataPos(int size) {
-        mCurrPage += 1;
-        mIsDataOver = PAGE_SIZE > size;
-    }
 
     protected int getCurrentPage() {
         return mCurrPage;

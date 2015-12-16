@@ -18,6 +18,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 
+@SuppressLint("Registered")
 public class PaymentProvider extends ContentProvider {
     private static final String TAG = "PaymentProvider";
     private DatabaseHelper mDataHelper;

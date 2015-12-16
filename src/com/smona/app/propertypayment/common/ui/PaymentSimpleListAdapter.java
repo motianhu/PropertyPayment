@@ -15,9 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-public class PaymentComplexFeeListAdapter extends PaymentBaseDataAdapter {
+public class PaymentSimpleListAdapter extends PaymentBaseDataAdapter {
 
-    public PaymentComplexFeeListAdapter(Context context,
+    public PaymentSimpleListAdapter(Context context,
             ArrayList<PaymentItemInfo> content) {
         super(context, content);
     }
@@ -120,11 +120,11 @@ public class PaymentComplexFeeListAdapter extends PaymentBaseDataAdapter {
 
         parent = convertView.findViewById(R.id.pay_time);
         initText(parent, R.id.name, R.string.payment_heat_detail_total_qianfei);
-        initText(parent, R.id.value, item.accountdate);
+        initText(parent, R.id.value, item.paydate);
 
         parent = convertView.findViewById(R.id.objinfo);
         initText(parent, R.id.name, R.string.payment_heat_detail_totoal_year);
-        initText(parent, R.id.value, item.paydscrp);
+        initText(parent, R.id.value, item.allyear);
     }
 
     private void setupPhoneDetailViews(View convertView,
