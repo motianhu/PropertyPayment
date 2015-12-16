@@ -1,4 +1,6 @@
-package com.smona.app.propertypayment.common.data;
+package com.smona.app.propertypayment.phone;
+
+import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 
 public class PaymentTypeItem extends PaymentItemInfo {
     public String type_id;

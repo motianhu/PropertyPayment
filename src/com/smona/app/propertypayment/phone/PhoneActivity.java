@@ -8,11 +8,8 @@ import android.provider.ContactsContract;
 import android.view.View;
 
 import com.smona.app.propertypayment.R;
-import com.smona.app.propertypayment.common.data.PaymentFeeDanInfo;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
-import com.smona.app.propertypayment.common.data.PaymentPhonePriceInfo;
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
-import com.smona.app.propertypayment.common.ui.PaymentCommonConfirmActivity;
 import com.smona.app.propertypayment.common.ui.PaymentSimpleDetailListActivity;
 import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
@@ -23,7 +20,6 @@ public class PhoneActivity extends PaymentBaseActivity {
     private static final int ACTION_START_CONTACTS = 1;
 
     private ArrayList<PaymentItemInfo> mYouhuis = new ArrayList<PaymentItemInfo>();
-    private PaymentFeeDanInfo mFeeDan;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -98,13 +94,6 @@ public class PhoneActivity extends PaymentBaseActivity {
     }
 
     private void clickNextStep() {
-
-        mFeeDan = new PaymentFeeDanInfo();
-        mFeeDan.companycode = "1";
-        mFeeDan.companyname = "company 1";
-        mFeeDan.money = 100;
-
-        gotoSubActivity(mFeeDan, PaymentCommonConfirmActivity.class);
     }
 
     private void clickPaymoney() {
@@ -140,50 +129,35 @@ public class PhoneActivity extends PaymentBaseActivity {
         }
     }
 
-/*    private void getPhoneAndName(Intent data) {
-        ContentResolver reContentResolverol = getContentResolver();
-        Uri contactData = data.getData();
-        Cursor cursor = managedQuery(contactData, null, null, null, null);
-        cursor.moveToFirst();
-        String username = cursor.getString(cursor
-                .getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-        String contactId = cursor.getString(cursor
-                .getColumnIndex(ContactsContract.Contacts._ID));
-        Cursor phone = reContentResolverol.query(
-                ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
-                ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = "
-                        + contactId, null, null);
-        String usernumber = null;
-        while (phone.moveToNext()) {
-            usernumber = phone
-                    .getString(phone
-                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-        }
-        phone.close();
-        cursor.close();
-        LogUtil.d(TAG, "username: " + username + ", usernumber: " + usernumber);
-        querySim();
-    }
-
-    private void querySim() {
-        Uri uri = Uri.parse("content://icc/adn");
-        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-        LogUtil.d(TAG, ">>>>>>" + cursor.getCount());
-        while (cursor.moveToNext()) {
-            String id = cursor
-                    .getString(cursor
-                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID));
-            String name = cursor
-                    .getString(cursor
-                            .getColumnIndex(ContactsContract.CommonDataKinds.Relation.NAME));
-            String phoneNumber = cursor
-                    .getString(cursor
-                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-            LogUtil.d("1023", ">>>>>>" + "_id, " + id);
-            LogUtil.d("1023", ">>>>>>" + "name, " + name);
-            LogUtil.d("1023", ">>>>>>" + "phone number, " + phoneNumber);
-        }
-        cursor.close();
-    }
-*/
+    /*
+     * private void getPhoneAndName(Intent data) { ContentResolver
+     * reContentResolverol = getContentResolver(); Uri contactData =
+     * data.getData(); Cursor cursor = managedQuery(contactData, null, null,
+     * null, null); cursor.moveToFirst(); String username =
+     * cursor.getString(cursor
+     * .getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME)); String
+     * contactId = cursor.getString(cursor
+     * .getColumnIndex(ContactsContract.Contacts._ID)); Cursor phone =
+     * reContentResolverol.query(
+     * ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
+     * ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + contactId,
+     * null, null); String usernumber = null; while (phone.moveToNext()) {
+     * usernumber = phone .getString(phone
+     * .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)); }
+     * phone.close(); cursor.close(); LogUtil.d(TAG, "username: " + username +
+     * ", usernumber: " + usernumber); querySim(); }
+     * 
+     * private void querySim() { Uri uri = Uri.parse("content://icc/adn");
+     * Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+     * LogUtil.d(TAG, ">>>>>>" + cursor.getCount()); while (cursor.moveToNext())
+     * { String id = cursor .getString(cursor
+     * .getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID)); String name
+     * = cursor .getString(cursor
+     * .getColumnIndex(ContactsContract.CommonDataKinds.Relation.NAME)); String
+     * phoneNumber = cursor .getString(cursor
+     * .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+     * LogUtil.d("1023", ">>>>>>" + "_id, " + id); LogUtil.d("1023", ">>>>>>" +
+     * "name, " + name); LogUtil.d("1023", ">>>>>>" + "phone number, " +
+     * phoneNumber); } cursor.close(); }
+     */
 }

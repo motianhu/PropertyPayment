@@ -1,4 +1,4 @@
-package com.smona.app.propertypayment.common.data;
+package com.smona.app.propertypayment.phone;
 
 public class PaymentPhonePriceInfo extends PaymentTypeItem {
     public String code;

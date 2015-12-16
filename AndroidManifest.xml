@@ -123,10 +123,6 @@
             android:label="@string/payment_home_park"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".common.ui.PaymentSimpleFeePayActivity"
-            android:label="@string/payment_home_park"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".common.ui.PaymentCommonConfirmActivity"
             android:label="@string/payment_common_zhifu"
             android:screenOrientation="portrait" />
