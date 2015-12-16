@@ -8,22 +8,6 @@ public class PaymentHeatNetRequestMessageProcess extends
     public static String TAG = PaymentHeatNetRequestMessageProcess.class
             .getSimpleName();
 
-    public void requestCity(IQuestCallback callback) {
-        requestCommon(PaymentHeatMessageProcessProxy.MSG_HEAT_CITY, callback);
-    }
-
-    public void requestCompany(PaymentRequestInfo request,
-            IQuestCallback callback) {
-        requestCommon(PaymentHeatMessageProcessProxy.MSG_HEAT_COMPANY,
-                request, callback);
-    }
-
-    public void requestUserInfo(PaymentRequestInfo request,
-            IQuestCallback callback) {
-        requestCommon(PaymentHeatMessageProcessProxy.MSG_HEAT_USER_INFO,
-                request, callback);
-    }
-
     public void requestPowerDetail(PaymentRequestInfo request,
             IQuestCallback callback) {
         requestCommon(PaymentHeatMessageProcessProxy.MSG_HEAT_DETAIL,

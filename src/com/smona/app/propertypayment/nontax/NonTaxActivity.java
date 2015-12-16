@@ -20,8 +20,8 @@ import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
 import com.smona.app.propertypayment.nontax.bean.PaymentNonTaxItemBean;
 import com.smona.app.propertypayment.nontax.bean.PaymentNonTaxItemsBean;
+import com.smona.app.propertypayment.nontax.bean.PaymentQueryNonTaxInfo;
 import com.smona.app.propertypayment.nontax.process.PaymentNonTaxMessageProcessProxy;
-import com.smona.app.propertypayment.process.PaymentRequestInfo;
 
 public class NonTaxActivity extends PaymentFetchListActivity {
 
@@ -76,7 +76,8 @@ public class NonTaxActivity extends PaymentFetchListActivity {
 
     protected void requestData() {
         showCustomProgrssDialog();
-        PaymentRequestInfo request = new PaymentRequestInfo();
+        PaymentQueryNonTaxInfo request = new PaymentQueryNonTaxInfo();
+        request.logintype = "2";
         mMessageProcess = new PaymentNonTaxMessageProcessProxy();
         ((PaymentNonTaxMessageProcessProxy) mMessageProcess).requestList(this,
                 request, this);

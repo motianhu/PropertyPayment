@@ -22,7 +22,7 @@ public class PaymentSimpleConfirmActivity extends PaymentConfirmActivity {
 
         view = mRoot.findViewById(R.id.jiaofei_money);
         initText(view, R.id.name, R.string.payment_common_yingjiao_money);
-        initText(view, R.id.value, ((PaymentSimpleSubmitBean) mParam).transfare
+        initText(view, R.id.value, ((PaymentSimpleSubmitBean) mParam).exchg_atm
                 + "元");
 
         ViewGroup zhifu = (ViewGroup) mRoot.findViewById(R.id.zhifu_channel);

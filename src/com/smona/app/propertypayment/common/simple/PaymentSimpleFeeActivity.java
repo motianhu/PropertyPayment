@@ -1,10 +1,7 @@
 package com.smona.app.propertypayment.common.simple;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.TextView;
 
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleSubmitBean;
@@ -17,16 +14,13 @@ public class PaymentSimpleFeeActivity extends PaymentBaseActivity {
     private static final String TAG = PaymentSimpleFeeActivity.class
             .getSimpleName();
 
-    private static final int[] FEE_DATA = new int[] { 20, 50, 100, 200 };
-
     protected PaymentSimpleSubmitBean mFeeDan;
-
-    private PaymentSimpleSelectFeeView mSelectFee;
+    protected int mSource;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.payment_power_fee_activity);
+        setContentView(R.layout.payment_simple_fee_activity);
         acquireItemInfo();
         initViews();
     }
@@ -34,13 +28,29 @@ public class PaymentSimpleFeeActivity extends PaymentBaseActivity {
     private void acquireItemInfo() {
         mFeeDan = (PaymentSimpleSubmitBean) getIntent().getParcelableExtra(
                 PaymentConstants.DATA_ITEM_INFO);
-        LogUtil.d(TAG, "acquireItemInfo mItem: " + mFeeDan);
+        mSource = getIntent().getIntExtra(PaymentConstants.DATA_SOURCE, -1);
+        LogUtil.d(TAG, "acquireItemInfo mSource: " + mSource + ", mFeeDan: "
+                + mFeeDan);
     }
 
     @Override
     protected void initHeader() {
-        initText(R.id.title, R.string.payment_home_power);
+        initTitle();
         initView(R.id.back);
+    }
+
+    private void initTitle() {
+        int resId = R.string.payment_home_power;
+        if (PaymentConstants.DATA_SOURCE_WATER == mSource) {
+            resId = R.string.payment_home_water;
+        } else if (PaymentConstants.DATA_SOURCE_GAS == mSource) {
+            resId = R.string.payment_home_gas;
+        } else if (PaymentConstants.DATA_SOURCE_NONTAX == mSource) {
+            resId = R.string.payment_home_nontax;
+        } else if (PaymentConstants.DATA_SOURCE_HEAT == mSource) {
+            resId = R.string.payment_home_heat;
+        }
+        initText(R.id.title, resId);
     }
 
     @Override
@@ -58,35 +68,9 @@ public class PaymentSimpleFeeActivity extends PaymentBaseActivity {
         initText(parent, R.id.value, mFeeDan.exchg_atm
                 + getResources().getString(R.string.payment_common_rmb));
 
-        parent = mRoot.findViewById(R.id.input_fee);
-        initTextHint(parent, R.id.value, R.string.payment_common_input_pay_jine);
-        initText(parent, R.id.name, R.string.payment_common_pay_jine);
-
         initText(R.id.next_step, R.string.payment_common_liji_pay);
         initView(R.id.next_step);
-
-        initSelectFee();
     }
-
-    private void initSelectFee() {
-        mSelectFee = (PaymentSimpleSelectFeeView) findViewById(R.id.select_fee);
-        for (int value : FEE_DATA) {
-            mSelectFee.addTextView(value, mSelectFeeListener);
-        }
-    }
-
-    private OnClickListener mSelectFeeListener = new OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            int value = (Integer) v.getTag();
-            LogUtil.d(TAG, "moth " + value);
-            mSelectFee.setSelected(v);
-            View parent = mRoot.findViewById(R.id.input_fee);
-            initText(parent, R.id.value, value + "");
-        }
-
-    };
 
     @Override
     protected void clickView(View v) {
@@ -102,22 +86,6 @@ public class PaymentSimpleFeeActivity extends PaymentBaseActivity {
     }
 
     private void clickNextStep() {
-        View parent = mRoot.findViewById(R.id.input_fee);
-        String input_jine_str = ((TextView) parent.findViewById(R.id.value))
-                .getText().toString();
-        if (TextUtils.isEmpty(input_jine_str)) {
-            showMessage("请输入缴费金额");
-            return;
-        }
-        
-        Double jine = Double.valueOf(input_jine_str);
-        Double qianfei = Double.valueOf(mFeeDan.exchg_atm);
-        if(qianfei > jine) {
-            showMessage("缴费金额应大于等于欠费金额");
-            return;
-        }
-        
-        mFeeDan.transfare = input_jine_str;
-        gotoSubActivity(mFeeDan, PaymentSimpleConfirmActivity.class);
+        gotoSubActivity(mFeeDan, mSource, PaymentSimpleConfirmActivity.class);
     }
 }

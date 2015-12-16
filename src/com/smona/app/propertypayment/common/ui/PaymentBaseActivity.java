@@ -220,6 +220,14 @@ public abstract class PaymentBaseActivity extends PaymentDialogActivity
         intent.putExtra(PaymentConstants.DATA_ITEM_INFO, item);
         startActivity(intent);
     }
+    
+    protected void gotoSubActivity(PaymentItemInfo item, int source, Class<?> clazz) {
+        Intent intent = createIntent();
+        intent.setClass(this, clazz);
+        intent.putExtra(PaymentConstants.DATA_ITEM_INFO, item);
+        intent.putExtra(PaymentConstants.DATA_SOURCE, source);
+        startActivity(intent);
+    }
 
     protected void gotoSubActivity(String title, PaymentItemInfo item,
             Class<?> clazz) {

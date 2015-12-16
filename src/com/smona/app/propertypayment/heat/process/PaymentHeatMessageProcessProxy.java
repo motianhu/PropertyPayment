@@ -9,56 +9,16 @@ public class PaymentHeatMessageProcessProxy extends PaymentMessageProcessProxy {
 
     private static final boolean DEBUG = false;
 
-    public static final String MSG_HEAT_USER_INFO = "1200";
-    public static final String MSG_HEAT_SUBMIT = "1300";
-    public static final String MSG_HEAT_CITY = "1400";
-    public static final String MSG_HEAT_COMPANY = "1800";
     public static final String MSG_HEAT_DETAIL = "2100";
     public static final String MSG_HEAT_QIANFEI_DETAIL = "1900";
 
-    public static final String MSG_HEAT_USER_INFO_RESPONSE = "1210";
-    public static final String MSG_HEAT_SUBMIT_RESPONSE = "1310";
-    public static final String MSG_HEAT_CITY_RESPONSE = "1410";
     public static final String MSG_HEAT_DETAIL_RESPONSE = "2110";
-    public static final String MSG_HEAT_COMPANY_RESPONSE = "1810";
     public static final String MSG_HEAT_QIANFEI_DETAIL_RESPONSE = "1910";
 
     public PaymentHeatMessageProcessProxy() {
         mLocal = new PaymentHeatLocalMessageProcess();
         mNetRequest = new PaymentHeatNetRequestMessageProcess();
         mNetSubmit = new PaymentHeatNetSubmitMessageProcess();
-    }
-
-    public void requestCity(Context context, IQuestCallback callback) {
-        if (DEBUG) {
-            ((PaymentHeatLocalMessageProcess) mLocal).requestCity(context,
-                    callback);
-        } else {
-            ((PaymentHeatNetRequestMessageProcess) mNetRequest)
-                    .requestCity(callback);
-        }
-    }
-
-    public void requestCompany(Context context, PaymentRequestInfo request,
-            IQuestCallback callback) {
-        if (DEBUG) {
-            ((PaymentHeatLocalMessageProcess) mLocal).requestCompany(context,
-                    callback);
-        } else {
-            ((PaymentHeatNetRequestMessageProcess) mNetRequest)
-                    .requestCompany(request, callback);
-        }
-    }
-
-    public void requestUserInfo(Context context, PaymentRequestInfo request,
-            IQuestCallback callback) {
-        if (DEBUG) {
-            ((PaymentHeatLocalMessageProcess) mLocal).requestUserInfo(context,
-                    callback);
-        } else {
-            ((PaymentHeatNetRequestMessageProcess) mNetRequest)
-                    .requestUserInfo(request, callback);
-        }
     }
 
     public void requestDetail(Context context, PaymentRequestInfo request,

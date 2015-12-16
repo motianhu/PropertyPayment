@@ -40,13 +40,13 @@ public class PaymentSimpleCodeConstants {
     //heat
     public static final String MSG_HEAT_USER_INFO = "2000";
     public static final String MSG_HEAT_SUBMIT = "2100";
-    public static final String MSG_HEAT_COMPANY = "2200";
+    public static final String MSG_HEAT_COMPANY = "1900";
     public static final String MSG_HEAT_DETAIL = "2300";
     public static final String MSG_HEAT_QIANFEI_DETAIL = "2400";
 
     public static final String MSG_HEAT_USER_INFO_RESPONSE = "2010";
     public static final String MSG_HEAT_SUBMIT_RESPONSE = "2110";
-    public static final String MSG_HEAT_COMPANY_RESPONSE = "2210";
+    public static final String MSG_HEAT_COMPANY_RESPONSE = "1910";
     public static final String MSG_HEAT_DETAIL_RESPONSE = "2310";
     public static final String MSG_HEAT_QIANFEI_DETAIL_RESPONSE = "2410";
 }

@@ -2,5 +2,8 @@
 <resources>
 
     <integer name="config_animate_refresh_duration">100</integer>
-
+    <string name="ip">110.249.154.91</string>
+    <string name="port">8087</string>
+    <string name="username">13939093625</string>
+    <string name="passwd">093625</string>
 </resources>

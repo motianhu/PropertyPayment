@@ -13,6 +13,7 @@ public abstract class PaymentConfirmActivity extends PaymentBaseActivity {
     private static final String TAG = "PaymentConfirmActivity";
 
     protected PaymentSubmitBean mParam;
+    protected int mSource;
     protected int[] imageIds;
 
     @Override
@@ -28,7 +29,9 @@ public abstract class PaymentConfirmActivity extends PaymentBaseActivity {
                 R.drawable.payment_weixin, R.drawable.payment_yanlian };
         mParam = (PaymentSubmitBean) getIntent().getParcelableExtra(
                 PaymentConstants.DATA_ITEM_INFO);
-        LogUtil.d(TAG, "acquireItemInfo mItem: " + mParam);
+        mSource = getIntent().getIntExtra(PaymentConstants.DATA_SOURCE, -1);
+        LogUtil.d(TAG, "acquireItemInfo mSource: " + mSource + ", mParam: "
+                + mParam);
     }
 
     @Override

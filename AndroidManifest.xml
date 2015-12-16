@@ -116,11 +116,6 @@
             android:name=".heat.PaymentHeatFeeActivity"
             android:label="@string/payment_home_heat"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".heat.PaymentHeatConfirmActivity"
-            android:label="@string/payment_home_heat"
-            android:screenOrientation="portrait" >
-        </activity>
 
         <!-- 公用 -->
         <activity
@@ -137,6 +132,14 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".common.ui.PaymentComplexFeeDetailListActivity"
+            android:label="@string/payment_home_park"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".common.simple.PaymentSimpleFeeActivity"
+            android:label="@string/payment_home_park"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".common.simple.PaymentSimpleConfirmActivity"
             android:label="@string/payment_home_park"
             android:screenOrientation="portrait" />
     </application>

@@ -8,7 +8,7 @@ import com.smona.app.propertypayment.process.PaymentRequestInfo;
 public class PaymentNonTaxMessageProcessProxy extends
         PaymentMessageProcessProxy {
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     public static final String MSG_NONTAX_LIST = "2500";
     public static final String MSG_NONTAX_DETAIL = "2700";

@@ -26,8 +26,6 @@ import com.smona.app.propertypayment.common.ui.PaymentComplexFeeDetailListActivi
 import com.smona.app.propertypayment.common.ui.PaymentTypeAdapter;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.LogUtil;
-import com.smona.app.propertypayment.common.util.PaymentConstants;
-import com.smona.app.propertypayment.power.PaymentPowerFeeActivity;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
 
 public abstract class PaymentSimpleActivity extends PaymentBaseActivity {
@@ -259,7 +257,7 @@ public abstract class PaymentSimpleActivity extends PaymentBaseActivity {
 
     protected void gotoNextStep(PaymentSimpleFeeInfoBean item) {
         PaymentSubmitBean fee = createFeedan(item);
-        gotoSubActivity(fee, getSubActivityClass());
+        gotoSubActivity(fee, getSource(), getSubActivityClass());
     }
     
     protected abstract Class<?> getSubActivityClass();

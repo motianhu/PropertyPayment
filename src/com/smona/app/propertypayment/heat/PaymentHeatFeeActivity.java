@@ -9,6 +9,7 @@ import android.view.View;
 import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
+import com.smona.app.propertypayment.common.simple.PaymentSimpleConfirmActivity;
 import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleSubmitBean;
 import com.smona.app.propertypayment.common.ui.PaymentBaseDataAdapter;
 import com.smona.app.propertypayment.common.ui.PaymentFetchListActivity;
@@ -136,7 +137,7 @@ public class PaymentHeatFeeActivity extends PaymentFetchListActivity {
 
     private void clickNextStep() {
         mFeeDan.transfare = mFeeDan.exchg_atm;
-        gotoSubActivity(mFeeDan, PaymentHeatConfirmActivity.class);
+        gotoSubActivity(mFeeDan, PaymentSimpleConfirmActivity.class);
     }
 
     @Override
