@@ -6,15 +6,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class PaymentSimpleSubmitBean extends PaymentSubmitBean {
-    public String consno;
-    public String trans_name;
-    public String org_no;
+    public String consno;  //用户户号
+    public String trans_name;  
+    public String org_no; //供水公司代码
     public String org_name;
-    public String postradeno;
+    public String postradeno;  //系统流水号
     public String exchg_atm;
-    public String transfare;
-    public String accountdate;
-
+    public String transfare;  //缴费金额
+    public String accountdate;  //银行账务日期
+    
     public PaymentSimpleSubmitBean() {
     }
 

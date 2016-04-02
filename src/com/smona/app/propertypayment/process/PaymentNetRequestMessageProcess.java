@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.jasonwang.informationhuimin.https.DoHttp;
 import com.jasonwang.informationhuimin.json.resp.JSONAuthenticationMessage;
 import com.jasonwang.informationhuimin.utils.ConfigsInfo;
+import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
 import com.smona.app.propertypayment.common.util.LogUtil;
 
 public class PaymentNetRequestMessageProcess extends PaymentMessageProcess {
@@ -46,7 +47,31 @@ public class PaymentNetRequestMessageProcess extends PaymentMessageProcess {
                 String msg = new Gson().toJson(request);
                 String result = new DoHttp().sendMsg(MSG_CODE, msg);
                 LogUtil.d(TAG, "requestCommon request[request:" + request
-                        + ";result:" + result + "]");
+                        + "\n====result=====:" + result + "]");
+                if (result.equals("0") || result.equals("1")
+                        || result.equals("2") || result.equals("3")
+                        || result.equals("4") || result.equals("5")
+                        || result.equals("6") || result.equals("7")) {
+                    callback.onResult(false, null);
+                } else {
+                    callback.onResult(true, result);
+                }
+            }
+        }.start();
+    }
+    
+    protected void requestCommon(final String MSG_CODE,
+            final PaymentSubmitBean submit, final IQuestCallback callback) {
+        new Thread() {
+            public void run() {
+                submit.iccode = MSG_CODE;
+                submit.sessionid = ConfigsInfo.sesssionId;
+                submit.loginname = ConfigsInfo.username;
+
+                String msg = new Gson().toJson(submit);
+                String result = new DoHttp().sendMsg(MSG_CODE, msg);
+                LogUtil.d(TAG, "requestCommon submit[submit:" + submit
+                        + "\n=====result=====:" + result + "]");
                 if (result.equals("0") || result.equals("1")
                         || result.equals("2") || result.equals("3")
                         || result.equals("4") || result.equals("5")

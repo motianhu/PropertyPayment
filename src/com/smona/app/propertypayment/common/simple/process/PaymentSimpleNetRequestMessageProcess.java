@@ -1,5 +1,6 @@
 package com.smona.app.propertypayment.common.simple.process;
 
+import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
 import com.smona.app.propertypayment.process.PaymentNetRequestMessageProcess;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
 
@@ -25,5 +26,10 @@ public class PaymentSimpleNetRequestMessageProcess extends
     public void requestFeeDetail(String rquestCode, PaymentRequestInfo request,
             IQuestCallback callback) {
         requestCommon(rquestCode, request, callback);
+    }
+    
+    public void requestPaySubmit(String rquestCode, PaymentSubmitBean submit,
+            IQuestCallback callback) {
+        requestCommon(rquestCode, submit, callback);
     }
 }

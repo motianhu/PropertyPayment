@@ -23,7 +23,6 @@ import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeCons
 import com.smona.app.propertypayment.common.simple.process.PaymentSimpleMessageProcessProxy;
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
 import com.smona.app.propertypayment.common.ui.PaymentComplexDetailListActivity;
-import com.smona.app.propertypayment.common.ui.PaymentSimpleDetailListActivity;
 import com.smona.app.propertypayment.common.ui.PaymentTypeAdapter;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.LogUtil;

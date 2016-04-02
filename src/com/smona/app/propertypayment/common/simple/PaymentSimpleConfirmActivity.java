@@ -9,16 +9,20 @@ import android.widget.LinearLayout;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleSubmitBean;
 import com.smona.app.propertypayment.common.ui.PaymentConfirmActivity;
+import com.smona.app.propertypayment.common.util.LogUtil;
 
 public class PaymentSimpleConfirmActivity extends PaymentConfirmActivity {
+    private static final String TAG = PaymentSimpleConfirmActivity.class
+            .getSimpleName();
 
     @SuppressLint("InflateParams")
     @Override
     protected void initBody() {
         View view = mRoot.findViewById(R.id.jiaofei_company);
         initText(view, R.id.name, R.string.payment_common_jiaofei_company);
-        initText(view, R.id.value,
-                ((PaymentSimpleSubmitBean) mParam).org_name);
+        initText(view, R.id.value, ((PaymentSimpleSubmitBean) mParam).org_name);
+
+        LogUtil.d(TAG, "mParam: " + mParam);
 
         view = mRoot.findViewById(R.id.jiaofei_money);
         initText(view, R.id.name, R.string.payment_common_yingjiao_money);

@@ -1,7 +1,14 @@
 package com.smona.app.propertypayment.common.ui;
 
+import java.lang.reflect.Type;
+
+import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
+import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
+import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeConstants;
+import com.smona.app.propertypayment.common.simple.process.PaymentSimpleMessageProcessProxy;
+import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
 
@@ -56,15 +63,61 @@ public abstract class PaymentConfirmActivity extends PaymentBaseActivity {
         }
         switch (id) {
         case 0:
-            this.showMessage("0");
+            gotoAliPay();
             break;
         case 1:
-            this.showMessage("1");
+            gotoWechatPay();
             break;
         case 2:
-            this.showMessage("2");
+            gotoYanlian();
             break;
         }
+    }
+
+    private void gotoAliPay() {
+        this.showMessage("支付宝!");
+    }
+
+    private void gotoWechatPay() {
+        this.showMessage("微信支付!");
+        loadData();
+    }
+
+    protected void loadData() {
+        requestData();
+    }
+
+    private void requestData() {
+        showCustomProgrssDialog();
+        mMessageProcess = new PaymentSimpleMessageProcessProxy();
+        ((PaymentSimpleMessageProcessProxy) mMessageProcess).requestPaySubmit(
+                PaymentSimpleCodeConstants.MSG_WATER_SUBMIT, this, mParam, this);
+    }
+
+    protected void saveData(String content) {
+        Type type = new TypeToken<PaymentItemInfo>() {
+        }.getType();
+        PaymentItemInfo bean = JsonUtils.parseJson(content, type);
+        if (PaymentSimpleCodeConstants.MSG_WATER_SUBMIT_RESPONSE
+                .equals(bean.iccode)) {
+            if (isRequestOk(bean)) {
+                
+            } else {
+
+            }
+        } else {
+
+        }
+
+        hideCustomProgressDialog();
+    }
+
+    protected void failedRequest() {
+        hideCustomProgressDialog();
+    }
+
+    private void gotoYanlian() {
+        this.showMessage("银联支付!");
     }
 
 }

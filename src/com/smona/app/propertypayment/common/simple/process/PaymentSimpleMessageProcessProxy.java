@@ -2,6 +2,7 @@ package com.smona.app.propertypayment.common.simple.process;
 
 import android.content.Context;
 
+import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
 import com.smona.app.propertypayment.process.PaymentMessageProcessProxy;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
 
@@ -58,6 +59,19 @@ public class PaymentSimpleMessageProcessProxy extends
         } else {
             ((PaymentSimpleNetRequestMessageProcess) mNetRequest)
                     .requestFeeDetail(rquestCode, request, callback);
+        }
+    }
+    
+    
+    public void requestPaySubmit(String rquestCode, Context context,
+            PaymentSubmitBean submit, IQuestCallback callback) {
+        boolean result = DEBUG;
+        if (result) {
+            ((PaymentSimpleLocalMessageProcess) mLocal).requestPowerDetail(
+                    context, callback);
+        } else {
+            ((PaymentSimpleNetRequestMessageProcess) mNetRequest)
+                    .requestPaySubmit(rquestCode, submit, callback);
         }
     }
 }
