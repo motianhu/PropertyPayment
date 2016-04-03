@@ -10,12 +10,15 @@ import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.simple.PaymentSimpleActivity;
 import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleCompanyListBean;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleSubmitBean;
 import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeConstants;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
 import com.smona.app.propertypayment.power.bean.PaymentPowerQueryFeeInfoBean;
+import com.smona.app.propertypayment.power.bean.PaymentPowerSubmitBean;
 import com.smona.app.propertypayment.power.bean.PaymentPowerUserInfoBean;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
+import com.smona.app.propertypayment.water.bean.PaymentWaterSubmitBean;
 
 public class PowerActivity extends PaymentSimpleActivity {
     protected static final String TAG = "PowerActivity";
@@ -101,5 +104,12 @@ public class PowerActivity extends PaymentSimpleActivity {
     @Override
     protected Class<?> getSubActivityClass() {
         return PaymentPowerFeeActivity.class;
+    }
+
+    public PaymentSimpleSubmitBean createFeedanNo(String no, String org_no) {
+        PaymentPowerSubmitBean powerSubmitBean = new PaymentPowerSubmitBean();
+        powerSubmitBean.consno = no;
+        powerSubmitBean.org_no = org_no;
+        return powerSubmitBean;
     }
 }

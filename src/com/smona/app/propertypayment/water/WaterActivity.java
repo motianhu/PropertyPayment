@@ -10,12 +10,14 @@ import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.simple.PaymentSimpleActivity;
 import com.smona.app.propertypayment.common.simple.PaymentSimpleFeeActivity;
 import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleCompanyListBean;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleSubmitBean;
 import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeConstants;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
 import com.smona.app.propertypayment.water.bean.PaymentWaterFeeInfoBean;
 import com.smona.app.propertypayment.water.bean.PaymentWaterQueryFeeInfoBean;
+import com.smona.app.propertypayment.water.bean.PaymentWaterSubmitBean;
 
 public class WaterActivity extends PaymentSimpleActivity {
     protected static String TAG = "WaterActivity";
@@ -98,5 +100,12 @@ public class WaterActivity extends PaymentSimpleActivity {
     @Override
     protected Class<?> getSubActivityClass() {
         return PaymentSimpleFeeActivity.class;
+    }
+
+    public PaymentSimpleSubmitBean createFeedanNo(String no, String org_no) {
+        PaymentWaterSubmitBean waterSubmitBean = new PaymentWaterSubmitBean();
+        waterSubmitBean.consno = no;
+        waterSubmitBean.org_no = org_no;
+        return waterSubmitBean;
     }
 }

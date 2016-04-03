@@ -17,6 +17,7 @@ import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
 import com.smona.app.propertypayment.heat.bean.PaymentHeatDetailItemsBean;
+import com.smona.app.propertypayment.heat.bean.PaymentHeatSubmitBean;
 import com.smona.app.propertypayment.heat.process.PaymentHeatMessageProcessProxy;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
 
@@ -25,7 +26,7 @@ public class PaymentHeatFeeActivity extends PaymentFetchListActivity {
     private static final String TAG = PaymentHeatFeeActivity.class
             .getSimpleName();
 
-    protected PaymentSimpleSubmitBean mFeeDan;
+    protected PaymentHeatSubmitBean mFeeDan;
     
     protected ArrayList<PaymentItemInfo> mAllDatas = new ArrayList<PaymentItemInfo>();
     protected ArrayList<PaymentItemInfo> mShowDatas = new ArrayList<PaymentItemInfo>();
@@ -40,7 +41,7 @@ public class PaymentHeatFeeActivity extends PaymentFetchListActivity {
     }
 
     private void acquireItemInfo() {
-        mFeeDan = (PaymentSimpleSubmitBean) getIntent().getParcelableExtra(
+        mFeeDan = (PaymentHeatSubmitBean) getIntent().getParcelableExtra(
                 PaymentConstants.DATA_ITEM_INFO);
         LogUtil.d(TAG, "acquireItemInfo mItem: " + mFeeDan);
     }
@@ -59,13 +60,13 @@ public class PaymentHeatFeeActivity extends PaymentFetchListActivity {
 
         parent = mRoot.findViewById(R.id.housecode);
         initText(parent, R.id.name, R.string.payment_common_huhao);
-        initText(parent, R.id.value, mFeeDan.consno);
+        initText(parent, R.id.value, mFeeDan.heatsno);
 
         parent = mRoot.findViewById(R.id.needchange);
         initText(parent, R.id.name, R.string.payment_power_qianfei);
         initText(parent, R.id.value, mFeeDan.exchg_atm
                 + getResources().getString(R.string.payment_common_rmb));
-        
+
         initText(R.id.qianfei, R.string.payment_heat_qianfei_time);
         initText(R.id.danjia, R.string.payment_heat_danjia);
         initText(R.id.zhinajin, R.string.payment_heat_zhinajin);

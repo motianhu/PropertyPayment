@@ -261,10 +261,9 @@ public abstract class PaymentSimpleActivity extends PaymentBaseActivity {
     }
     
     protected abstract Class<?> getSubActivityClass();
+    protected abstract PaymentSimpleSubmitBean createFeedanNo(String no, String org_no);
 
     protected PaymentSubmitBean createFeedan(PaymentSimpleFeeInfoBean item) {
-        PaymentSimpleSubmitBean pay = new PaymentSimpleSubmitBean();
-
         View parent = mRoot.findViewById(R.id.select_company);
         PaymentSimpleCompanyBean company = (PaymentSimpleCompanyBean) getTag(
                 parent, R.id.select_company);
@@ -272,15 +271,18 @@ public abstract class PaymentSimpleActivity extends PaymentBaseActivity {
         parent = mRoot.findViewById(R.id.input_huhao);
         String housecode = ((TextView) parent.findViewById(R.id.value))
                 .getText().toString();
-        pay.consno = housecode;
-        pay.trans_name = item.trans_name;
 
-        pay.org_no = company.org_no;
+
+        PaymentSimpleSubmitBean pay = createFeedanNo(housecode, company.org_no);
+        pay.trans_name = item.trans_name;
         pay.org_name = company.org_name;
 
         pay.exchg_atm = item.exchg_atm;
+        pay.transfare = item.exchg_atm;
         pay.postradeno = item.postradeno;
         pay.accountdate = item.postradeno;
+
+
 
         return pay;
     }

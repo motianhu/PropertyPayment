@@ -11,6 +11,7 @@ import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleSubmitBean;
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
 import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
+import com.smona.app.propertypayment.power.bean.PaymentPowerSubmitBean;
 
 public class PaymentPowerFeeActivity extends PaymentBaseActivity {
 
@@ -19,7 +20,7 @@ public class PaymentPowerFeeActivity extends PaymentBaseActivity {
 
     private static final int[] FEE_DATA = new int[] { 20, 50, 100, 200 };
 
-    protected PaymentSimpleSubmitBean mFeeDan;
+    protected PaymentPowerSubmitBean mFeeDan;
 
     private SelectFeeView mSelectFee;
 
@@ -32,7 +33,7 @@ public class PaymentPowerFeeActivity extends PaymentBaseActivity {
     }
 
     private void acquireItemInfo() {
-        mFeeDan = (PaymentSimpleSubmitBean) getIntent().getParcelableExtra(
+        mFeeDan = (PaymentPowerSubmitBean) getIntent().getParcelableExtra(
                 PaymentConstants.DATA_ITEM_INFO);
         LogUtil.d(TAG, "acquireItemInfo mItem: " + mFeeDan);
     }

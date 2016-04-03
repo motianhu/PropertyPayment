@@ -10,11 +10,14 @@ import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.simple.PaymentSimpleActivity;
 import com.smona.app.propertypayment.common.simple.PaymentSimpleFeeActivity;
 import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleCompanyListBean;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleSubmitBean;
 import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeConstants;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
 import com.smona.app.propertypayment.gas.bean.PaymentGasFeeInfoBean;
 import com.smona.app.propertypayment.gas.bean.PaymentGasQueryFeeInfoBean;
+import com.smona.app.propertypayment.gas.bean.PaymentGasSubmitBean;
+import com.smona.app.propertypayment.heat.bean.PaymentHeatSubmitBean;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
 
 public class GasActivity extends PaymentSimpleActivity {
@@ -96,5 +99,12 @@ public class GasActivity extends PaymentSimpleActivity {
     @Override
     protected Class<?> getSubActivityClass() {
         return PaymentSimpleFeeActivity.class;
+    }
+
+    public PaymentSimpleSubmitBean createFeedanNo(String no, String org_no) {
+        PaymentGasSubmitBean gasSubmitBean = new PaymentGasSubmitBean();
+        gasSubmitBean.gasno = no;
+        gasSubmitBean.orggas_no = org_no;
+        return gasSubmitBean;
     }
 }

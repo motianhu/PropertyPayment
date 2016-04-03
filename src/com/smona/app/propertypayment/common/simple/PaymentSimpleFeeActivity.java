@@ -8,6 +8,10 @@ import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleSubmitBean;
 import com.smona.app.propertypayment.common.ui.PaymentBaseActivity;
 import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
+import com.smona.app.propertypayment.gas.bean.PaymentGasSubmitBean;
+import com.smona.app.propertypayment.heat.bean.PaymentHeatFeeInfoBean;
+import com.smona.app.propertypayment.heat.bean.PaymentHeatSubmitBean;
+import com.smona.app.propertypayment.water.bean.PaymentWaterSubmitBean;
 
 public class PaymentSimpleFeeActivity extends PaymentBaseActivity {
 
@@ -61,7 +65,15 @@ public class PaymentSimpleFeeActivity extends PaymentBaseActivity {
 
         parent = mRoot.findViewById(R.id.housecode);
         initText(parent, R.id.name, R.string.payment_common_huhao);
-        initText(parent, R.id.value, mFeeDan.consno);
+        String consno = "";
+        if(mFeeDan instanceof PaymentHeatSubmitBean) {
+            consno = ((PaymentHeatSubmitBean)mFeeDan).heatsno;
+        } else if(mFeeDan instanceof PaymentGasSubmitBean) {
+            consno = ((PaymentGasSubmitBean)mFeeDan).gasno;
+        } else if(mFeeDan instanceof PaymentWaterSubmitBean) {
+            consno = ((PaymentWaterSubmitBean) mFeeDan).consno;
+        }
+        initText(parent, R.id.value, consno);
 
         parent = mRoot.findViewById(R.id.needchange);
         initText(parent, R.id.name, R.string.payment_power_qianfei);

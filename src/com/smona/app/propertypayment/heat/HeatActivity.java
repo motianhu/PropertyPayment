@@ -9,11 +9,13 @@ import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
 import com.smona.app.propertypayment.common.simple.PaymentSimpleActivity;
 import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleCompanyListBean;
+import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleSubmitBean;
 import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeConstants;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
 import com.smona.app.propertypayment.heat.bean.PaymentHeatFeeInfoBean;
 import com.smona.app.propertypayment.heat.bean.PaymentHeatQueryFeeInfoBean;
+import com.smona.app.propertypayment.heat.bean.PaymentHeatSubmitBean;
 import com.smona.app.propertypayment.process.PaymentRequestInfo;
 
 public class HeatActivity extends PaymentSimpleActivity {
@@ -95,5 +97,12 @@ public class HeatActivity extends PaymentSimpleActivity {
     @Override
     protected Class<?> getSubActivityClass() {
         return PaymentHeatFeeActivity.class;
+    }
+
+    public PaymentSimpleSubmitBean createFeedanNo(String no, String org_no) {
+        PaymentHeatSubmitBean heatSubmit = new PaymentHeatSubmitBean();
+        heatSubmit.heatsno = no;
+        heatSubmit.orgheat_no = org_no;
+        return heatSubmit;
     }
 }
