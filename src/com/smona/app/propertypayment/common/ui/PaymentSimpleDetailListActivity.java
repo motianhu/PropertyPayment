@@ -9,6 +9,7 @@ import android.view.View;
 import com.google.gson.reflect.TypeToken;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.PaymentItemInfo;
+import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeConstants;
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
 import com.smona.app.propertypayment.nontax.bean.PaymentNonTaxDetailsBean;
@@ -96,7 +97,7 @@ public class PaymentSimpleDetailListActivity extends PaymentFetchListActivity {
             } else {
 
             }
-        } else if (PaymentParkMessageProcessProxy.MSG_PARK_DETAIL_RESPONSE
+        } else if (PaymentSimpleCodeConstants.MSG_PARK_PLAN_DETAIL_RESPONSE
                 .equals(bean.iccode)) {
             if (isRequestOk(bean)) {
                 type = new TypeToken<PaymentParkDetailsBean>() {

@@ -89,10 +89,10 @@ public abstract class PaymentConfirmActivity extends PaymentBaseActivity {
 
     private void requestData() {
         showCustomProgrssDialog();
-        mMessageProcess = new PaymentSimpleMessageProcessProxy();
-        ((PaymentSimpleMessageProcessProxy) mMessageProcess).requestPaySubmit(
-                PaymentSimpleCodeConstants.MSG_WATER_SUBMIT, this, mParam, this);
+        initRequest();
     }
+
+    abstract public void initRequest();
 
     protected void saveData(String content) {
         Type type = new TypeToken<PaymentItemInfo>() {

@@ -1,6 +1,33 @@
 package com.smona.app.propertypayment.common.simple.process;
 
 public class PaymentSimpleCodeConstants {
+    //property
+    public static final String MSG_PROPERTY_FANGCHAN_INFO = "0200";
+    public static final String MSG_PROPERTY_ZHEKOU = "0300";
+    public static final String MSG_PROPERTY_PLAN = "0400";
+    public static final String MSG_PROPERTY_PLAN_DETAIL = "0500";
+    public static final String MSG_PROPERTY_SUBMIT = "0600";
+
+    public static final String MSG_PROPERTY_FANGCHAN_INFO_RESPONSE = "0210";
+    public static final String MSG_PROPERTY_ZHEKOU_RESPONSE = "0310";
+    public static final String MSG_PROPERTY_PLAN_RESPONSE = "0410";
+    public static final String MSG_PROPERTY_PLAN_DETAIL_RESPONSE = "0510";
+    public static final String MSG_PROPERTY_SUBMIT_RESPONSE = "0610";
+
+    //park
+    public static final String MSG_PARK_CHEWEI_INFO = "0700";
+    public static final String MSG_PARK_ZHEKOU = "0800";
+    public static final String MSG_PARK_PLAN = "0900";
+    public static final String MSG_PARK_PLAN_DETAIL = "1000";
+    public static final String MSG_PARK_SUBMIT = "1100";
+
+    public static final String MSG_PARK_CHEWEI_INFO_RESPONSE = "0710";
+    public static final String MSG_PARK_ZHEKOU_RESPONSE = "0810";
+    public static final String MSG_PARK_PLAN_RESPONSE = "0910";
+    public static final String MSG_PARK_PLAN_DETAIL_RESPONSE = "1010";
+    public static final String MSG_PARK_SUBMIT_RESPONSE = "1110";
+
+
     public static final String MSG_CITY = "1400";
     public static final String MSG_CITY_RESPONSE = "1410";
     
@@ -49,4 +76,5 @@ public class PaymentSimpleCodeConstants {
     public static final String MSG_HEAT_COMPANY_RESPONSE = "1910";
     public static final String MSG_HEAT_DETAIL_RESPONSE = "3610";
     public static final String MSG_HEAT_QIANFEI_DETAIL_RESPONSE = "2410";
+
 }

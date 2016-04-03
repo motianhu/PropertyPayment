@@ -4,15 +4,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class PaymentCommonSubmitBean extends PaymentSubmitBean {
-    public String companycode;
-    public String companyname;
+    public String companycode;  //
+    public String companyname;  //
 
-    public String communitycode;
-    public String pstartdate;
-    public String penddate;
-    public String needfare;
-    public String did;
-    public String storedfare;
+    public String communitycode; //小区编号
+    public String pstartdate; //开始月份
+    public String penddate; //结束月份
+    public String needfare; //应缴金额
+    public String did; //折扣编号
+    public String storedfare;  //预存金额
 
     public PaymentCommonSubmitBean() {
     }
@@ -62,7 +62,7 @@ public class PaymentCommonSubmitBean extends PaymentSubmitBean {
     };
 
     public String toString() {
-        return "PaymentSubmitBean[" + super.toString() + ", companycode:"
+        return "PaymentCommonSubmitBean[" + super.toString() + ", companycode:"
                 + companycode + ", companyname: " + companyname
                 + ", communitycode: " + communitycode + ", pstartdate: "
                 + pstartdate + ", penddate: " + penddate + ", needfare: "

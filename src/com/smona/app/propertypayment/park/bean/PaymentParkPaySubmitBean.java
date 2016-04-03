@@ -38,4 +38,8 @@ public class PaymentParkPaySubmitBean extends PaymentCommonSubmitBean {
             return new PaymentParkPaySubmitBean(in);
         }
     };
+
+    public String toString(){
+        return super.toString() + "; PaymentParkPaySubmitBean: parknum=" + parknum;
+    }
 }

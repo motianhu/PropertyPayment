@@ -2,6 +2,9 @@ package com.smona.app.propertypayment.common.ui;
 
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.data.submit.PaymentCommonSubmitBean;
+import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeConstants;
+import com.smona.app.propertypayment.common.simple.process.PaymentSimpleMessageProcessProxy;
+import com.smona.app.propertypayment.property.bean.PaymentPropertyPaySubmitBean;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -43,5 +46,15 @@ public class PaymentCommonConfirmActivity extends PaymentConfirmActivity {
             initView(group);
             zhifu.addView(group, params);
         }
+    }
+
+    public void initRequest() {
+        mMessageProcess = new PaymentSimpleMessageProcessProxy();
+        String code = PaymentSimpleCodeConstants.MSG_PARK_SUBMIT;
+        if(mParam instanceof PaymentPropertyPaySubmitBean) {
+            code = PaymentSimpleCodeConstants.MSG_PROPERTY_SUBMIT;
+        }
+        ((PaymentSimpleMessageProcessProxy) mMessageProcess).requestPaySubmit(
+                code, this, mParam, this);
     }
 }

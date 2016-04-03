@@ -38,4 +38,8 @@ public class PaymentPropertyPaySubmitBean extends PaymentCommonSubmitBean {
             return new PaymentPropertyPaySubmitBean(in);
         }
     };
+
+    public String toString(){
+        return super.toString() + "; PaymentPropertyPaySubmitBean: housingbantranscode=" + housingbantranscode;
+    }
 }
