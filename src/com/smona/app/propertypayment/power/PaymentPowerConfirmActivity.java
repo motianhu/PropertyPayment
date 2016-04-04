@@ -54,4 +54,9 @@ public class PaymentPowerConfirmActivity extends PaymentConfirmActivity {
                 PaymentSimpleCodeConstants.MSG_WATER_SUBMIT, this, mParam, this);
     }
 
+    @Override
+    protected void processWechat(String prepayid) {
+
+    }
+
 }

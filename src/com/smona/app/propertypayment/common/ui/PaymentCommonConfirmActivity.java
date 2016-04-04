@@ -57,4 +57,9 @@ public class PaymentCommonConfirmActivity extends PaymentConfirmActivity {
         ((PaymentSimpleMessageProcessProxy) mMessageProcess).requestPaySubmit(
                 code, this, mParam, this);
     }
+
+    @Override
+    protected void processWechat(String prepayid) {
+
+    }
 }

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.jasonwang.informationhuimin.utils.MD5Utils;
 import com.smona.app.propertypayment.R;
 import com.smona.app.propertypayment.common.simple.bean.PaymentSimpleSubmitBean;
 import com.smona.app.propertypayment.common.data.submit.PaymentSubmitBean;
@@ -13,6 +14,10 @@ import com.smona.app.propertypayment.common.simple.process.PaymentSimpleCodeCons
 import com.smona.app.propertypayment.common.simple.process.PaymentSimpleMessageProcessProxy;
 import com.smona.app.propertypayment.common.ui.PaymentConfirmActivity;
 import com.smona.app.propertypayment.common.util.LogUtil;
+import com.smona.app.propertypayment.pay.PayConstants;
+import com.tencent.mm.sdk.modelpay.PayReq;
+
+import java.security.NoSuchAlgorithmException;
 
 public class PaymentSimpleConfirmActivity extends PaymentConfirmActivity {
     private static final String TAG = PaymentSimpleConfirmActivity.class
@@ -58,5 +63,36 @@ public class PaymentSimpleConfirmActivity extends PaymentConfirmActivity {
         ((PaymentSimpleMessageProcessProxy) mMessageProcess).requestPaySubmit(
                 PaymentSimpleCodeConstants.MSG_WATER_SUBMIT, this, mParam, this);
     }
+
+    public void processWechat(String prepayid) {
+        PayReq req = new PayReq();
+        //req.appId = "wxf8b4f85f3a794e77";  // 测试用appId
+        req.appId			= PayConstants.WX_APP_ID;
+        req.partnerId		= PayConstants.WX_PARTERN_ID;
+        req.prepayId		= PayConstants.WX_PREPAY_ID;
+        req.nonceStr		= PayConstants.WX_RANDOM_STR;
+        req.timeStamp		= System.currentTimeMillis() + ""; //秒
+        req.packageValue	= PayConstants.WX_PACKAGE;;
+        req.sign		= PayConstants.WX_SIGN;//geneSign(req);
+        req.extData		= "app data"; // optional
+
+        showMessage("正常调起支付");
+        // 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
+        mPayManager.sendRequest(req);
+    }
+
+    private String geneSign(PayReq req) {
+        String stringA = "appId=" + req.appId + "&partnerId=" + req.partnerId + "&prepayId=" + req.prepayId +  "&nonceStr=" + req.nonceStr
+                + "&timeStamp=" + req.timeStamp + "&packageValue=" + req.packageValue;
+        String signValueTemp = stringA + "&key=" + PayConstants.WX_APP_SECRET;
+        String signValue = null;
+        try {
+            signValue = MD5Utils.getMD5(signValueTemp).toUpperCase();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return signValue;
+    }
+
 
 }

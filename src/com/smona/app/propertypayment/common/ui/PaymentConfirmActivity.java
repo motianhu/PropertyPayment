@@ -11,6 +11,8 @@ import com.smona.app.propertypayment.common.simple.process.PaymentSimpleMessageP
 import com.smona.app.propertypayment.common.util.JsonUtils;
 import com.smona.app.propertypayment.common.util.LogUtil;
 import com.smona.app.propertypayment.common.util.PaymentConstants;
+import com.smona.app.propertypayment.pay.PayConstants;
+import com.smona.app.propertypayment.pay.PayManager;
 
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +24,8 @@ public abstract class PaymentConfirmActivity extends PaymentBaseActivity {
     protected PaymentSubmitBean mParam;
     protected int mSource;
     protected int[] imageIds;
+
+    protected PayManager mPayManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,8 @@ public abstract class PaymentConfirmActivity extends PaymentBaseActivity {
         mSource = getIntent().getIntExtra(PaymentConstants.DATA_SOURCE, -1);
         LogUtil.d(TAG, "acquireItemInfo mSource: " + mSource + ", mParam: "
                 + mParam);
+
+        mPayManager = new PayManager(this);
     }
 
     @Override
@@ -79,6 +85,15 @@ public abstract class PaymentConfirmActivity extends PaymentBaseActivity {
     }
 
     private void gotoWechatPay() {
+        int envFlag = mPayManager.checkEnv(this);
+        if(PayConstants.PAY_NOT_INSTALL == envFlag){
+            this.showMessage("请安装微信!");
+            return;
+        }
+        if(PayConstants.PAY_LOW_VERSION == envFlag){
+            this.showMessage("微信版本太低，不支持支付，请升级微信!");
+            return;
+        }
         this.showMessage("微信支付!");
         loadData();
     }
@@ -101,14 +116,14 @@ public abstract class PaymentConfirmActivity extends PaymentBaseActivity {
         if (PaymentSimpleCodeConstants.MSG_WATER_SUBMIT_RESPONSE
                 .equals(bean.iccode)) {
             if (isRequestOk(bean)) {
-                
+
             } else {
 
             }
         } else {
 
         }
-
+        processWechat("");
         hideCustomProgressDialog();
     }
 
@@ -120,4 +135,5 @@ public abstract class PaymentConfirmActivity extends PaymentBaseActivity {
         this.showMessage("银联支付!");
     }
 
+    abstract protected void processWechat(String prepayid);
 }
